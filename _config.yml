@@ -116,7 +116,7 @@ author:
   first_name       : "Tharaka"
   name             : "Tharaka Jayasena"
   pronounce       : "/tharaka/"
-  avatar           : "assets/images/my image.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/my image.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "I am an **amazing** person."
   location         : "Sri lanka"
   email            :
