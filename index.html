@@ -5,10 +5,11 @@ sidebar: false
 ---
 
 <div class="page__hero--overlay"
-    style="margin: -1em; background-color: #000; background-image: linear-gradient(var(--splash-gradient-color), rgba(0, 0, 0, 0.5)), url('{{ site.data.images.homeHeader }}');">
+    style="background-color: #000; background-image: linear-gradient(var(--splash-gradient-color), rgba(0, 0, 0, 0.5)), url('{{ site.data.images.homeHeader }}');">
     <div class="wrapper" style="margin-bottom: -10px;">
         <div class="splash__avatar">
-            <img src="{{site.author.avatar}}" class="splash__avatar" alt="{{site.author.pronounce}}" title="{{site.author.avatar_title}}">
+            <img src="{{site.author.avatar}}" class="splash__avatar" alt="{{site.author.pronounce}}"
+                title="{{site.author.avatar_title}}">
         </div>
         <h3 class="author__name" style="color:white; margin-bottom: 5px;">
             {{site.author.firstname}}
@@ -36,6 +37,74 @@ sidebar: false
         </div>
     </div>
     <span class="page__hero-caption">
-        <a href="{{site.siteUrl}}/">Something here</a>
+        <!-- <a href="{{site.siteUrl}}/">Something here</a> -->
     </span>
+    <section class="page__content" itemprop="text">
+        <p>
+            About me:
+        </p>
+        <p style="text-align: center;">
+            <span class="label custom-label animated_label">
+                <nobr>Systems Security</nobr>
+            </span>
+
+        </p>
+        <h2 id="education">Education<a class="header-link" href="#education" title="Permalink"><span
+                    class="sr-only">Permalink</span></a></h2>
+        <div class="about_row">
+            <div class="about_column">
+                <table style=" border:0px;">
+                    <tbody style=" border:0px;">
+                        <tr style=" border:0px;">
+                            <td style=" border:0px; vertical-align:top;"><img
+                                    src="https://archfx.github.io/images/logos/uf.png" width="60px"><br></td>
+                            <td style=" border:0px;">
+                                <p><b>University of Florida 🇺🇸 </b><br> Doctor of Philosophy, Computer Engineering
+                                    2021-Present <br></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="about_column">
+                <table style=" border:0px;">
+                    <tbody style=" border:0px;">
+                        <tr style=" border:0px;">
+                            <td style=" border:0px; vertical-align:top;"><img
+                                    src="https://archfx.github.io/images/logos/uom.png" width="60px"></td>
+                            <td style=" border:0px; ">
+                                <p><b>University of Moratuwa 🇱🇰 </b><br> Honours Degree of Bachelor of the Science of
+                                    Engineering 2015-2019 <br> Specialisation: Computer Science and Engineering (ICE)
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h2 id="updates">Updates
+            <a class="header-link" href="#updates" title="Permalink">
+                <span class="sr-only">Permalink</span>
+            </a>
+        </h2>
+        <!-- <div id="multilines">
+            <div class="container">
+                <ul class="newsticker" style="height: 165px; overflow: hidden;">
+                    <li style="margin-top: 0px;"> Excited to announce that our paper titled 'Scalable Detection of
+                        Hardware Trojans using ATPG-based Activation of Rare Events' has been accepted in IEEE TCAD! <a
+                            href="https://twitter.com/ArunaFX/status/1682188518398001152">Read more...</a>
+                    </li>
+                </ul>
+                <a href="https://twitter.com/ArunaFX">
+                    <img width="28"
+                        style=" position: absolute; right: 10px; top: 10px; -webkit-filter: drop-shadow( 2px 2px 3px rgba(0, 0, 0, .5)); filter: drop-shadow( 2px 2px 3px rgba(0, 0, 0, .5));"
+                        src="https://archfx.github.io/images/icons/twitter.svg">
+                </a>
+            </div>
+            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+            <script
+                src="https://www.jqueryscript.net/demo/Flexible-jQuery-Vertical-News-Ticker-Plugin-Advanced-News-Ticker/js/newsTicker.js"></script>
+            <script> var multilines = $('#multilines .newsticker').newsTicker({ row_height: 55, speed: 800, }); var oneliner = $('#oneliner .newsticker').newsTicker({ row_height: 34, max_rows: 1, time: 5000, nextButton: $('#oneliner .header') }); // Pause newsTicker on .header hover $('#oneliner .header').hover(function() { oneliner.newsTicker('pause'); }, function() { oneliner.newsTicker('unpause'); }); </script>
+        </div> -->
+    </section>
 </div>
