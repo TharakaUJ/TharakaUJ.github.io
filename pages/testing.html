@@ -47,7 +47,7 @@ sidebar: false
             // Detach the container
             container.object3D.position.copy(initialMarkerPosition);
             container.object3D.quaternion.copy(initialMarkerRotation);
-            // container.object3D.parent = null;
+            container.object3D.parent = marker.object3D;
         });
 
         // Update object positions based on motion
