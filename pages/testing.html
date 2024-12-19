@@ -1,0 +1,52 @@
+---
+permalink: /testing/
+title: "Testing"
+author_profile: false
+sidebar: false
+---
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/2.2.1/aframe/build/aframe-ar.min.js"></script>
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs>
+        <!-- Marker for initialization -->
+        <a-marker id="marker" preset="custom" type="pattern" url="/assets/images/pattern.patt">
+            <a-box id="marker-box" position="0 0.5 0" material="color: red;"></a-box>
+        </a-marker>
+
+        <!-- World-anchored container -->
+        <a-entity id="world-container">
+            <a-sphere position="1 1 0" radius="0.2" material="color: blue;"></a-sphere>
+            <a-cylinder position="0 0 2" radius="0.1" height="0.5" material="color: green;"></a-cylinder>
+        </a-entity>
+
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    <script>
+        const marker = document.querySelector('#marker');
+        const container = document.querySelector('#world-container');
+
+        marker.addEventListener('markerFound', () => {
+            // Get marker's initial position and orientation
+            const markerPosition = marker.object3D.getWorldPosition(new THREE.Vector3());
+            const markerQuaternion = marker.object3D.getWorldQuaternion(new THREE.Quaternion());
+
+            // Set the container's position and orientation
+            container.object3D.position.copy(markerPosition);
+            container.object3D.quaternion.copy(markerQuaternion);
+
+            // Detach the container from the marker to anchor it in the world
+            container.object3D.parent = null;
+
+            console.log('World anchored at:', markerPosition);
+        });
+    </script>
+</body>
+
+</html>
