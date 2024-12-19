@@ -47,24 +47,24 @@ sidebar: false
             // Detach the container
             container.object3D.position.copy(initialMarkerPosition);
             container.object3D.quaternion.copy(initialMarkerRotation);
-            container.object3D.parent = null;
+            // container.object3D.parent = null;
         });
 
         // Update object positions based on motion
-        window.addEventListener('deviceorientation', (event) => {
-            if (!isAnchored) return;
+        // window.addEventListener('deviceorientation', (event) => {
+        //     if (!isAnchored) return;
 
-            const alpha = event.alpha; // Compass heading
-            const beta = event.beta;   // Front-to-back tilt
-            const gamma = event.gamma; // Left-to-right tilt
+        //     const alpha = event.alpha; // Compass heading
+        //     const beta = event.beta;   // Front-to-back tilt
+        //     const gamma = event.gamma; // Left-to-right tilt
 
-            // Apply small adjustments based on orientation (example logic)
-            container.object3D.rotation.set(
-                THREE.MathUtils.degToRad(beta),
-                THREE.MathUtils.degToRad(alpha),
-                THREE.MathUtils.degToRad(gamma)
-            );
-        });
+        //     // Apply small adjustments based on orientation (example logic)
+        //     container.object3D.rotation.set(
+        //         THREE.MathUtils.degToRad(beta),
+        //         THREE.MathUtils.degToRad(alpha),
+        //         THREE.MathUtils.degToRad(gamma)
+        //     );
+        // });
 
     </script>
 </body>
