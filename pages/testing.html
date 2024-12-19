@@ -29,23 +29,43 @@ sidebar: false
     </a-scene>
 
     <script>
-        const marker = document.querySelector('#marker');
+        let initialMarkerPosition = new THREE.Vector3();
+        let initialMarkerRotation = new THREE.Quaternion();
+        let isAnchored = false;
+
         const container = document.querySelector('#world-container');
+        const marker = document.querySelector('#marker');
 
+        // Anchor to the marker when detected
         marker.addEventListener('markerFound', () => {
-            // Get marker's initial position and orientation
-            const markerPosition = marker.object3D.getWorldPosition(new THREE.Vector3());
-            const markerQuaternion = marker.object3D.getWorldQuaternion(new THREE.Quaternion());
+            isAnchored = true;
 
-            // Set the container's position and orientation
-            container.object3D.position.copy(markerPosition);
-            container.object3D.quaternion.copy(markerQuaternion);
+            // Save the marker's initial position and rotation
+            initialMarkerPosition.copy(marker.object3D.getWorldPosition(new THREE.Vector3()));
+            initialMarkerRotation.copy(marker.object3D.getWorldQuaternion(new THREE.Quaternion()));
 
-            // Detach the container from the marker to anchor it in the world
+            // Detach the container
+            container.object3D.position.copy(initialMarkerPosition);
+            container.object3D.quaternion.copy(initialMarkerRotation);
             container.object3D.parent = null;
-
-            console.log('World anchored at:', markerPosition);
         });
+
+        // Update object positions based on motion
+        window.addEventListener('deviceorientation', (event) => {
+            if (!isAnchored) return;
+
+            const alpha = event.alpha; // Compass heading
+            const beta = event.beta;   // Front-to-back tilt
+            const gamma = event.gamma; // Left-to-right tilt
+
+            // Apply small adjustments based on orientation (example logic)
+            container.object3D.rotation.set(
+                THREE.MathUtils.degToRad(beta),
+                THREE.MathUtils.degToRad(alpha),
+                THREE.MathUtils.degToRad(gamma)
+            );
+        });
+
     </script>
 </body>
 
