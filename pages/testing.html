@@ -17,7 +17,19 @@ sidebar: false
         <!-- Marker for initialization -->
         <a-marker id="marker" preset="custom" type="pattern" url="/assets/images/qr-pattern.patt" smooth="true"
             smoothCount="10" smoothTolerance="0.01" smoothThreshold="2">
-            <a-box id="marker-box" position="0 0.5 0" material="color: red;"></a-box>
+            <!-- <a-box id="marker-box" position="0 0.5 0" material="color: red;"></a-box> -->
+            <!-- <a-entity
+            gltf-model="/assets/ar/scene.gltf"
+            scale="5 5 5"
+            position="50 150 0"
+          >
+          </a-entity> -->
+          <a-entity
+          obj-model="/assets/ar/scene.obj"
+          scale="5 5 5"
+          position="50 150 0"
+        >
+        </a-entity>
             <a-sphere position="4 1 1" radius="0.2" material="color: blue;"></a-sphere>
             <a-cylinder position="0 3 2" radius="0.1" height="0.5" material="color: green;"></a-cylinder>
         </a-marker>
