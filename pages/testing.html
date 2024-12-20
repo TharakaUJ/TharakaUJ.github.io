@@ -17,6 +17,8 @@ sidebar: false
         <!-- Marker for initialization -->
         <a-marker id="marker" preset="custom" type="pattern" url="/assets/images/pattern.patt">
             <a-box id="marker-box" position="0 0.5 0" material="color: red;"></a-box>
+            <a-sphere position="4 1 1" radius="0.2" material="color: blue;"></a-sphere>
+            <a-cylinder position="0 3 2" radius="0.1" height="0.5" material="color: green;"></a-cylinder>
         </a-marker>
 
         <!-- World-anchored container -->
@@ -29,26 +31,26 @@ sidebar: false
     </a-scene>
 
     <script>
-        let initialMarkerPosition = new THREE.Vector3();
-        let initialMarkerRotation = new THREE.Quaternion();
-        let isAnchored = false;
+        // let initialMarkerPosition = new THREE.Vector3();
+        // let initialMarkerRotation = new THREE.Quaternion();
+        // let isAnchored = false;
 
-        const container = document.querySelector('#world-container');
-        const marker = document.querySelector('#marker');
+        // const container = document.querySelector('#world-container');
+        // const marker = document.querySelector('#marker');
 
-        // Anchor to the marker when detected
-        marker.addEventListener('markerFound', () => {
-            isAnchored = true;
+        // // Anchor to the marker when detected
+        // marker.addEventListener('markerFound', () => {
+        //     isAnchored = true;
 
-            // Save the marker's initial position and rotation
-            initialMarkerPosition.copy(marker.object3D.getWorldPosition(new THREE.Vector3()));
-            initialMarkerRotation.copy(marker.object3D.getWorldQuaternion(new THREE.Quaternion()));
+        //     // Save the marker's initial position and rotation
+        //     initialMarkerPosition.copy(marker.object3D.getWorldPosition(new THREE.Vector3()));
+        //     initialMarkerRotation.copy(marker.object3D.getWorldQuaternion(new THREE.Quaternion()));
 
-            // Detach the container
-            container.object3D.position.copy(initialMarkerPosition);
-            container.object3D.quaternion.copy(initialMarkerRotation);
-            container.object3D.parent = marker.object3D;
-        });
+        //     // Detach the container
+        //     container.object3D.position.copy(initialMarkerPosition);
+        //     container.object3D.quaternion.copy(initialMarkerRotation);
+        //     container.object3D.parent = null;
+        // });
 
         // Update object positions based on motion
         // window.addEventListener('deviceorientation', (event) => {
