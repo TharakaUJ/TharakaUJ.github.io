@@ -17,71 +17,19 @@ sidebar: false
         <!-- Marker for initialization -->
         <a-marker id="marker" preset="custom" type="pattern" url="/assets/images/qr-pattern.patt" smooth="true"
             smoothCount="10" smoothTolerance="0.01" smoothThreshold="2">
-            <!-- <a-box id="marker-box" position="0 0.5 0" material="color: red;"></a-box> -->
-            <!-- <a-entity
-            gltf-model="/assets/ar/scene.gltf"
-            scale="5 5 5"
-            position="50 150 0"
-          >
-          </a-entity> -->
             <a-entity gltf-model="/assets/ar/Pathfinder_2k.glb" scale="1 1 1" position="0 0 0">
             </a-entity>
-            <a-sphere position="4 1 1" radius="0.2" material="color: blue;"></a-sphere>
-            <a-cylinder position="0 3 2" radius="0.1" height="0.5" material="color: green;"></a-cylinder>
         </a-marker>
 
         <!-- <a-nft type="nft" url="/assets/ar/qrcode_tharakauj.github.io" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
             <a-box id="marker-box" position="0 0.5 0" material="color: red;"></a-box>
         </a-nft> -->
-
-
-        <!-- World-anchored container -->
-        <!-- <a-entity id="world-container">
-            <a-sphere position="1 1 0" radius="0.2" material="color: blue;"></a-sphere>
-            <a-cylinder position="0 0 2" radius="0.1" height="0.5" material="color: green;"></a-cylinder>
-        </a-entity> -->
-
         <a-entity camera></a-entity>
     </a-scene>
 
     <script>
-        // let initialMarkerPosition = new THREE.Vector3();
-        // let initialMarkerRotation = new THREE.Quaternion();
-        // let isAnchored = false;
-
-        // const container = document.querySelector('#world-container');
-        // const marker = document.querySelector('#marker');
-
-        // // Anchor to the marker when detected
-        // marker.addEventListener('markerFound', () => {
-        //     isAnchored = true;
-
-        //     // Save the marker's initial position and rotation
-        //     initialMarkerPosition.copy(marker.object3D.getWorldPosition(new THREE.Vector3()));
-        //     initialMarkerRotation.copy(marker.object3D.getWorldQuaternion(new THREE.Quaternion()));
-
-        //     // Detach the container
-        //     container.object3D.position.copy(initialMarkerPosition);
-        //     container.object3D.quaternion.copy(initialMarkerRotation);
-        //     container.object3D.parent = null;
-        // });
-
-        // Update object positions based on motion
-        // window.addEventListener('deviceorientation', (event) => {
-        //     if (!isAnchored) return;
-
-        //     const alpha = event.alpha; // Compass heading
-        //     const beta = event.beta;   // Front-to-back tilt
-        //     const gamma = event.gamma; // Left-to-right tilt
-
-        //     // Apply small adjustments based on orientation (example logic)
-        //     container.object3D.rotation.set(
-        //         THREE.MathUtils.degToRad(beta),
-        //         THREE.MathUtils.degToRad(alpha),
-        //         THREE.MathUtils.degToRad(gamma)
-        //     );
-        // });
+   
 
     </script>
 </body>
