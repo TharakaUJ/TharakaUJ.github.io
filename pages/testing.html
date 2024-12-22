@@ -6,56 +6,33 @@ sidebar: false
 ---
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <style>
-        /* Style for the overlay */
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            /* Allow clicks to pass through */
-        }
-
-        .clickable {
-            pointer-events: auto;
-            /* Enable clicks on this element */
-        }
-    </style>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 </head>
 
 <body style="margin: 0; overflow: hidden;">
-    <div class="overlay">
-        <div class="clickable" id="click-area"></div>
-    </div>
-
-    <a-scene embedded arjs='debugUIEnabled: false; trackingMethod: best;'>
-        <a-marker-camera preset='hiro'>
-            <a-box position="0 0.5 -1" scale="0.5 0.5 0.5" color="#4CC3D2" id="box1"></a-box>
-            <a-box position="1 0.5 -1" scale="0.5 0.5 0.5" color="#EF2D5E" id="box2"></a-box>
-            <a-box position="-1 0.5 -1" scale="0.5 0.5 0.5" color="#FFC65D" id="box3"></a-box>
-        </a-marker-camera>
+    <a-scene embedded arjs="debugUIEnabled: false;" vr-mode-ui="enabled: false">
+        <!-- Marker for initialization -->
+        <a-marker id="marker" preset="custom" type="pattern" url="/assets/ar/qr-pattern.patt" smooth="true" preload="true"
+            smoothCount="10" smoothTolerance="0.01" smoothThreshold="2">
+            <a-entity id="model" gltf-model="/assets/ar/Pathfinder_2k.glb" scale="1 1 1" position="0 0 0">
+            </a-entity>
+        </a-marker>
         <a-entity camera></a-entity>
     </a-scene>
 
     <script>
-        // Add click event listener to the overlay
-        document.getElementById('click-area').addEventListener('click', function (event) {
-            const intersectedElement = document.elementsFromPoint(event.clientX, event.clientY);
-            intersectedElement.forEach(function (el) {
-                if (el.id.startsWith('box')) {
-                    alert(`You clicked on ${el.id}`);
-                    // You can add navigation or other actions here
-                }
+        // Wait for the A-Frame scene to load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select the model entity
+            const model = document.getElementById('model');
+
+            // Add a click event listener
+            model.addEventListener('click', function () {
+                alert('Hello!');
             });
         });
     </script>
 </body>
-
 </html>
