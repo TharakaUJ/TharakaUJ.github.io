@@ -8,21 +8,27 @@ sidebar: false
 <html>
 
 <head>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/2.2.1/aframe/build/aframe-ar.min.js"></script>
+    <!-- <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script> -->
+
+    <script
+        src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
 </head>
 
 <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs>
+    <a-scene embedded arjs="debugUIEnabled: false;" vr-mode-ui="enabled: false">
         <!-- Marker for initialization -->
-        <!-- <a-marker id="marker" preset="custom" type="pattern" url="/assets/images/qr-pattern.patt" smooth="true" preload="true"
+        <!-- <a-marker id="marker" preset="custom" type="pattern" url="/assets/ar/qr-pattern.patt" smooth="true" preload="true"
             smoothCount="10" smoothTolerance="0.01" smoothThreshold="2">
             <a-entity id="model" gltf-model="/assets/ar/Pathfinder_2k.glb" scale="1 1 1" position="0 0 0">
             </a-entity>
         </a-marker> -->
 
-        <a-nft type="nft" url="/assets/ar/nft" smooth="true" smoothCount="10" preload="true"
-            smoothTolerance=".01" smoothThreshold="5">
+        <a-nft type="nft" url="/assets/ar/nft" smooth="true" smoothCount="10" preload="true" smoothTolerance=".01"
+            smoothThreshold="5">
             <a-box id="marker-box" position="0 0.5 0" material="color: red;"></a-box>
         </a-nft>
         <a-entity camera></a-entity>
