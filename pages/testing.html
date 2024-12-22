@@ -15,13 +15,13 @@ sidebar: false
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
         <!-- Marker for initialization -->
-        <!-- <a-marker id="marker" preset="custom" type="pattern" url="/assets/images/qr-pattern.patt" smooth="true"
+        <!-- <a-marker id="marker" preset="custom" type="pattern" url="/assets/images/qr-pattern.patt" smooth="true" preload="true"
             smoothCount="10" smoothTolerance="0.01" smoothThreshold="2">
             <a-entity id="model" gltf-model="/assets/ar/Pathfinder_2k.glb" scale="1 1 1" position="0 0 0">
             </a-entity>
         </a-marker> -->
 
-        <a-nft type="nft" url="/assets/ar/nft" smooth="true" smoothCount="10"
+        <a-nft type="nft" url="/assets/ar/nft" smooth="true" smoothCount="10" preload="true"
             smoothTolerance=".01" smoothThreshold="5">
             <a-box id="marker-box" position="0 0.5 0" material="color: red;"></a-box>
         </a-nft>
