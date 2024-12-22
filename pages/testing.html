@@ -15,39 +15,20 @@ sidebar: false
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
         <!-- Marker for initialization -->
-        <a-marker id="marker" preset="custom" type="pattern" url="/assets/images/qr-pattern.patt" smooth="true"
+        <!-- <a-marker id="marker" preset="custom" type="pattern" url="/assets/images/qr-pattern.patt" smooth="true"
             smoothCount="10" smoothTolerance="0.01" smoothThreshold="2">
             <a-entity id="model" gltf-model="/assets/ar/Pathfinder_2k.glb" scale="1 1 1" position="0 0 0">
             </a-entity>
-        </a-marker>
+        </a-marker> -->
 
-        <!-- <a-nft type="nft" url="/assets/ar/qrcode_tharakauj.github.io" smooth="true" smoothCount="10" smoothTolerance=".01"
-            smoothThreshold="5">
+        <a-nft type="nft" url="/assets/ar/nft" smooth="true" smoothCount="10"
+            smoothTolerance=".01" smoothThreshold="5">
             <a-box id="marker-box" position="0 0.5 0" material="color: red;"></a-box>
-        </a-nft> -->
+        </a-nft>
         <a-entity camera></a-entity>
     </a-scene>
 
-    <script>
-        AFRAME.registerComponent('markerhandler', {
 
-            init: function () {
-                const animatedMarker = document.querySelector("#marker");
-                const aEntity = document.querySelector("#model");
-
-                // every click, we make our model grow in size :)
-                animatedMarker.addEventListener('click', function (ev, target) {
-                    const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
-                    if (aEntity && intersectedElement === aEntity) {
-                        const scale = aEntity.getAttribute('scale');
-                        Object.keys(scale).forEach((key) => scale[key] = scale[key] + 1);
-                        aEntity.setAttribute('scale', scale);
-                    }
-                });
-            }
-        });
-
-    </script>
 </body>
 
 </html>
