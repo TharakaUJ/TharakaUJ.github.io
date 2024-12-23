@@ -35,6 +35,7 @@ sidebar: false
 
                 marker.addEventListener('markerLost', () => {
                     console.log('Marker lost');
+                    model.parentElement = null;
                 });
 
                 // Listen for device orientation
