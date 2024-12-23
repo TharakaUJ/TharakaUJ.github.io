@@ -32,19 +32,18 @@ sidebar: false
                 this.modelDetached = false;
 
                 marker.addEventListener('markerFound', () => {
+                    console.log(marker.object3D.position);
                     console.log('Marker found');
                     this.lastKnownPosition.copy(marker.object3D.position);
                     this.lastKnownRotation.copy(marker.object3D.rotation);
                     this.modelDetached = false;
-                    model.setAttribute('visible', 'true');
-                    marker.appendChild(model); // Reattach model
+                    model.setAttribute('visible', 'true'); // Make model visible
                 });
 
                 marker.addEventListener('markerLost', () => {
                     console.log('Marker lost');
                     this.modelDetached = true;
-                    model.setAttribute('visible', 'true'); // Keep model visible
-                    model.parentNode?.removeChild(model); // Detach from marker
+                    model.setAttribute('visible', 'true'); // Hide model
                 });
 
                 window.addEventListener('deviceorientation', (event) => {
@@ -73,23 +72,25 @@ sidebar: false
                     }
                 });
 
-                this.el.sceneEl.addEventListener('tick', () => {
-                    const { sensitivity } = this.data;
 
-                    if (this.modelDetached) {
-                        const adjustedPosition = this.lastKnownPosition.clone();
-                        adjustedPosition.x += (this.deviceRotation.gamma || 0) * sensitivity;
-                        adjustedPosition.z += (this.deviceRotation.beta || 0) * sensitivity;
+            },
 
-                        model.object3D.position.copy(adjustedPosition);
-                        model.object3D.rotation.y = this.lastKnownRotation.y + (this.deviceRotation.alpha || 0) * sensitivity;
-                    } else {
-                        model.object3D.position.copy(marker.object3D.position);
-                        model.object3D.rotation.copy(marker.object3D.rotation);
-                    }
+            tick: function () {
+                const { sensitivity } = this.data;
 
-                    model.object3D.updateMatrixWorld();
-                });
+                if (this.modelDetached) {
+                    const adjustedPosition = this.lastKnownPosition.clone();
+                    adjustedPosition.x += (this.deviceRotation.gamma || 0) * sensitivity;
+                    adjustedPosition.z += (this.deviceRotation.beta || 0) * sensitivity;
+
+                    model.object3D.position.copy(adjustedPosition);
+                    model.object3D.rotation.y = this.lastKnownRotation.y + (this.deviceRotation.alpha || 0) * sensitivity;
+                } else {
+                    model.object3D.position.copy(marker.object3D.position);
+                    model.object3D.rotation.copy(marker.object3D.rotation);
+                }
+
+                model.object3D.updateMatrixWorld();
             }
         });
     </script>
