@@ -16,6 +16,7 @@ sidebar: false
                 sensitivity: { type: 'number', default: 0.005 }
             },
             init: function () {
+                console.log("strt")
                 const marker = document.querySelector('#marker');
                 const model = document.querySelector('#model');
 
@@ -36,11 +37,15 @@ sidebar: false
                     this.lastKnownRotation = marker.object3D.rotation.clone();
                     this.modelDetached = false;
                     model.setAttribute('visible', 'true'); // Re-attach the model when the marker is found
+                    model.parentElement = marker;
+                    model.object3D.position.copy(marker.object3D.position);
                 });
 
                 marker.addEventListener('markerLost', () => {
                     console.log('Marker lost');
                     this.modelDetached = true; // Mark model as detached
+                    model.setAttribute('visible', 'true'); // Keep the marker visible even when the model is detached
+                    model.parentElement = null;
                 });
 
                 // Listen for device orientation
@@ -73,6 +78,8 @@ sidebar: false
                         const rotationFactor = this.deviceRotation.alpha * sensitivity;
                         model.object3D.rotation.y = this.lastKnownRotation.y + rotationFactor;
                     }
+
+                    model.object3D.updateMatrixWorld();
                 });
             }
         });
@@ -80,14 +87,17 @@ sidebar: false
 </head>
 
 <body>
-    <a-scene embedded arjs="debugUIEnabled: false;" vr-mode-ui="enabled: false">
+    <a-scene adjust-on-lost embedded arjs="debugUIEnabled: false;" vr-mode-ui="enabled: false">
         <!-- Marker for initialization -->
-        <a-marker id="marker" preset="custom" type="pattern" url="/assets/ar/qr-pattern.patt" smooth="true" preload="true"
-            smoothCount="10" smoothTolerance="0.01" smoothThreshold="2">
+        <a-marker id="marker" preset="custom" type="pattern" url="/assets/ar/qr-pattern.patt" smooth="true"
+            preload="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="2">
             <!-- Model (will be visible even when marker is lost) -->
-            <a-entity id="model" gltf-model="/assets/ar/Pathfinder_2k.glb" scale="1 1 1" position="0 0 0">
-            </a-entity>
+            <!-- <a-entity id="model" gltf-model="Pathfinder_2k.glb" scale="1 1 1" position="0 0 0">
+            </a-entity> -->
         </a-marker>
+
+        <a-entity id="model" gltf-model="/assets/ar/Pathfinder_2k.glb" scale="1 1 1" position="0 0 0" visible="false">
+        </a-entity>
         <a-entity camera></a-entity>
     </a-scene>
 </body>
