@@ -25,41 +25,53 @@ sidebar: false
                 }
 
                 this.lastKnownPosition = null;
+                this.lastKnownRotation = null;
                 this.deviceRotation = { alpha: 0, beta: 0, gamma: 0 };
+                this.modelDetached = false;
 
                 // Listen for marker visibility events
                 marker.addEventListener('markerFound', () => {
                     console.log('Marker found');
                     this.lastKnownPosition = marker.object3D.position.clone();
+                    this.lastKnownRotation = marker.object3D.rotation.clone();
+                    this.modelDetached = false;
+                    model.setAttribute('visible', 'true'); // Re-attach the model when the marker is found
                 });
 
                 marker.addEventListener('markerLost', () => {
                     console.log('Marker lost');
-                    model.parentElement = null;
+                    this.modelDetached = true; // Mark model as detached
                 });
 
                 // Listen for device orientation
                 window.addEventListener('deviceorientation', (event) => {
                     this.deviceRotation = {
-                        alpha: event.alpha,
-                        beta: event.beta,
-                        gamma: event.gamma,
+                        alpha: event.alpha || 0,
+                        beta: event.beta || 0,
+                        gamma: event.gamma || 0,
                     };
                 });
 
+                // Update model position on each frame
                 this.el.sceneEl.addEventListener('tick', () => {
-                    if (!marker.object3D.visible && this.lastKnownPosition) {
-                        // Adjust model's position using device rotation
-                        const { sensitivity } = this.data;
+                    const { sensitivity } = this.data;
 
-                        const rotationFactorX = this.deviceRotation.gamma * sensitivity;
-                        const rotationFactorY = this.deviceRotation.beta * sensitivity;
+                    if (this.modelDetached && this.lastKnownPosition) {
+                        // Adjust model's position based on device rotation
+                        const deltaX = this.deviceRotation.gamma * sensitivity;
+                        const deltaZ = this.deviceRotation.beta * sensitivity;
 
-                        const newPosition = this.lastKnownPosition.clone();
-                        newPosition.x += rotationFactorX;
-                        newPosition.z += rotationFactorY;
+                        const adjustedPosition = this.lastKnownPosition.clone();
+                        adjustedPosition.x += deltaX;
+                        adjustedPosition.z += deltaZ;
 
-                        model.object3D.position.copy(newPosition);
+                        model.object3D.position.copy(adjustedPosition);
+                    }
+
+                    if (this.modelDetached && this.lastKnownRotation) {
+                        // Optionally adjust the rotation of the model based on device orientation
+                        const rotationFactor = this.deviceRotation.alpha * sensitivity;
+                        model.object3D.rotation.y = this.lastKnownRotation.y + rotationFactor;
                     }
                 });
             }
@@ -72,11 +84,13 @@ sidebar: false
         <!-- Marker for initialization -->
         <a-marker id="marker" preset="custom" type="pattern" url="/assets/ar/qr-pattern.patt" smooth="true" preload="true"
             smoothCount="10" smoothTolerance="0.01" smoothThreshold="2">
+            <!-- Model (will be visible even when marker is lost) -->
             <a-entity id="model" gltf-model="/assets/ar/Pathfinder_2k.glb" scale="1 1 1" position="0 0 0">
             </a-entity>
         </a-marker>
         <a-entity camera></a-entity>
     </a-scene>
 </body>
+
 
 </html>
