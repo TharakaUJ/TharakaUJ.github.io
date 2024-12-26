@@ -76,12 +76,13 @@ sidebar: false
                     if (!this.modelDetached) return;
 
                     const accel = event.acceleration;
+                    console.log(accel);
                     const deltaTime = event.interval;
 
                     if (accel) {
                         const threshold = this.data.noiseThreshold;
                         this.lastVelocity.x += Math.abs(accel.x) > threshold ? accel.x * deltaTime : 0;
-                        this.lastVelocity.y += Math.abs(accel.y) > threshold ? accel.y * deltaTime : 0;
+                        this.lastVelocity.y += Math.abs(accel.y) > threshold ? (accel.y - 10) * deltaTime : 0;
                         this.lastVelocity.z += Math.abs(accel.z) > threshold ? accel.z * deltaTime : 0;
 
                         this.lastKnownPosition.x += this.lastVelocity.x * deltaTime;
