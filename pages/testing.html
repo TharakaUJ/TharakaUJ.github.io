@@ -19,6 +19,7 @@ sidebar: false
                 motionSensitivity: { type: 'number', default: 0.01 }, // Sensitivity for motion
                 rotationSensitivity: { type: 'number', default: 0.01 }, // Sensitivity for rotation
                 markerRealWidth: { type: 'number', default: 0.1 }, // Real-world marker width in meters
+                noiseThreshold: { type: 'number', default: 0.001 }, // Threshold to filter small movements
             },
             init: function () {
                 console.log("Component initialized");
@@ -31,18 +32,17 @@ sidebar: false
                 }
 
                 this.lastKnownPosition = new THREE.Vector3();
-                this.lastKnownRotation = new THREE.Euler();
+                this.lastKnownRotation = new THREE.Quaternion();
                 this.lastVelocity = new THREE.Vector3();
-                this.deviceRotation = { alpha: 0, beta: 0, gamma: 0 };
+                this.deviceRotation = new THREE.Quaternion();
                 this.modelDetached = false;
 
                 this.markerWidthRatio = 1; // Default ratio, updated on marker detection
 
                 marker.addEventListener('markerFound', () => {
-                    console.log(marker.object3D.position);
                     console.log('Marker found');
                     this.lastKnownPosition.copy(marker.object3D.position);
-                    this.lastKnownRotation.copy(marker.object3D.rotation);
+                    this.lastKnownRotation.copy(marker.object3D.quaternion);
 
                     // Calculate the ratio between real-world marker size and AR marker size
                     const markerScale = marker.object3D.scale.x; // Assuming uniform scale
@@ -60,27 +60,33 @@ sidebar: false
 
                 window.addEventListener('deviceorientation', (event) => {
                     if (!this.modelDetached) return;
-                    this.deviceRotation = {
-                        alpha: event.alpha || 0,
-                        beta: event.beta || 0,
-                        gamma: event.gamma || 0,
-                    };
+
+                    const { alpha, beta, gamma } = event;
+                    const quaternion = new THREE.Quaternion();
+                    quaternion.setFromEuler(new THREE.Euler(
+                        THREE.Math.degToRad(beta || 0),
+                        THREE.Math.degToRad(alpha || 0),
+                        THREE.Math.degToRad(gamma || 0),
+                        'YXZ'
+                    ));
+                    this.deviceRotation.copy(quaternion);
                 });
 
                 window.addEventListener('devicemotion', (event) => {
                     if (!this.modelDetached) return;
 
                     const accel = event.acceleration;
-                    const deltaTime = event.interval / 1000;
+                    const deltaTime = event.interval;
 
                     if (accel) {
-                        this.lastVelocity.x += (accel.x || 0) * deltaTime;
-                        this.lastVelocity.y += (accel.y || 0) * deltaTime;
-                        this.lastVelocity.z += (accel.z || 0) * deltaTime;
+                        const threshold = this.data.noiseThreshold;
+                        this.lastVelocity.x += Math.abs(accel.x) > threshold ? accel.x * deltaTime : 0;
+                        this.lastVelocity.y += Math.abs(accel.y) > threshold ? accel.y * deltaTime : 0;
+                        this.lastVelocity.z += Math.abs(accel.z) > threshold ? accel.z * deltaTime : 0;
 
-                        this.lastKnownPosition.x += this.lastVelocity.x * deltaTime + 0.5 * (accel.x || 0) * deltaTime ** 2;
-                        this.lastKnownPosition.y += this.lastVelocity.y * deltaTime + 0.5 * (accel.y || 0) * deltaTime ** 2;
-                        this.lastKnownPosition.z += this.lastVelocity.z * deltaTime + 0.5 * (accel.z || 0) * deltaTime ** 2;
+                        this.lastKnownPosition.x += this.lastVelocity.x * deltaTime;
+                        this.lastKnownPosition.y += this.lastVelocity.y * deltaTime;
+                        this.lastKnownPosition.z += this.lastVelocity.z * deltaTime;
                     }
                 });
             },
@@ -89,30 +95,27 @@ sidebar: false
                 const { motionSensitivity, rotationSensitivity } = this.data;
 
                 if (this.modelDetached) {
+                    // Adjust position
                     const adjustedPosition = this.lastKnownPosition.clone();
-
-                    // Adjust position based on device rotation and sensitivity
-                    adjustedPosition.x += (this.deviceRotation.gamma || 0) * motionSensitivity * this.markerWidthRatio;
-                    adjustedPosition.z += (this.deviceRotation.beta || 0) * motionSensitivity * this.markerWidthRatio;
-                    adjustedPosition.y += (this.deviceRotation.alpha ||0) * motionSensitivity * this.markerWidthRatio;
+                    adjustedPosition.x += this.lastVelocity.x * motionSensitivity;
+                    adjustedPosition.y += this.lastVelocity.y * motionSensitivity;
+                    adjustedPosition.z += this.lastVelocity.z * motionSensitivity;
 
                     model.object3D.position.copy(adjustedPosition);
 
-                    // Adjust rotation based on device rotation and sensitivity
-                    model.object3D.rotation.y = this.lastKnownRotation.y + (this.deviceRotation.alpha || 0) * rotationSensitivity;
-                    model.object3D.rotation.x = this.lastKnownRotation.x + (this.deviceRotation.gamma || 0) * rotationSensitivity;
-                    model.object3D.rotation.z = this.lastKnownRotation.z + (this.deviceRotation.beta || 0) * rotationSensitivity;
-
+                    // Adjust rotation using device orientation
+                    const adjustedRotation = new THREE.Quaternion();
+                    adjustedRotation.copy(this.lastKnownRotation).multiply(this.deviceRotation);
+                    model.object3D.quaternion.copy(adjustedRotation);
                 } else {
                     // Update position and rotation when marker is found
                     model.object3D.position.copy(marker.object3D.position);
-                    model.object3D.rotation.copy(marker.object3D.rotation);
+                    model.object3D.quaternion.copy(marker.object3D.quaternion);
                 }
 
                 model.object3D.updateMatrixWorld();
             }
         });
-
     </script>
 
     <style>
