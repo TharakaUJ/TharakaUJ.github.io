@@ -1,0 +1,49 @@
+---
+permalink: /webxr/
+title: "Testing"
+author_profile: false
+sidebar: false
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple WebXR AR</title>
+    <script>
+        let xrSession = null;
+
+        async function startAR() {
+            if (!navigator.xr) {
+                alert("WebXR is not supported on this browser.");
+                return;
+            }
+
+            try {
+                // Request an immersive AR session
+                xrSession = await navigator.xr.requestSession('immersive-ar', {
+                    requiredFeatures: ['local-floor', 'hit-test']
+                });
+
+                // Handle the XR session (simplified for this demo)
+                xrSession.addEventListener('select', () => {
+                    alert("You interacted with the AR session!");
+                });
+
+                alert("AR session started! Use the select trigger to interact.");
+            } catch (error) {
+                console.error("Error initializing WebXR session:", error);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Simple WebXR AR</h1>
+    <p>Click the button below to start an AR session.</p>
+    <button onclick="startAR()">Start AR</button>
+</body>
+
+</html>
