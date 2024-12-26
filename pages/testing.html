@@ -16,7 +16,9 @@ sidebar: false
     <script>
         AFRAME.registerComponent('adjust-on-lost', {
             schema: {
-                sensitivity: { type: 'number', default: 0.01 }
+                motionSensitivity: { type: 'number', default: 0.01 }, // Sensitivity for motion
+                rotationSensitivity: { type: 'number', default: 0.01 }, // Sensitivity for rotation
+                markerRealWidth: { type: 'number', default: 0.1 }, // Real-world marker width in meters
             },
             init: function () {
                 console.log("Component initialized");
@@ -34,11 +36,18 @@ sidebar: false
                 this.deviceRotation = { alpha: 0, beta: 0, gamma: 0 };
                 this.modelDetached = false;
 
+                this.markerWidthRatio = 1; // Default ratio, updated on marker detection
+
                 marker.addEventListener('markerFound', () => {
                     console.log(marker.object3D.position);
                     console.log('Marker found');
                     this.lastKnownPosition.copy(marker.object3D.position);
                     this.lastKnownRotation.copy(marker.object3D.rotation);
+
+                    // Calculate the ratio between real-world marker size and AR marker size
+                    const markerScale = marker.object3D.scale.x; // Assuming uniform scale
+                    this.markerWidthRatio = this.data.markerRealWidth / markerScale;
+
                     this.modelDetached = false;
                     model.setAttribute('visible', 'true'); // Make model visible
                 });
@@ -46,7 +55,7 @@ sidebar: false
                 marker.addEventListener('markerLost', () => {
                     console.log('Marker lost');
                     this.modelDetached = true;
-                    model.setAttribute('visible', 'true'); // Hide model
+                    model.setAttribute('visible', 'true'); // Keep the model visible for adjustments
                 });
 
                 window.addEventListener('deviceorientation', (event) => {
@@ -74,21 +83,24 @@ sidebar: false
                         this.lastKnownPosition.z += this.lastVelocity.z * deltaTime + 0.5 * (accel.z || 0) * deltaTime ** 2;
                     }
                 });
-
-
             },
 
             tick: function () {
-                const { sensitivity } = this.data;
+                const { motionSensitivity, rotationSensitivity } = this.data;
 
                 if (this.modelDetached) {
                     const adjustedPosition = this.lastKnownPosition.clone();
-                    adjustedPosition.x += (this.deviceRotation.gamma || 0) * sensitivity;
-                    adjustedPosition.z += (this.deviceRotation.beta || 0) * sensitivity;
+
+                    // Adjust position based on device rotation and sensitivity
+                    adjustedPosition.x += (this.deviceRotation.gamma || 0) * motionSensitivity * this.markerWidthRatio;
+                    adjustedPosition.z += (this.deviceRotation.beta || 0) * motionSensitivity * this.markerWidthRatio;
 
                     model.object3D.position.copy(adjustedPosition);
-                    model.object3D.rotation.y = this.lastKnownRotation.y + (this.deviceRotation.alpha || 0) * sensitivity;
+
+                    // Adjust rotation based on device rotation and sensitivity
+                    model.object3D.rotation.y = this.lastKnownRotation.y + (this.deviceRotation.alpha || 0) * rotationSensitivity;
                 } else {
+                    // Update position and rotation when marker is found
                     model.object3D.position.copy(marker.object3D.position);
                     model.object3D.rotation.copy(marker.object3D.rotation);
                 }
@@ -96,6 +108,7 @@ sidebar: false
                 model.object3D.updateMatrixWorld();
             }
         });
+
     </script>
 
     <style>
@@ -140,7 +153,7 @@ sidebar: false
 
         <a-nft type='nft' url='/assets/ar/pinball' smooth='true' smoothCount='10' smoothTolerance='0.01'
             smoothThreshold='5'>
-            <a-entity id="model" gltf-model='/assets/ar/Pathfinder_2k.glb' scale="500 500 500"
+            <a-entity gltf-model='/assets/ar/Pathfinder_2k.glb' scale="500 500 500"
                 position="0 0 -100"></a-entity>
         </a-nft>
 
