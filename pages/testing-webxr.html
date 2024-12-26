@@ -4,17 +4,16 @@ title: "Testing"
 author_profile: false
 sidebar: false
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple WebXR AR</title>
+    <title>WebXR AR with 3D Model</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
     <script>
-        let xrSession = null;
-
         async function startAR() {
             if (!navigator.xr) {
                 alert("WebXR is not supported on this browser.");
@@ -22,17 +21,30 @@ sidebar: false
             }
 
             try {
-                // Request an immersive AR session
-                xrSession = await navigator.xr.requestSession('immersive-ar', {
+                // Request an AR session
+                const xrSession = await navigator.xr.requestSession('immersive-ar', {
                     requiredFeatures: ['local-floor', 'hit-test']
                 });
 
-                // Handle the XR session (simplified for this demo)
-                xrSession.addEventListener('select', () => {
-                    alert("You interacted with the AR session!");
+                const scene = document.querySelector('a-scene');
+                const xrRenderer = scene.renderer.xr;
+
+                xrRenderer.setSession(xrSession);
+
+                xrSession.addEventListener('select', async (event) => {
+                    // Simulate a surface placement using a default position
+                    const position = { x: 0, y: 0, z: -1 }; // 1 meter in front
+
+                    // Create a 3D model and place it
+                    const model = document.createElement('a-entity');
+                    model.setAttribute('gltf-model', '/assets/ar/Pathfinder_2k.glb'); // Replace with your model's URL
+                    model.setAttribute('scale', '0.5 0.5 0.5'); // Adjust the size as needed
+                    model.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
+
+                    scene.appendChild(model);
                 });
 
-                alert("AR session started! Use the select trigger to interact.");
+                alert("AR session started! Tap to place a 3D model.");
             } catch (error) {
                 console.error("Error initializing WebXR session:", error);
             }
@@ -41,9 +53,15 @@ sidebar: false
 </head>
 
 <body>
-    <h1>Simple WebXR AR</h1>
-    <p>Click the button below to start an AR session.</p>
+    <h1>WebXR AR with 3D Model</h1>
+    <p>Click the button below to start the AR session. Tap to place a 3D model.</p>
     <button onclick="startAR()">Start AR</button>
+
+    <!-- AR Scene -->
+    <a-scene embedded>
+        <a-light type="directional" position="1 1 0"></a-light>
+        <a-camera gps-camera></a-camera>
+    </a-scene>
 </body>
 
 </html>
