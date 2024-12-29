@@ -96,13 +96,17 @@ sidebar: false
                     const pseudoPosition = pseudoObject.object3D.position;
                     const pseudoRotation = pseudoObject.object3D.rotation;
 
-                    model.position.copy(pseudoPosition);
+                    // Sensitivity parameters
+                    const positionSensitivity = 1.0; // Adjust this value to change position sensitivity
+                    const rotationSensitivity = 1.0; // Adjust this value to change rotation sensitivity
+
+                    model.position.copy(pseudoPosition).multiplyScalar(positionSensitivity);
 
                     // Create a new rotation with an additional 90 degrees around the x-axis
                     const adjustedRotation = new THREE.Euler(
-                        pseudoRotation.x - Math.PI / 2,
-                        pseudoRotation.y + Math.PI,
-                        pseudoRotation.z
+                        pseudoRotation.x * rotationSensitivity - Math.PI / 2,
+                        pseudoRotation.y * rotationSensitivity + Math.PI,
+                        pseudoRotation.z * rotationSensitivity
                     );
 
                     model.rotation.copy(adjustedRotation);
