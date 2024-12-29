@@ -6,44 +6,104 @@ sidebar: false
 ---
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/aframe@1.6.0/dist/aframe-master.min.js"></script>
-    <script src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js'></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR.js with Three.js</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@latest/build/three.module.js"
+          }
+        }
+    </script>
     <style>
         body {
             margin: 0;
             overflow: hidden;
         }
     </style>
-
-    <script>
-        AFRAME.registerComponent('marker-handler', {
-            init: function () {
-                const model = this.el.querySelector("[gltf-model]");
-                const marker = this.el;
-                marker.addEventListener("markerFound", () => {
-                    model.setAttribute("animation-mixer", "timeScale: 5");
-                });
-            }
-        });
-
-    </script>
 </head>
 
 <body>
-    <a-scene embedded arjs="debugUIEnabled: false; trackingMethod: best;" vr-mode-ui="enabled: false">
+    <!-- AR.js Scene -->
+    <a-scene embedded arjs>
+        <!-- Marker -->
         <a-marker id="marker" preset="custom" type="pattern" url="/assets/ar/pattern-Untitled.patt" smooth="true"
             smoothCount="0" smoothTolerance="0.0005" smoothThreshold="1.5" preload="true">
-
-            <a-entity gltf-model="/assets/ar/ironman_helmet_animation3[1]-baked.glb" scale="1" position="0 0 0" marker-handler>
-            </a-entity>
+            <!-- Pseudo-object for positioning -->
+            <a-entity id="pseudo-object" geometry="primitive: box; height: 0.1; width: 0.1; depth: 0.1"
+                material="color: red" position="0 0.05 0"></a-entity>
         </a-marker>
+
+        <!-- Camera -->
         <a-entity camera></a-entity>
-        <a-entity light="type: ambient; intensity: 2;"></a-entity>
     </a-scene>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/GLTFLoader.js';
+
+        // AR.js and Three.js Integration
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('AR.js and Three.js are ready.');
+            const pseudoObject = document.querySelector('#pseudo-object');
+
+            // Set up Three.js scene
+            const scene = pseudoObject.object3D;
+            const loader = new GLTFLoader();
+
+            let mixer; // For animations
+            let model; // To store the loaded model
+
+            // Load the GLB model
+            loader.load('/assets/ar/ironman_helmet_animation3[1]-baked.glb', (gltf) => {
+                model = gltf.scene;
+                model.position.set(0, 0.2, 0); // Adjust relative position
+                model.scale.set(0.5, 0.5, 0.5); // Adjust scale if needed
+                scene.add(model);
+
+                // Animation mixer setup
+                if (gltf.animations && gltf.animations.length) {
+                    mixer = new THREE.AnimationMixer(model);
+                    gltf.animations.forEach((clip) => {
+                        const action = mixer.clipAction(clip);
+                        action.play();
+                    });
+                }
+            }, undefined, (error) => {
+                console.error('An error occurred while loading the model:', error);
+            });
+
+            // Animation loop
+            const clock = new THREE.Clock();
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // Update the animation mixer
+                if (mixer) {
+                    const delta = clock.getDelta();
+                    mixer.update(delta);
+                }
+
+                // Update model position based on marker position
+                if (model) {
+                    const pseudoObject = document.querySelector('#pseudo-object');
+                    const pseudoPosition = pseudoObject.object3D.position;
+                    const pseudoRotation = pseudoObject.object3D.rotation;
+
+                    model.position.copy(pseudoPosition);
+                    model.rotation.copy(pseudoRotation);
+                }
+            }
+
+            animate();
+        });
+    </script>
 </body>
 
 </html>
