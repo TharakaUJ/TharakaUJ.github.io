@@ -72,6 +72,8 @@ sidebar: false
                     mixer = new THREE.AnimationMixer(model);
                     gltf.animations.forEach((clip) => {
                         const action = mixer.clipAction(clip);
+                        action.setLoop(THREE.LoopOnce); // Stop looping the animation
+                        action.clampWhenFinished = true; // Keep the last frame when the animation ends
                         action.play();
                     });
                 }
@@ -97,8 +99,8 @@ sidebar: false
                     const pseudoRotation = pseudoObject.object3D.rotation;
 
                     // Sensitivity parameters
-                    const positionSensitivity = 1.0; // Adjust this value to change position sensitivity
-                    const rotationSensitivity = 1.0; // Adjust this value to change rotation sensitivity
+                    const positionSensitivity = 0.5; // Adjust this value to change position sensitivity
+                    const rotationSensitivity = 0.5; // Adjust this value to change rotation sensitivity
 
                     model.position.copy(pseudoPosition).multiplyScalar(positionSensitivity);
 
