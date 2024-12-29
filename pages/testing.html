@@ -97,7 +97,15 @@ sidebar: false
                     const pseudoRotation = pseudoObject.object3D.rotation;
 
                     model.position.copy(pseudoPosition);
-                    model.rotation.copy(pseudoRotation);
+
+                    // Create a new rotation with an additional 90 degrees around the x-axis
+                    const adjustedRotation = new THREE.Euler(
+                        pseudoRotation.x - Math.PI / 2,
+                        pseudoRotation.y + Math.PI,
+                        pseudoRotation.z
+                    );
+
+                    model.rotation.copy(adjustedRotation);
                 }
             }
 
