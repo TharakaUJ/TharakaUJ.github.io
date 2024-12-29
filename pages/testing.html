@@ -36,8 +36,8 @@ sidebar: false
         <a-marker id="marker" preset="custom" type="pattern" url="/assets/ar/pattern-Untitled.patt" smooth="true"
             smoothCount="0" smoothTolerance="0.0005" smoothThreshold="1.5" preload="true">
             <!-- Pseudo-object for positioning -->
-            <a-entity id="pseudo-object" geometry="primitive: box; height: 0.1; width: 0.1; depth: 0.1"
-                material="color: red" position="0 0.05 0"></a-entity>
+            <a-entity id="pseudo-object" geometry="primitive: box; height: 0.01; width: 0.01; depth: 0.01"
+                material="color: transparent" position="0 0.05 3"></a-entity>
         </a-marker>
 
         <!-- Camera -->
@@ -59,6 +59,14 @@ sidebar: false
 
             let mixer; // For animations
             let model; // To store the loaded model
+
+            // Add lighting
+            const ambientLight = new THREE.AmbientLight(0x404040, 50); // Soft white light
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 10);
+            directionalLight.position.set(1, 1, 1).normalize();
+            scene.add(directionalLight);
 
             // Load the GLB model
             loader.load('/assets/ar/ironman_helmet_animation3[1]-baked.glb', (gltf) => {
@@ -99,8 +107,8 @@ sidebar: false
                     const pseudoRotation = pseudoObject.object3D.rotation;
 
                     // Sensitivity parameters
-                    const positionSensitivity = 0.5; // Adjust this value to change position sensitivity
-                    const rotationSensitivity = 0.5; // Adjust this value to change rotation sensitivity
+                    const positionSensitivity = 0.2; // Adjust this value to change position sensitivity
+                    const rotationSensitivity = 0.2; // Adjust this value to change rotation sensitivity
 
                     model.position.copy(pseudoPosition).multiplyScalar(positionSensitivity);
 
