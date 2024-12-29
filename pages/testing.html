@@ -1,3 +1,9 @@
+---
+permalink: /testing/
+title: "Testing"
+author_profile: false
+sidebar: false
+---
 
 <!DOCTYPE html>
 <html>
@@ -8,26 +14,23 @@
 
     <style>
         body {
+            margin: 0;
             overflow: hidden;
         }
     </style>
-
 </head>
 
 <body>
     <a-scene embedded arjs="debugUIEnabled: false; trackingMethod: best;" vr-mode-ui="enabled: false">
         <!-- Marker for initialization -->
         <a-marker id="marker" preset="custom" type="pattern" url="/assets/ar/qr-pattern.patt" smooth="true"
-            preload="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="2">
+            smoothCount="15" smoothTolerance="0.005" smoothThreshold="1.5" preload="true">
 
-            <a-entity id="model" gltf-model="/assets/ar/untitled.glb" scale="0.5" position="0 0 0">
+            <a-entity id="model" gltf-model="/assets/ar/untitled.glb" scale="0.5 0.5 0.5" position="0 0 0">
             </a-entity>
         </a-marker>
         <a-entity camera></a-entity>
-
     </a-scene>
-
 </body>
-
 
 </html>
