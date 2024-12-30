@@ -71,6 +71,21 @@ sidebar: false
             // Load the GLB model
             loader.load('/assets/ar/ironman-animation_final-2.glb', (gltf) => {
                 model = gltf.scene;
+
+
+                // Find the plane sub-structure and add a video texture to it
+                const plane = model.getObjectByName('Plane'); // Adjust the name 'Plane' to match your model's structure
+                if (plane) {
+                    const video = document.createElement('video');
+                    video.src = '/assets/ar/WhatsApp Video 2024-12-30 at 03.38.20.mp4'; // Set the path to your video file
+                    video.load();
+                    video.loop = true;
+                    video.play();
+
+                    const videoTexture = new THREE.VideoTexture(video);
+                    plane.material = new THREE.MeshBasicMaterial({ map: videoTexture });
+                }
+
                 model.position.set(0, 0.2, 0); // Adjust relative position
                 model.scale.set(0.5, 0.5, 0.5); // Adjust scale if needed
                 scene.add(model);
