@@ -26,7 +26,6 @@ sidebar: false
             overflow: hidden;
         }
 
-        /* Hide the video element */
         #hidden-video {
             display: none;
         }
@@ -43,13 +42,15 @@ sidebar: false
         <!-- Marker -->
         <a-marker id="marker" preset="custom" type="pattern" url="/assets/ar/pattern-Untitled.patt" smooth="true"
             smoothCount="0" smoothTolerance="0.0005" smoothThreshold="1.5" preload="true">
-            <!-- Pseudo-object for positioning -->
+            <!-- Placeholder object -->
             <a-entity id="pseudo-object" geometry="primitive: box; height: 0.01; width: 0.01; depth: 0.01"
                 material="color: transparent" position="0 0.05 3"></a-entity>
         </a-marker>
 
+        <!-- Video Entity -->
+        <a-video id="video-plane" src="#hidden-video" position="0 0 0" rotation="0 0 0" scale="1 1 1"></a-video>
+
         <a-entity light="type: ambient; color: #404040; intensity: 50"></a-entity>
-        <!-- Camera -->
         <a-entity camera></a-entity>
     </a-scene>
 
@@ -59,8 +60,9 @@ sidebar: false
 
         window.addEventListener('DOMContentLoaded', () => {
             console.log('AR.js and Three.js are ready.');
-            const video = document.getElementById('hidden-video'); // Reference the hidden video tag
+
             const pseudoObject = document.querySelector('#pseudo-object');
+            const videoPlane = document.querySelector('#video-plane');
 
             // Set up Three.js scene
             const scene = pseudoObject.object3D;
@@ -68,6 +70,7 @@ sidebar: false
 
             let mixer; // For animations
             let model; // To store the loaded model
+            let plane; // Reference to the plane object in the model
 
             // Add lighting
             const ambientLight = new THREE.AmbientLight(0xffffff, 500); // Soft white light
@@ -77,12 +80,9 @@ sidebar: false
             loader.load('/assets/ar/ironman-animation_final-2.glb', (gltf) => {
                 model = gltf.scene;
 
-                // Find the plane sub-structure and add a video texture to it
-                const plane = model.getObjectByName('Plane'); // Adjust the name 'Plane' to match your model's structure
-                if (plane) {
-                    const videoTexture = new THREE.VideoTexture(video);
-                    plane.material = new THREE.MeshBasicMaterial({ map: videoTexture });
-                }
+                // Find the plane object in the model
+                plane = model.getObjectByName('Plane'); // Adjust the name if different in your model
+
                 model.position.set(0, 0, 0); // Adjust relative position
                 model.scale.set(0.2, 0.2, 0.2); // Adjust scale if needed
                 scene.add(model);
@@ -112,26 +112,19 @@ sidebar: false
                     mixer.update(delta);
                 }
 
-                // Update model position based on marker position
-                if (model) {
-                    const pseudoObject = document.querySelector('#pseudo-object');
-                    const pseudoPosition = pseudoObject.object3D.position;
-                    const pseudoRotation = pseudoObject.object3D.rotation;
+                // Sync the A-Frame video plane with the model's plane object
+                if (plane && videoPlane) {
+                    const position = new THREE.Vector3();
+                    const rotation = new THREE.Euler();
+                    const scale = new THREE.Vector3();
 
-                    // Sensitivity parameters
-                    const positionSensitivity = 0.2; // Adjust this value to change position sensitivity
-                    const rotationSensitivity = 0.2; // Adjust this value to change rotation sensitivity
+                    plane.getWorldPosition(position);
+                    plane.getWorldRotation(rotation);
+                    plane.getWorldScale(scale);
 
-                    model.position.copy(pseudoPosition).multiplyScalar(positionSensitivity);
-
-                    // Create a new rotation with an additional 90 degrees around the x-axis
-                    const adjustedRotation = new THREE.Euler(
-                        pseudoRotation.x * rotationSensitivity - Math.PI / 2,
-                        pseudoRotation.y * rotationSensitivity + Math.PI,
-                        pseudoRotation.z * rotationSensitivity
-                    );
-
-                    model.rotation.copy(adjustedRotation);
+                    videoPlane.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
+                    videoPlane.setAttribute('rotation', `${THREE.MathUtils.radToDeg(rotation.x)} ${THREE.MathUtils.radToDeg(rotation.y)} ${THREE.MathUtils.radToDeg(rotation.z)}`);
+                    videoPlane.setAttribute('scale', `${scale.x} ${scale.y} ${scale.z}`);
                 }
             }
 
