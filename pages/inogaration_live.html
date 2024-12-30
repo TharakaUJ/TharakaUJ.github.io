@@ -4,7 +4,6 @@ title: "Welcome'24"
 author_profile: false
 sidebar: false
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,6 +51,7 @@ sidebar: false
         window.addEventListener('DOMContentLoaded', () => {
             console.log('AR.js and Three.js are ready.');
             const pseudoObject = document.querySelector('#pseudo-object');
+            const marker = document.querySelector('#marker');
 
             // Set up Three.js scene
             const scene = pseudoObject.object3D;
@@ -59,6 +59,7 @@ sidebar: false
 
             let mixer; // For animations
             let model; // To store the loaded model
+            let markerVisible = false; // Track marker visibility
 
             // Add lighting
             const ambientLight = new THREE.AmbientLight(0x404040, 50); // Soft white light
@@ -71,7 +72,6 @@ sidebar: false
             // Load the GLB model
             loader.load('/assets/ar/ironman-animation_final-2.glb', (gltf) => {
                 model = gltf.scene;
-
 
                 // Find the plane sub-structure and add a video texture to it
                 const plane = model.getObjectByName('Plane'); // Adjust the name 'Plane' to match your model's structure
@@ -104,6 +104,17 @@ sidebar: false
                 console.error('An error occurred while loading the model:', error);
             });
 
+            // Marker events
+            marker.addEventListener('markerFound', () => {
+                console.log('Marker found.');
+                markerVisible = true;
+            });
+
+            marker.addEventListener('markerLost', () => {
+                console.log('Marker lost, keeping the model visible.');
+                markerVisible = false;
+            });
+
             // Animation loop
             const clock = new THREE.Clock();
             function animate() {
@@ -115,26 +126,13 @@ sidebar: false
                     mixer.update(delta);
                 }
 
-                // Update model position based on marker position
-                if (model) {
-                    const pseudoObject = document.querySelector('#pseudo-object');
+                // Update model position and rotation only when the marker is visible
+                if (markerVisible && model) {
                     const pseudoPosition = pseudoObject.object3D.position;
                     const pseudoRotation = pseudoObject.object3D.rotation;
 
-                    // Sensitivity parameters
-                    const positionSensitivity = 0.2; // Adjust this value to change position sensitivity
-                    const rotationSensitivity = 0.2; // Adjust this value to change rotation sensitivity
-
-                    model.position.copy(pseudoPosition).multiplyScalar(positionSensitivity);
-
-                    // Create a new rotation with an additional 90 degrees around the x-axis
-                    const adjustedRotation = new THREE.Euler(
-                        pseudoRotation.x * rotationSensitivity - Math.PI / 2,
-                        pseudoRotation.y * rotationSensitivity + Math.PI,
-                        pseudoRotation.z * rotationSensitivity
-                    );
-
-                    model.rotation.copy(adjustedRotation);
+                    model.position.copy(pseudoPosition);
+                    model.rotation.copy(pseudoRotation);
                 }
             }
 
