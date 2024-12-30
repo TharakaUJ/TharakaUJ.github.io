@@ -74,7 +74,9 @@ sidebar: false
                     video.src = '/assets/ar/WhatsApp Video 2024-12-30 at 03.38.20.mp4'; // Set the path to your video file
                     video.load();
                     video.loop = true;
-                    video.play();
+                    video.muted = true; // Optional: Mute the video if it has audio
+                    video.style.display = 'none'; // Ensure the video is hidden
+                    video.play().catch((error) => console.error('Error playing the video:', error));
 
                     const videoTexture = new THREE.VideoTexture(video);
                     plane.material = new THREE.MeshBasicMaterial({ map: videoTexture });
