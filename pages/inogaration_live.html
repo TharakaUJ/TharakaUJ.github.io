@@ -26,10 +26,19 @@ sidebar: false
             margin: 0;
             overflow: hidden;
         }
+
+        /* Hide the video element */
+        #hidden-video {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Hidden Video Element -->
+    <video id="hidden-video" src="/assets/ar/WhatsApp Video 2024-12-30 at 03.38.20.mp4" muted loop playsinline autoplay>
+    </video>
+
     <!-- AR.js Scene -->
     <a-scene vr-mode-ui='enabled: false;' embedded arjs='trackingMethod: best;'>
         <!-- Marker -->
@@ -47,9 +56,11 @@ sidebar: false
 
     <script type="module">
         import * as THREE from 'three';
-        import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/GLTFLoader.js'; // AR.js and Three.js
+        import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/GLTFLoader.js';
+
         window.addEventListener('DOMContentLoaded', () => {
             console.log('AR.js and Three.js are ready.');
+            const video = document.getElementById('hidden-video'); // Reference the hidden video tag
             const pseudoObject = document.querySelector('#pseudo-object');
 
             // Set up Three.js scene
@@ -70,14 +81,6 @@ sidebar: false
                 // Find the plane sub-structure and add a video texture to it
                 const plane = model.getObjectByName('Plane'); // Adjust the name 'Plane' to match your model's structure
                 if (plane) {
-                    const video = document.createElement('video');
-                    video.src = '/assets/ar/WhatsApp Video 2024-12-30 at 03.38.20.mp4'; // Set the path to your video file
-                    video.load();
-                    video.loop = true;
-                    video.muted = true; // Optional: Mute the video if it has audio
-                    video.style.display = 'none'; // Ensure the video is hidden
-                    video.play().catch((error) => console.error('Error playing the video:', error));
-
                     const videoTexture = new THREE.VideoTexture(video);
                     plane.material = new THREE.MeshBasicMaterial({ map: videoTexture });
                 }
