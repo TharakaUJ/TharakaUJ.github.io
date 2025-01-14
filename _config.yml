@@ -21,7 +21,7 @@ title                    : "TharakaUJ"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Tharaka Jayasena"
-description              : "An amazing website."
+description              : "CSE undergraduate at University of Moratuwa"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -117,7 +117,7 @@ author:
   name             : "Tharaka Jayasena"
   pronounce       : "/tharaka/"
   avatar           : "/assets/images/my image.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
+  bio              : "CSE undergraduate at University of Moratuwa"
   location         : "Sri lanka"
   email            :
   links:
