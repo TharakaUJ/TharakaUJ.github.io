@@ -6,7 +6,10 @@ permalink: /blog/
 ---
 
 <div>
-    {% for post in site.posts %}
+    {% assign postsByYear = site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
+    {% for year in postsByYear %}
+    <h2>{{ year.name }}</h2>
+    {% for post in year.items %}
     <div class="post-preview">
         <a href="{{ post.url | relative_url }}">
             <h2 class="post-title
@@ -16,7 +19,13 @@ permalink: /blog/
             <h3 class="post-subtitle">{{ post.subtitle }}</h3>
             {% endif %}
         </a>
+        <p class="post-meta">
+            Published on {{ post.date | date: "%B %d, %Y" }} |
+            {% if post.read_time %}{{ post.read_time }} min read{% endif %}
+        </p>
+        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
     </div>
     <hr>
+    {% endfor %}
     {% endfor %}
 </div>
