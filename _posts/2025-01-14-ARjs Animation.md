@@ -1,24 +1,28 @@
-# Creating a animated Augmented reality experience with ARjs.
+# Creating an Animated Augmented Reality Experience with AR.js
 
-ARjs is a great tool to create augmented reality experence without the need of installing additional applications you can create or experience AR in your browser.
+Augmented Reality (AR) is transforming how we interact with digital content, making it more immersive and interactive. AR.js is a lightweight, open-source library that allows developers to create AR experiences directly in the browser, eliminating the need for additional app installations. In this post, I’ll share my journey of trying to create an animated AR experience for my university’s inauguration display—a project that, despite its challenges, taught me a lot about AR.js and browser-based AR development.
 
-It has several ways to display the 3D model namrly,
-    1. marker traking
-    2. Image tracking
-    3. Location tracking
+## Why AR.js?
+AR.js is a fantastic tool for creating AR experiences due to its versatility and accessibility. It supports multiple tracking methods:
 
-but it lacks SLAM(Simultaneous Localization and Mapping), which is also a very handy method of showing AR models.
+1. **Marker tracking**: Uses predefined markers to anchor AR content.
+2. **Image tracking**: Tracks and displays AR content on specific images.
+3. **Location tracking**: Anchors AR elements based on GPS data.
 
-## My goals
-In my project I tried to create a animation with blender and export it as a .glb file to display along with a marker. The best thing about using a marker is that, ARjs handle the change of oietation or distance to marker which is crucial for better AR experiance. And as a cherry on top I am plannig to play a video in the animation.
+However, AR.js does not support SLAM (Simultaneous Localization and Mapping), which is crucial for keeping AR objects stationary relative to the real-world environment when markers are no longer visible. This limitation posed a significant challenge during my project.
 
-Eventhough my goals are simple enough along the journey I faced several challenges which inspired me to write this post.
+## My Project Goals
+The project aimed to:
+1. Create a 3D animation using Blender and export it as a `.glb` file.
+2. Display the 3D animation anchored to a marker using AR.js.
+3. Play a video texture within the animation for added interactivity.
 
-### Playing around
+While these goals seemed straightforward, the journey was filled with obstacles and learning moments that inspired me to document the experience.
 
-I first played around with the biult in functions of ARjs like the following code. If you want you can create your own marker and try this yourself.
+## Exploring AR.js
+I began by experimenting with the built-in functionalities of AR.js. Below is a simple example of marker-based tracking:
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,35 +39,139 @@ I first played around with the biult in functions of ARjs like the following cod
     </a-scene>
 </body>
 </html>
-
 ```
 
-Even further I tried the the NFT image trakcer and few events other things lised in the documentation. I even tried to keep the 3D model on place even after the marker lost from the sight. Eventhough it is possible to avoid 3D object from disappearing whne the marker is lost, we cannot precisely keep it stationary relative to the real environment only with events like "devicemotion", and "deviceorientaion". This where SLAM comes into play which harder to implement all by my self within in a week.
+I also explored other features, such as the NFT image tracker and handling events like `devicemotion` and `deviceorientation`. While these were helpful, they didn’t fully solve the challenge of keeping objects stationary relative to the environment when the marker was out of sight—a problem that SLAM would have addressed.
 
-So decided go with the marker based tracking.
+## Challenges and Setbacks
+### Animation Support in AR.js
+After creating the 3D animation in Blender, I exported it as a `.glb` file, assuming it would work seamlessly in AR.js. However, AR.js does not fully support animations within `.glb` files. The object appeared, but the animation was missing. After consulting a friend, we confirmed that the animation data was intact, as it worked in online viewers built with Three.js.
 
-### Disaster happens
+### Finding a Workaround
+Realizing that Three.js supported animations, I devised a workaround: use a dummy object as the marker anchor in AR.js and synchronize its position and rotation with the animation rendered via Three.js. This approach worked beautifully, but time was running out.
 
-I spent my most of the time creating and planing the the 3D animation. (I am not a 3D artist, so this part is by default hard for me). With the help of blender and few friends I was able to create a 3D animation that worked nicely. So all I have to do is export it as a .glb file and use it in my project.
+```
+<!DOCTYPE html>
+<html lang="en">
 
-So I thought.. But appearently the .glb file animations are not so supported by ARjs. The object is there but no animation. I asked my friend who helped me with the blender and 3D objects, the animation has lost during the process of exporting. But he somehow opened it in a online 3D object viewer. And the animation is there. That's when I learnt that ARjs does not support animations fully. There is only few hours to my project deadline. Is this the end? I wondered.
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR.js with Three.js</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@latest/build/three.module.js"
+          }
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
 
-I noticed that the online preview site was based on threejs. So threejs support the animation I thought. I opened the file in browser with threejs. yes.. the animations works well. 
+<body>
+    <!-- AR.js Scene -->
+    <a-scene embedded arjs>
+        <!-- Marker -->
+        <a-marker id="marker" preset="custom" type="pattern" url="/assets/ar/pattern-Untitled.patt" smooth="true"
+            smoothCount="0" smoothTolerance="0.0005" smoothThreshold="1.5" preload="true">
+            <!-- Pseudo-object for positioning -->
+            <a-entity id="pseudo-object" geometry="primitive: box; height: 0.1; width: 0.1; depth: 0.1"
+                material="color: red" position="0 0.05 0"></a-entity>
+        </a-marker>
 
-### Desperate attempts
-why don't I use a dummy object with the marker and just open the animation with threejs and copy the dummy objects position and rotation to the aniamtion. 
-Yes I did that. And it worked like a charm.
+        <!-- Camera -->
+        <a-entity camera></a-entity>
+    </a-scene>
 
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/GLTFLoader.js';
 
-okay now everthing is working. only few adjustments left. Ah I forgot, I haven't included the video to the animation. I asked my friend to add that and took a break. 
+        // AR.js and Three.js Integration
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('AR.js and Three.js are ready.');
+            const pseudoObject = document.querySelector('#pseudo-object');
 
-### Disater 2
-unfortunately when I export the animation, it appears to left out the video. upon further reasearch I got to know that I cannot export to .glb with a video texture.
+            // Set up Three.js scene
+            const scene = pseudoObject.object3D;
+            const loader = new GLTFLoader();
 
-Only hours left,panicked again! I remebered that I can programatically asign a texture to the plane playing the video with threejs. and I did that. In my preview, in my laptop it is working. Calm.
+            let mixer; // For animations
+            let model; // To store the loaded model
 
-okay I am ready to ship. I let others try the marker. everthing works well but not the the video texture. But it still works on my laptop. Unfortunately the video textures are not supported for mobile phones. Panicked again.
+            // Load the GLB model
+            loader.load('/path/to/glb/file.glb', (gltf) => {
+                model = gltf.scene;
+                model.position.set(0, 0.2, 0); // Adjust relative position
+                model.scale.set(0.5, 0.5, 0.5); // Adjust scale if needed
+                scene.add(model);
 
-Out of my desperate attempts, I am running out of time and sleep deprived. I had to stop. So I couldn't deliver the project.
+                // Animation mixer setup
+                if (gltf.animations && gltf.animations.length) {
+                    mixer = new THREE.AnimationMixer(model);
+                    gltf.animations.forEach((clip) => {
+                        const action = mixer.clipAction(clip);
+                        action.play();
+                    });
+                }
+            }, undefined, (error) => {
+                console.error('An error occurred while loading the model:', error);
+            });
 
-Later I remembered that I could display the video seperately as a video and try to place it on the plane. I tried that, but it still far from perfect.
+            // Animation loop
+            const clock = new THREE.Clock();
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // Update the animation mixer
+                if (mixer) {
+                    const delta = clock.getDelta();
+                    mixer.update(delta);
+                }
+
+                // Update model position based on marker position
+                if (model) {
+                    const pseudoObject = document.querySelector('#pseudo-object');
+                    const pseudoPosition = pseudoObject.object3D.position;
+                    const pseudoRotation = pseudoObject.object3D.rotation;
+
+                    model.position.copy(pseudoPosition);
+                    model.rotation.copy(pseudoRotation);
+                }
+            }
+
+            animate();
+        });
+    </script>
+</body>
+
+</html>
+```
+
+### Video Texture Limitations
+Adding a video texture to the animation introduced another hurdle. Blender couldn’t export `.glb` files with embedded video textures. To resolve this, I programmatically assigned the video as a texture to a plane in Three.js. While this worked on my laptop, the solution failed on mobile devices due to browser limitations in handling video textures in WebGL.
+
+### Working Example
+For a working example of using a video as a texture in AR.js, check out this [demo](https://tharakauj.github.io/AR-inogaration/video-as-texture/). you can find the marker [here](https://tharakauj.github.io/AR-inogaration/).
+
+## Final Hours
+With only hours left before the deadline, I considered alternative approaches, such as [displaying the video separately] (https://tharakauj.github.io/AR-inogaration/pattern-model/) and positioning it dynamically. However, the results were far from perfect, and I had to abandon the project due to time constraints.
+
+## Lessons Learned
+1. **Plan for limitations**: Understand the capabilities and constraints of the tools you’re using before starting.
+2. **Iterate quickly**: Test each step early to avoid last-minute surprises.
+3. **Leverage the community**: Resources like documentation, forums, and peers can save valuable time.
+4. **Keep it simple**: Sometimes, simpler solutions yield more reliable results, especially under tight deadlines.
+
+## Conclusion
+Although I couldn’t deliver the project in time, the experience was invaluable. It deepened my understanding of AR.js, Three.js, and the intricacies of browser-based AR. For anyone venturing into AR development, I encourage experimenting with these tools, understanding their limitations, and sharing your experiences—just as I’ve done here.
+
+AR is a fascinating field, and browser-based AR offers immense potential for accessibility and creativity. With more time and preparation, I hope to revisit this project and bring it to life. Stay tuned!
+
