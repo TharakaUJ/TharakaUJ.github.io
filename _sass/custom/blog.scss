@@ -1,0 +1,54 @@
+.post-preview {
+    padding-left: 20px;
+}
+
+.blog-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.year-heading {
+    font-size: 2em;
+    margin-top: 40px;
+    color: #333;
+}
+
+.post-preview {
+    margin-bottom: 40px;
+}
+
+.post-title {
+    font-size: 1.5em;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.post-title:hover {
+    text-decoration: underline;
+}
+
+.post-subtitle {
+    font-size: 1.2em;
+    color: #555;
+}
+
+.post-meta {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.post-meta i {
+    margin-right: 5px;
+}
+
+.post-excerpt {
+    font-size: 1em;
+    color: #333;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+}

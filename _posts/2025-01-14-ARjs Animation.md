@@ -14,8 +14,6 @@ AR.js is a fantastic tool for creating AR experiences due to its versatility and
 
 However, AR.js does not support SLAM (Simultaneous Localization and Mapping), which is crucial for keeping AR objects stationary relative to the real-world environment when markers are no longer visible. This limitation posed a significant challenge during my project.
 
-![AR.js Marker Tracking](https://example.com/path/to/your/image.jpg)
-
 ---
 
 ## My Project Goals
@@ -59,8 +57,6 @@ Here's a simple code snippet to get you started with AR.js, similar to what I tr
 ### Animation Support in AR.js
 
 After creating the 3D animation in Blender, I exported it as a `.glb` file, assuming it would work seamlessly in AR.js. However, AR.js does not fully support animations within `.glb` files. The object appeared, but the animation was missing.
-
-![Animation Missing](https://example.com/path/to/animation-missing.jpg)
 
 ### Finding a Workaround
 
@@ -177,13 +173,11 @@ I used a dummy object as the marker anchor in AR.js and synchronized its positio
 
 Blender couldn’t export `.glb` files with embedded video textures. I programmatically assigned the video as a texture to a plane in Three.js. While this worked on desktop, it failed on mobile devices due to browser limitations.
 
-![Alternative Video Display](https://example.com/path/to/alternative-video-display.jpg)
-
 ### Final Hours
 
 With hours left before the deadline, I considered alternative approaches like dynamically displaying the video separately. However, the results were far from perfect, and I had to abandon the project due to time constraints.
 
-![Final Project Screenshot](https://example.com/path/to/final-project-screenshot.jpg)
+![Final Project Screenshot](assets/images/arjs-post-2025-01-14-01.png)
 
 ---
 

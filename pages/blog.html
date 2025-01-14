@@ -5,23 +5,23 @@ author_profile: false
 permalink: /blog/
 ---
 
-<div>
+<div class="blog-container"></div>
     {% assign postsByYear = site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
     {% for year in postsByYear %}
-    <h2>{{ year.name }}</h2>
+    <h2 class="year-heading">{{ year.name }}</h2>
     {% for post in year.items %}
     <div class="post-preview">
         <a href="{{ post.url | relative_url }}">
-            <h2 class="post-title
-                {% if post.subtitle %}post-subtitle{% endif %}">{{ post.title }}
+            <h2 class="post-title {% if post.subtitle %}post-subtitle{% endif %}">
+                {{ post.title }}
             </h2>
             {% if post.subtitle %}
             <h3 class="post-subtitle">{{ post.subtitle }}</h3>
             {% endif %}
         </a>
         <p class="post-meta">
-            Published on {{ post.date | date: "%B %d, %Y" }} |
-            {% if post.read_time %}{{ post.read_time }} min read{% endif %}
+            <i class="fas fa-calendar-alt"></i> Published on {{ post.date | date: "%B %d, %Y" }} |
+            {% if post.read_time %}<i class="fas fa-clock"></i> {{ post.read_time | append: " min read" }}{% endif %}
         </p>
         <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
     </div>
