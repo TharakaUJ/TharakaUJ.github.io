@@ -1,8 +1,11 @@
 # Creating an Animated Augmented Reality Experience with AR.js
 
-Augmented Reality (AR) is transforming how we interact with digital content, making it more immersive and interactive. AR.js is a lightweight, open-source library that allows developers to create AR experiences directly in the browser, eliminating the need for additional app installations. In this post, I’ll share my journey of trying to create an animated AR experience for my university’s inauguration display—a project that, despite its challenges, taught me a lot about AR.js and browser-based AR development.
+Augmented Reality (AR) is transforming how we interact with digital content, making it more immersive and interactive. AR.js, a lightweight open-source library, allows developers to create AR experiences directly in the browser, eliminating the need for additional app installations. In this post, I’ll share my journey of creating an animated AR experience for my university’s inauguration display—a project that, despite its challenges, taught me a lot about AR.js and browser-based AR development.
+
+---
 
 ## Why AR.js?
+
 AR.js is a fantastic tool for creating AR experiences due to its versatility and accessibility. It supports multiple tracking methods:
 
 1. **Marker tracking**: Uses predefined markers to anchor AR content.
@@ -11,7 +14,12 @@ AR.js is a fantastic tool for creating AR experiences due to its versatility and
 
 However, AR.js does not support SLAM (Simultaneous Localization and Mapping), which is crucial for keeping AR objects stationary relative to the real-world environment when markers are no longer visible. This limitation posed a significant challenge during my project.
 
+![AR.js Marker Tracking](https://example.com/path/to/your/image.jpg)
+
+---
+
 ## My Project Goals
+
 The project aimed to:
 1. Create a 3D animation using Blender and export it as a `.glb` file.
 2. Display the 3D animation anchored to a marker using AR.js.
@@ -19,8 +27,12 @@ The project aimed to:
 
 While these goals seemed straightforward, the journey was filled with obstacles and learning moments that inspired me to document the experience.
 
+---
+
 ## Exploring AR.js
-I began by experimenting with the built-in functionalities of AR.js. Below is a simple example of marker-based tracking:
+
+### Code Snippet: Marker-Based Tracking
+Here's a simple code snippet to get you started with AR.js, similar to what I tried when I first learned about AR.js. This example demonstrates marker-based tracking, where AR content is anchored to a predefined marker. You can create your own marker pattern using the [AR.js Marker Training Tool](https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html).
 
 ```html
 <!DOCTYPE html>
@@ -40,17 +52,23 @@ I began by experimenting with the built-in functionalities of AR.js. Below is a 
 </body>
 </html>
 ```
-
-I also explored other features, such as the NFT image tracker and handling events like `devicemotion` and `deviceorientation`. While these were helpful, they didn’t fully solve the challenge of keeping objects stationary relative to the environment when the marker was out of sight—a problem that SLAM would have addressed.
+---
 
 ## Challenges and Setbacks
+
 ### Animation Support in AR.js
-After creating the 3D animation in Blender, I exported it as a `.glb` file, assuming it would work seamlessly in AR.js. However, AR.js does not fully support animations within `.glb` files. The object appeared, but the animation was missing. After consulting a friend, we confirmed that the animation data was intact, as it worked in online viewers built with Three.js.
+
+After creating the 3D animation in Blender, I exported it as a `.glb` file, assuming it would work seamlessly in AR.js. However, AR.js does not fully support animations within `.glb` files. The object appeared, but the animation was missing.
+
+![Animation Missing](https://example.com/path/to/animation-missing.jpg)
 
 ### Finding a Workaround
-Realizing that Three.js supported animations, I devised a workaround: use a dummy object as the marker anchor in AR.js and synchronize its position and rotation with the animation rendered via Three.js. This approach worked beautifully, but time was running out.
 
-```
+I used a dummy object as the marker anchor in AR.js and synchronized its position and rotation with the animation rendered via Three.js. Below is the code:
+
+#### Code Snippet: AR.js and Three.js Integration
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -156,22 +174,51 @@ Realizing that Three.js supported animations, I devised a workaround: use a dumm
 ```
 
 ### Video Texture Limitations
-Adding a video texture to the animation introduced another hurdle. Blender couldn’t export `.glb` files with embedded video textures. To resolve this, I programmatically assigned the video as a texture to a plane in Three.js. While this worked on my laptop, the solution failed on mobile devices due to browser limitations in handling video textures in WebGL.
 
-### Working Example
-For a working example of using a video as a texture in AR.js, check out this [demo](https://tharakauj.github.io/AR-inogaration/video-as-texture/). you can find the marker [here](https://tharakauj.github.io/AR-inogaration/).
+Blender couldn’t export `.glb` files with embedded video textures. I programmatically assigned the video as a texture to a plane in Three.js. While this worked on desktop, it failed on mobile devices due to browser limitations.
 
-## Final Hours
-With only hours left before the deadline, I considered alternative approaches, such as [displaying the video separately] (https://tharakauj.github.io/AR-inogaration/pattern-model/) and positioning it dynamically. However, the results were far from perfect, and I had to abandon the project due to time constraints.
+![Alternative Video Display](https://example.com/path/to/alternative-video-display.jpg)
+
+### Final Hours
+
+With hours left before the deadline, I considered alternative approaches like dynamically displaying the video separately. However, the results were far from perfect, and I had to abandon the project due to time constraints.
+
+![Final Project Screenshot](https://example.com/path/to/final-project-screenshot.jpg)
+
+---
 
 ## Lessons Learned
-1. **Plan for limitations**: Understand the capabilities and constraints of the tools you’re using before starting.
-2. **Iterate quickly**: Test each step early to avoid last-minute surprises.
-3. **Leverage the community**: Resources like documentation, forums, and peers can save valuable time.
-4. **Keep it simple**: Sometimes, simpler solutions yield more reliable results, especially under tight deadlines.
+
+- **Plan for limitations**: Understand the capabilities and constraints of the tools you’re using.
+- **Iterate quickly**: Test each step early to avoid last-minute surprises.
+- **Leverage the community**: Resources like documentation, forums, and peers can save valuable time.
+- **Keep it simple**: Sometimes, simpler solutions yield better results, especially under tight deadlines.
+
+
+---
 
 ## Conclusion
-Although I couldn’t deliver the project in time, the experience was invaluable. It deepened my understanding of AR.js, Three.js, and the intricacies of browser-based AR. For anyone venturing into AR development, I encourage experimenting with these tools, understanding their limitations, and sharing your experiences—just as I’ve done here.
 
-AR is a fascinating field, and browser-based AR offers immense potential for accessibility and creativity. With more time and preparation, I hope to revisit this project and bring it to life. Stay tuned!
+Although I couldn’t deliver the project in time, the experience was invaluable. It deepened my understanding of AR.js, Three.js, and browser-based AR. For anyone venturing into AR development, I encourage experimenting with these tools, understanding their limitations, and sharing your experiences.
+
+With more time and preparation, I hope to revisit this project and bring it to life. Stay tuned!
+
+---
+
+## Versions Used
+
+| Tool      | Version |
+|-----------|---------|
+| Blender   | 4.3.2   |
+| AR.js     | 3.3.2   |
+| A-Frame   | 1.2.0   |
+| Three.js  | Latest  |
+
+---
+
+## Demo and Resources
+### Demo and Resources
+
+- **GitHub Repository**: [AR.js Animation Project](https://github.com/TharakaUJ/AR-inogaration)
+- **Live Demo**: [GitHub Pages](https://tharakauj.github.io/AR-inogaration/)
 
