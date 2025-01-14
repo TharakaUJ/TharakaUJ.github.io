@@ -175,7 +175,7 @@ Blender couldn’t export `.glb` files with embedded video textures. I programma
 
 With hours left before the deadline, I considered alternative approaches like dynamically displaying the video separately. However, the results were far from perfect, and I had to abandon the project due to time constraints.
 
-![Final Project Screenshot](assets/images/arjs-post-2025-01-14-01.png)
+![Final Project Screenshot]({{ site.baseUrl }}/assets/images/arjs-post-2025-01-14-01.png)
 
 ---
 
@@ -208,7 +208,6 @@ With more time and preparation, I hope to revisit this project and bring it to l
 
 ---
 
-## Demo and Resources
 ### Demo and Resources
 
 - **GitHub Repository**: [AR.js Animation Project](https://github.com/TharakaUJ/AR-inogaration)
