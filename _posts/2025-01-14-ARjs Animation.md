@@ -206,7 +206,7 @@ With more time and preparation, I hope to revisit this project and bring it to l
 | Blender   | 4.3.2   |
 | AR.js     | 3.3.2   |
 | A-Frame   | 1.2.0   |
-| Three.js  | Latest  |
+| Three.js  | 0.172.0 |
 
 ---
 
