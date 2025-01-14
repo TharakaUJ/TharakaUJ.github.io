@@ -1,45 +1,52 @@
 ---
-layout: default
+layout: archive
 sidebar: true
 author_profile: false
 permalink: /blog/
 ---
 
 <div class="blog-container"></div>
-    {% assign postsByYear = site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
-    {% for year in postsByYear %}
-    <h2 class="year-heading">{{ year.name }}</h2>
-    {% for post in year.items %}
-    <div class="post-preview">
-        <a href="{{ post.url | relative_url }}">
-            <h2 class="post-title {% if post.subtitle %}post-subtitle{% endif %}">
-                {{ post.title }}
-            </h2>
-            {% if post.subtitle %}
-            <h3 class="post-subtitle">{{ post.subtitle }}</h3>
-            {% endif %}
-        </a>
-        <p class="post-meta">
-            <i class="fas fa-calendar-alt"></i> Published on {{ post.date | date: "%B %d, %Y" }} |
-        </p>
+</div>
+{% assign postsByYear = site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
+{% for year in postsByYear %}
+<h2 class="year-heading">{{ year.name }}</h2>
+{% for post in year.items %}
+<div class="post-preview">
+    <a href="{{ post.url | relative_url }}">
+        <h2 class="post-title {% if post.subtitle %}post-subtitle{% endif %}">
+            {{ post.title }}
+        </h2>
+        {% if post.subtitle %}
+        <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+        {% endif %}
+    </a>
+    <p class="post-meta">
+        <i class="fas fa-calendar-alt"></i> Published on {{ post.date | date: "%B %d, %Y" }} |
         {% if post.read_time %}
         {% assign words_per_minute = post.words_per_minute | default: site.words_per_minute | default: 200 %}
         {% assign words = post.content | strip_html | number_of_words %}
-  
+
         <span class="page__meta-readtime">
-          <i class="far {% if include.type == 'grid' and post.read_time and post.show_date %}fa-fw {% endif %}fa-clock" aria-hidden="true"></i>
-          {% if words < words_per_minute %}
-            {{ site.data.ui-text[site.locale].less_than | default: "less than" }} 1 {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
-          {% elsif words == words_per_minute %}
-            1 {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
-          {% else %}
-            {{ words | divided_by: words_per_minute }} {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
-          {% endif %}
+            <i class="far {% if include.type == 'grid' and post.read_time and post.show_date %}fa-fw {% endif %}fa-clock"
+                aria-hidden="true">
+            </i>
+            {% if words < words_per_minute %}
+            {{ site.data.ui-text[site.locale].less_than | default: "less than" }}
+             1 
+            {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
+            {% elsif words==words_per_minute %}
+             1
+            {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
+            {% else %}
+            {{ words | divided_by: words_per_minute }}
+            {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
+            {% endif %}
         </span>
-      {% endif %}
-        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
-    </div>
-    <hr>
-    {% endfor %}
-    {% endfor %}
+        {% endif %}
+    </p>
+    <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+</div>
+<hr>
+{% endfor %}
+{% endfor %}
 </div>
