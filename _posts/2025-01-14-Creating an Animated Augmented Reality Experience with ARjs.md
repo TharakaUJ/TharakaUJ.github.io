@@ -1,5 +1,3 @@
-# Creating an Animated Augmented Reality Experience with AR.js
-
 Augmented Reality (AR) is transforming how we interact with digital content, making it more immersive and interactive. AR.js, a lightweight open-source library, allows developers to create AR experiences directly in the browser, eliminating the need for additional app installations. In this post, I’ll share my journey of creating an animated AR experience for my university’s inauguration display—a project that, despite its challenges, taught me a lot about AR.js and browser-based AR development.
 
 ---
