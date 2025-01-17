@@ -66,7 +66,8 @@ This approach provided the best of both worlds—AR.js for efficient marker-base
 
 #### Code Snippet: AR.js and Three.js Integration
 
-{% include code_snippet.html content="
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -169,7 +170,7 @@ This approach provided the best of both worlds—AR.js for efficient marker-base
 </body>
 
 </html>
-" %}
+```
 
 ### Video Texture Limitations
 
