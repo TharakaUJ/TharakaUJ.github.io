@@ -48,17 +48,21 @@ Here's a simple code snippet to get you started with AR.js, similar to what I tr
 </body>
 </html>
 ```
+
+I also experimented with NFT image tracking and events like devicemotion and deviceorientation. While I could stop AR objects from disappearing after the marker was out of sight, keeping them stationary relative to the real environment without SLAM proved nearly impossible. Thus, I decided to stick with marker-based tracking for simplicity and reliability.
+
 ---
 
-## Challenges and Setbacks
+## The Disaster Moment
+Most of my time was spent creating a 3D animation in Blender—a challenge, as I’m not a 3D artist. With help from friends, I crafted an animation and exported it as a .glb file. Everything seemed ready to go... or so I thought.
 
-### Animation Support in AR.js
-
-After creating the 3D animation in Blender, I exported it as a `.glb` file, assuming it would work seamlessly in AR.js. However, AR.js does not fully support animations within `.glb` files. The object appeared, but the animation was missing.
+When I loaded the `.glb` file into AR.js, the object appeared, but the animation was missing! A quick investigation revealed that while Blender successfully exported the animation, AR.js didn’t fully support `.glb` animations. Time was running out, and I had to find a workaround fast.
 
 ### Finding a Workaround
 
-I used a dummy object as the marker anchor in AR.js and synchronized its position and rotation with the animation rendered via Three.js. Below is the code:
+To overcome the animation limitations of AR.js, I integrated it with Three.js, enabling marker tracking alongside advanced animations. AR.js was used solely for detecting the marker and providing its position and orientation in 3D space using a dummy object. I then used this data to place and synchronize my animation in Three.js, allowing precise control over movement and rendering.
+
+This approach provided the best of both worlds—AR.js for efficient marker-based tracking and Three.js for rich animations and effects. The result was a seamless experience where the marker remained the anchor, but the animations were no longer constrained by AR.js' capabilities. It was a true "Eureka!" moment for me, unlocking exciting new possibilities for web-based AR development.
 
 #### Code Snippet: AR.js and Three.js Integration
 
