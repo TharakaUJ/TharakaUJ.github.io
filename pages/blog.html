@@ -2,12 +2,7 @@
 layout: archive
 sidebar:
     - title: "Categories"
-      text: "A collection of my thoughts, writings and random projects."
-      nav: random
-    
-    - title: "AR"
-      text: "Augmented Reality"
-      nav: AR
+      nav: Blog
 
 author_profile: false
 permalink: /blog/
@@ -39,19 +34,12 @@ permalink: /blog/
             <i class="far {% if include.type == 'grid' and post.read_time and post.show_date %}fa-fw {% endif %}fa-clock"
                 aria-hidden="true">
             </i>
-            {% if words < words_per_minute %}
-            {{ site.data.ui-text[site.locale].less_than | default: "less than" }}
-             1 
-            {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
-            {% elsif words==words_per_minute %}
-             1
-            {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
-            {% else %}
-            {{ words | divided_by: words_per_minute }}
-            {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
-            {% endif %}
-        </span>
-        {% endif %}
+            {% if words < words_per_minute %} {{ site.data.ui-text[site.locale].less_than | default: "less than" }} 1 {{
+                site.data.ui-text[site.locale].minute_read | default: "minute read" }} {% elsif words==words_per_minute
+                %} 1 {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }} {% else %} {{ words |
+                divided_by: words_per_minute }} {{ site.data.ui-text[site.locale].minute_read | default: "minute read"
+                }} {% endif %} </span>
+                {% endif %}
     </p>
     <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
 </div>

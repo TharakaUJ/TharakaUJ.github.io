@@ -9,12 +9,9 @@ main:
 
   
 # blog links
-random:
-  - title: "All Posts"
-    url: /blog/
-
-AR:
-  - title: "A step into the world of AR"
-    url: /A step into the world of AR/
+Blog:
+  - title: "AR"
+      - title: "A step into the world of AR"
+        url: /A-step-into-the-world-of-AR/
 
   
