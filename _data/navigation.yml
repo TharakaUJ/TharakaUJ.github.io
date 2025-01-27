@@ -17,17 +17,18 @@ Blog:
 
 
 # experience links
-experience:
-  - title: "Education"
-    url: /education/
-  - title: "Work"
-    url: /work/
+Experience:
   - title: "Projects"
-    url: /projects/
-  - title: "Skills"
-    url: /skills/
-  - title: "About"
-    url: /about/
+    children:
+      - title: "AR"
+        url: /A-step-into-the-world-of-AR/
+      - title: "Micro Mouse"
+        url: /https://github.com/sheronjay/Manny-K.git/
+  
+  - title: "Internships"
+
+  - title: 
+
 
 # achievements links
 Achievements:
