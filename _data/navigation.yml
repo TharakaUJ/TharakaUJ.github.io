@@ -6,3 +6,15 @@ main:
     url: /blog/
   - title: "Experience"
     url: /experience/
+
+  
+# blog links
+random:
+  - title: "All Posts"
+    url: /blog/
+
+AR:
+  - title: "A step into the world of AR"
+    url: /A step into the world of AR/
+
+  
