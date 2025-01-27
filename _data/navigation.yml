@@ -15,4 +15,31 @@ Blog:
       - title: "A step into the world of AR"
         url: /A-step-into-the-world-of-AR/
 
+
+# experience links
+experience:
+  - title: "Education"
+    url: /education/
+  - title: "Work"
+    url: /work/
+  - title: "Projects"
+    url: /projects/
+  - title: "Skills"
+    url: /skills/
+  - title: "About"
+    url: /about/
+
+# achievements links
+Achievements:
+  - title: "Olympiads"
+    children:
+      - title: "IMSO 2015"
+      - title: "IJSO 2018"
+      - title: "IMC 2019"
+      - title: "APMO 2020"
+
+  - title: "Chess"
+    children:
+      - title: "Asian Schools Chess Championship- under 11"
+      - title: "Asian Schools Chess Championship- under 9(participation)"
   
