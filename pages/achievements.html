@@ -12,36 +12,54 @@ permalink: /achievements/
         <div class="">
             <table style=" border:0px;">
                 <tbody style=" border:0px;">
+
+                    {% assign sorted_achievements = site.data.achievements | reverse %}
+                    {% for achievement in sorted_achievements %}
                     <tr style=" border:0px;">
-                        <!-- <td style=" border:0px;">
-                            <h3>Best Paper Award</h3>
-                            <p>Conference: <a href="https://www.ieee-security.org/TC/SP2022/">IEEE S&P 2022</a></p>
-                            <p>Location: San Francisco, CA</p>
-                            <p>Duration: May 2022</p>
-                            <p>Role: Co-author</p>
+                        <td style=" border:0px;">
+                            <h3>{{ achievement.title }}</h3>
+                            {% if achievement.type == "conference" %}
+                            <p>Conference: <a href="{{ achievement.url }}">{{ achievement.name }}</a></p>
+                            {% endif %}
+
+                            {% if achievement.type == "hackathon" %}
+                            <p>Hackathon: <a href="{{ achievement.url }}">{{ achievement.name }}</a></p>
+                            {% endif %}
+
+                            {% if achievement.type == "competition" %}
+                            <p>Competition: <a href="{{ achievement.url }}">{{ achievement.name }}</a></p>
+                            {% endif %}
+
+                            {{ if achievement.location}}<p>Location: {{ achievement.location }}</p>{{ endif }}
+                            {% if achievement.duration %}
+                            <p>Duration: {{ achievement.duration }}</p>
+                            {% endif %}
+
+                            {% if achievement.date %}
+                            <p>Date: {{ achievement.date }}</p>
+                            {% endif %}
+
+                            {% if achievement.role %}
+                            <p>Role: {{ achievement.role }}</p>
+                            {% endif %}
+
+                            {% if achievement.place %}
+                            <p>Place: {{ achievement.place }}</p>
+                            {% endif %}
+
+                            {% if achievement.responsibilities %}
                             <p>Responsibilities:</p>
                             <ul>
-                                <li>Developed and maintained backend services for Google Search</li>
-                                <li>Worked on improving search results for users</li>
-                                <li>Collaborated with frontend developers to improve user experience</li>
+                                {% for responsibility in achievement.responsibilities %}
+                                <li>{{ responsibility }}</li>
+                                {% endfor %}
                             </ul>
-                        </td> -->
+                            {% endif %}
+                            <p>{{ achievement.description}}</p>
+
+                        </td>
                     </tr>
-                    <tr style=" border:0px;">
-                        <!-- <td style=" border:0px;">
-                            <h3>Best Poster Award</h3>
-                            <p>Conference: <a href="https://www.ieee-security.org/TC/SP2022/">IEEE S&P 2022</a></p>
-                            <p>Location: San Francisco, CA</p>
-                            <p>Duration: May 2022</p>
-                            <p>Role: Co-author</p>
-                            <p>Responsibilities:</p>
-                            <ul>
-                                <li>Developed and maintained backend services for Google Search</li>
-                                <li>Worked on improving search results for users</li>
-                                <li>Collaborated with frontend developers to improve user experience</li>
-                            </ul>
-                        </td> -->
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
