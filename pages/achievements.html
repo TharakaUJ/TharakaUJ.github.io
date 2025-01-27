@@ -13,24 +13,27 @@ permalink: /achievements/
             <table style=" border:0px;">
                 <tbody style=" border:0px;">
 
-                    {% assign sorted_achievements = site.data.achievements | reverse %}
+                    {% assign sorted_achievements = site.data.achievements %}
                     {% for achievement in sorted_achievements %}
                     <tr style=" border:0px;">
                         <td style=" border:0px;">
                             <h3>{{ achievement.title }}</h3>
-                            {% if achievement.type == "conference" %}
-                            <p>Conference: <a href="{{ achievement.url }}">{{ achievement.name }}</a></p>
+                            <!-- {% if achievement.type == "conference" %}
+                            <p>Conference: <a href="{{ achievement.url }}">{{ achievement.title }}</a></p>
                             {% endif %}
 
                             {% if achievement.type == "hackathon" %}
-                            <p>Hackathon: <a href="{{ achievement.url }}">{{ achievement.name }}</a></p>
+                            <p>Hackathon: <a href="{{ achievement.url }}">{{ achievement.title }}</a></p>
                             {% endif %}
 
                             {% if achievement.type == "competition" %}
-                            <p>Competition: <a href="{{ achievement.url }}">{{ achievement.name }}</a></p>
+                            <p>Competition: <a href="{{ achievement.url }}">{{ achievement.title }}</a></p>
+                            {% endif %} -->
+
+                            {% if achievement.location %}
+                            <p>Location: {{ achievement.location }}</p>
                             {% endif %}
 
-                            {{ if achievement.location}}<p>Location: {{ achievement.location }}</p>{{ endif }}
                             {% if achievement.duration %}
                             <p>Duration: {{ achievement.duration }}</p>
                             {% endif %}
