@@ -11,6 +11,7 @@ main:
 # blog links
 Blog:
   - title: "AR"
+    sublinks:
       - title: "A step into the world of AR"
         url: /A-step-into-the-world-of-AR/
 
