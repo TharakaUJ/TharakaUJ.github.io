@@ -13,22 +13,11 @@ permalink: /achievements/
             <table style=" border:0px;">
                 <tbody style=" border:0px;">
 
-                    {% assign sorted_achievements = site.data.achievements %}
+                    {% assign sorted_achievements = site.data.achievements.achievements | reverse %}
                     {% for achievement in sorted_achievements %}
                     <tr style=" border:0px;">
                         <td style=" border:0px;">
                             <h3>{{ achievement.title }}</h3>
-                            <!-- {% if achievement.type == "conference" %}
-                            <p>Conference: <a href="{{ achievement.url }}">{{ achievement.title }}</a></p>
-                            {% endif %}
-
-                            {% if achievement.type == "hackathon" %}
-                            <p>Hackathon: <a href="{{ achievement.url }}">{{ achievement.title }}</a></p>
-                            {% endif %}
-
-                            {% if achievement.type == "competition" %}
-                            <p>Competition: <a href="{{ achievement.url }}">{{ achievement.title }}</a></p>
-                            {% endif %} -->
 
                             {% if achievement.location %}
                             <p>Location: {{ achievement.location }}</p>
