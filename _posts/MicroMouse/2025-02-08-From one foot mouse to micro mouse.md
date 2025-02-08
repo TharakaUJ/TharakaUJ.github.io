@@ -48,7 +48,7 @@ I tested a few examples from online blogs before finding **ArduinoOTA**, a libra
 
 While implementing OTA updates, we realized we also needed a way to adjust variables while the micromouse was running. I wanted to add a **WebSocket server**, but when it was active, **ArduinoOTA stopped working correctly.**  
 
-After some debugging, I figured out that I needed to stop the WebSocket server whenever we uploaded new code. You can find the solution [here]("/Websocket-and-OTA-code-update/").  
+After some debugging, I figured out that I needed to stop the WebSocket server whenever we uploaded new code. You can find the solution [here](/Websocket-and-OTA-code-update/).  
 
 ## The Final Stretch Before the Competition  
 

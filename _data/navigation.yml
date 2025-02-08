@@ -14,6 +14,12 @@ Blog:
     children:
       - title: "A step into the world of AR"
         url: /A-step-into-the-world-of-AR/
+  - title: "Micro Mouse"
+    children:
+      - title: "From one foot mouse to micro mouse"
+        url: /From-one-foot-mouse-to-micro-mouse/
+      - title: "Websocket and ota code update"
+        url: /Websocket-and-OTA-code-update/
 
 
 # experience links
