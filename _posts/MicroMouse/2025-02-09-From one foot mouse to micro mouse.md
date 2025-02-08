@@ -1,50 +1,75 @@
-This article is based on my experience while trying to build a micromouse. I had a team of six, and since none of us had prior experience, we decided to start with a larger micromouse and then gradually scale it down to a smaller version.
+# Building a Micromouse: Challenges, Lessons, and Unexpected Issues  
 
-## Gathering Components
+This article is based on my experience building a micromouse. I worked with a team of six, and since none of us had prior experience, we decided to start with a larger micromouse and gradually scale it down.  
 
-We gathered some essential parts, including:
+The goal of these articles is to document our learning process over time. This probably won’t be the best guide for optimizing your micromouse, but hopefully, I’ll be able to share more insights in the future.  
 
-- An Arduino Mega (which we eventually replaced with an ESP32)
-- Motor driver
-- IR sensors (Time-of-Flight)
-- Motors
-- Battery
+## Gathering Components  
 
-Since this was a larger model, we did not worry about the motor or battery size (which were comparatively huge).
+We started by gathering some essential components:  
 
-## Challenges and Unexpected Issues
+- **An Arduino Mega** (which we later replaced with an ESP32)  
+- **Motor driver**  
+- **IR sensors** (Time-of-Flight)  
+- **Motors with encoders**  
+- **Battery**  
 
-There are plenty of guides online on how to build a micromouse, so I won’t focus on that. Instead, I’ll share the challenges and unexpected issues we faced during the process.
+Since this was a larger prototype, we didn’t worry too much about motor or battery size—both were relatively large.  
 
-### Scaling Down to a Smaller Model
+## Challenges and Unexpected Issues  
 
-The large-scale model performed well for its intended behavior. So, we decided to move to a smaller version. The chassis of the new model was made of cardboard, and the motors and battery were much smaller. The new model had only the width of an Arduino Uno.
+There are plenty of online guides on how to build a micromouse, so I won’t go into the basics. Instead, I’ll share the challenges and unexpected issues we faced along the way.  
 
-One of my teammates spent an entire night wiring everything while I was trying to figure out how to upload the script to the Arduino from a Linux machine. The wiring was done, and we attempted to upload our code, but we received an error: **"Not enough SRAM in Arduino Uno."**
+### Scaling Down to a Smaller Model  
 
-This was even before adding the maze-solving algorithm, so it became clear that the Arduino Uno wouldn't work for us.
+Our large-scale model worked well for its intended purpose, so we decided to move to a smaller version. The new model’s chassis was made of cardboard, with much smaller motors and a compact battery. The entire bot was only as wide as an Arduino Uno.  
 
-### Switching to ESP32
+One of my teammates spent an entire night wiring everything while I was trying to figure out how to upload the script from a Linux machine. Once the wiring was done, we attempted to upload our code—only to be met with an error:  
 
-We decided to use an ESP32 instead. The ESP32 is more powerful than the Arduino, with more SRAM, a higher clock speed, and built-in WiFi. While my teammates worked on the next prototype, I figured out how to upload code to the ESP32.
+> **"Not enough SRAM in Arduino Uno."**  
 
-For Linux users, uploading to ESP32 is straightforward, but for Windows users, it was quite challenging.
+This was before we even added the maze-solving algorithm, making it clear that the Arduino Uno wouldn’t work for us.  
 
-In the process, we accidentally burned our sensors because we plugged the ESP32 in the wrong orientation, causing the sensors to receive **5V instead of 3.3V.** That set us back a bit, but we eventually proceeded with building another prototype.
+**Edit:** Later, I found a micromouse that ran on an Arduino Nano. I learned that optimizing code can help reduce SRAM usage, and flash memory can store maze data so it doesn’t reset every time.  
 
-### Implementing Over-the-Air (OTA) Updates
+### Switching to ESP32  
 
-Oh... the prototype is working! But plugging and unplugging the ESP32 every time we wanted to upload code was annoying. So, we decided to enable a way to upload code over WiFi.
+We decided to switch to an ESP32 instead. With more SRAM, a higher clock speed, and built-in WiFi, it was a clear upgrade from the Arduino. While my teammates worked on the next prototype, I figured out how to upload code to the ESP32.  
 
-I tried a few examples from online blogs, but luckily, I found a library called **ArduinoOTA**, which was designed exactly for this purpose. I implemented the feature, and it worked well.
+For Linux users, the process was straightforward, but Windows users had a much harder time.  
 
-While doing that, we also realized that we needed a way to change variables while the micromouse was running. So, I wanted to implement **a WebSocket server** along with the OTA feature. However, when the WebSocket server was running, **ArduinoOTA stopped working correctly.**
+In the process, we accidentally burned out our sensors by plugging the ESP32 in the wrong orientation. That setback cost us some time, but we eventually moved forward with a new prototype.  
 
-After some debugging, I figured out that I had to stop the WebSocket server when it was time to upload new code. You can find how I did it [here]("/Websocket-and-OTA-code-update/").
+### Implementing Over-the-Air (OTA) Updates  
 
+Oh… the prototype was finally working! But constantly plugging and unplugging the ESP32 to upload code quickly became annoying. So, we looked for a way to upload code over WiFi.  
 
+I tested a few examples from online blogs before finding **ArduinoOTA**, a library designed specifically for this purpose. It worked perfectly.  
 
----
+While implementing OTA updates, we realized we also needed a way to adjust variables while the micromouse was running. I wanted to add a **WebSocket server**, but when it was active, **ArduinoOTA stopped working correctly.**  
 
-This was an exciting project filled with unexpected challenges, but we learned a lot in the process. If you're planning to build a micromouse, expect to run into issues like these—and be ready to troubleshoot along the way!
+After some debugging, I figured out that I needed to stop the WebSocket server whenever we uploaded new code. You can find the solution [here]("/Websocket-and-OTA-code-update/").  
 
+## The Final Stretch Before the Competition  
+
+With less than two weeks before the competition, we built our final prototype—much smaller for more precise turns. However, in the process, we **ruined our remaining IR (ToF) sensors** (yeah, we need to improve our building process). At the same time, our **motor encoders became unreliable.**  
+
+To make things worse, we were now way over budget. So, we decided to work with what we had.  
+
+We had a bunch of **ultrasonic sensors**, which were slower but got the job done. I had to **reduce the bot’s speed significantly**. After a few hours of tuning, we finally got it to move in a straight line.  
+
+We also had a **gyroscope sensor lying around**, so we used that to improve turning accuracy. We could have used it to measure distance traveled, but we didn’t finish implementing that feature before the competition.  
+
+### The Competition  
+
+We made it to the competition. Even though we had the maze-solving algorithm coded, our encoders were unreliable, so we had to remove the **flood-fill algorithm**. Our bot was now just a simple wall-avoiding robot—basically a zombie blindly navigating the maze.  
+
+I didn’t have high hopes, but somehow, **it didn’t crash into any walls!** We stopped it after about four minutes because we hadn’t implemented the full algorithm.  
+
+Even though we didn’t win, the experience wasn’t a complete disaster. We got to see some of the best micromouse designs, learn about their challenges, and explore different levels of sophistication in micromouse engineering.  
+
+## Final Thoughts  
+
+This project was filled with unexpected challenges, but we learned a lot along the way. If you’re planning to build a micromouse, expect plenty of obstacles—and be ready to troubleshoot every step of the way!  
+
+Stay tuned to see if we improve our micromouse!
