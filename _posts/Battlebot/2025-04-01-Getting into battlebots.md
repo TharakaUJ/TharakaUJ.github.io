@@ -1,32 +1,94 @@
-This is the story of me getting into battlebot. The first ever battlebot competition we faced.
+This is the story of how I got into BattleBots, and how we faced our very first competition.
 
-few of my friends and I wanted to get into battlebot for long time now. We had few ideas. something like minatour, the brazilian battle bot, the Duck: simple but deadly.
+A few of my friends and I had wanted to build a BattleBot for a long time. We tossed around several ideas: something like Minotaur, the powerful Brazilian spinner; or Duck, simple but surprisingly deadly.
 
-But finally we agreed upon the design somewhat resemble the tombstone.
+Eventually, we agreed on a design that somewhat resembled Tombstone:  
+A horizontal spinning blade at the front, with two wheels enclosed and protected at the back.
 
-A horizontal blade infront of the bot with two wheels closed and protected in the back.
+## The Build
 
+We used a Radiolink transmitter and receiver, commonly used for drones, as our remote control system. I was responsible for the electronics and programming, while my friends focused on the design and hardware (which is arguably the hard part... it is a robot, after all).
 
-we used a transmitter and reciver which normally use to operate drones, a radiolink transmitter as the remote. Actually I was the one who looked into the controlling and programming part while my friends focused more on the design and hardware. which is the hard part.(it's in the name :)
+The bot ended up working perfectly. Controls were responsive, and we added a few switches:
 
-Anyway, the bot is working perfectly, the control is perfect. there few switches to kill the weapon, kill the robot. there is sequence to start up the robot after killing. invert the the control directions incase it get flipped over. 
+- A kill switch for the weapon
+- A main kill switch for the robot
+- A start-up sequence after shutdown
+- Inverted control logic in case the bot got flipped
 
-the day of the competetion came. By the way until now we didn't had a powerful enough power supply to charge the batteries within few minutes. So I had go for search for thoe in the morning. lUckily I did find one. 
+## The Competition Day
 
-My friends had done great job making the robot. the weight limit is 10kg. And our robot is exactly 9.97kg. 
+The day of the competition arrived. Up until that morning, we didn’t have a power supply strong enough to charge our batteries quickly. So I had to go out searching for one, and luckily, I found it just in time.
 
-the first round.. it's a flipper. did not seem like that descrutive, the flipper is seem to be slow. so we went to the fight confidently. before even we spin up weapon. it reushed towards us. and fliped us. oh.. the flipper is not slow.we were only fooled. Yeah we lost the round shirtly.
+My friends did a fantastic job on the robot. The weight limit was 10 kg, and our bot came in at 9.97 kg, perfectly balanced.
 
-But we have another round. before that we quickly added a iron bar to prevent us from stucking in side ways. I felt the rush of repairing in the middle of the compettion. But we forgot to test the weapon. we did not had time, we went for the next round. 
+### Round 1: The Flipper
 
-the round about to start. driver checking the stuff. oh my goodness.. the weapon's not working. we tried restarting.. nope no luck.
+Our first opponent was a flipper bot. It didn’t look that fast or destructive, so we felt confident.
 
-fortunately opponents wepaon also malfunctioning. so we easily won the match by pinning them.
+But before we could even spin up our weapon, it rushed straight at us and flipped us over.  
+Turns out the flipper wasn’t slow, we were just fooled.
 
-we rushed to our desk. what's wrong with the weapon. we started tsting hardware, checking voltages at terminals. is somethign wrong with your program logic or microcontroller. everyone is working, someone removing the covers other one testing the ports with multimeters.. few other people als came to help and now they are holding torches. And I am testing the microcontroller with my laptop. yeah it's working. the issue must be with the motor driver. luckily we had one extra. the organizers are clling us, we got only 2 minutes. motor driver changed. but still not working. oh connections are loose. we didn;t had time to fix the motor driver properly, we hot glued it. no time to test. we assembled our bot quickly. 
+We lost the round quickly.
 
-We only got the chance to verify the weapon at the areana. yeah it's working. our operator spinned it fully. and went directly to the oponnets wheel. the wheel flied away. their wheel motor shaft got twited. but all that came with a cost. our motor mount was not that strong. so it got snaped and our chain carrying power to the weapon is now free. but luckily it did not damage anything internal. now again its a pushing challenge. 
+### Between Matches
 
-by the judges decision, we lost the battle. and that was our final battle. 
+We had another match coming up, so we quickly bolted an iron bar to the bot to prevent it from getting stuck sideways. That was my first taste of the fast-paced, frantic nature of mid-competition repairs.
 
-hoping to take part in more of these. 
+In all the rush, we forgot to test the weapon.  
+
+No time left, we had to go in blind.
+
+### Round 2: Weapon Failure... and Luck
+
+Right before the match started, our driver was checking the controls...  
+
+Oh no! the weapon wasn’t working.
+
+We tried restarting, but no luck.
+
+Fortunately, our opponent’s weapon also malfunctioned. We won that round by simply pinning them and avoiding damage.
+
+## The Fixing Frenzy
+
+We rushed back to our desk.  
+What’s wrong with the weapon?
+
+We started testing everything: checking voltages, ports, and microcontroller logic. Some of us were tearing off covers, others probing terminals with multimeters. A few other teams joined in to help, holding torches and tools. I was debugging the microcontroller via laptop, it was working fine.
+
+The issue had to be with the motor driver.
+
+Luckily, we had a spare.
+
+The organizers announced we had 2 minutes left.
+
+We swapped the driver. Still nothing.
+
+Then we realized, the connections were loose!
+
+No time to properly mount it, so we hot-glued it in place. No time to test. We threw the bot back together and ran to the arena.
+
+### Round 3: Revenge Shot
+
+We got to test the weapon just before the match. It spun up perfectly.
+
+Our operator revved it up and went straight for the opponent’s wheel.  
+**Boom.** The wheel flew off. Their motor shaft was twisted and destroyed.
+
+But it came at a cost.
+
+Our motor mount wasn’t strong enough and snapped. The chain driving the weapon was loose, and the blade stopped. Thankfully, nothing else was damaged.
+
+It became a pushing match.
+
+## Final Result
+
+The judges awarded the match to our opponent.
+
+And that was our final battle of the day.
+
+## Looking Ahead
+
+It was a wild ride, full of mistakes, adrenaline, and last-minute hacks. But we learned a lot.
+
+Can’t wait to take part in more of these.
