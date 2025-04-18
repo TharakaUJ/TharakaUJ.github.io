@@ -21,7 +21,7 @@ The bot ended up working perfectly. Controls were responsive, and we added a few
 The day of the competition arrived. Up until that morning, we didn’t have a power supply strong enough to charge our batteries quickly. So I had to go out searching for one, and luckily, I found it just in time.
 
 <div style="text-align: center;">
-    <img src="https://tharakauj.github.io/static-files/posts/Battlebot/GettingIntoBattlebots/battlebot%20random.jpeg" alt="Battlebot Random" style="width: 80%; max-width: 600px; height: auto;">
+    <img src="https://tharakauj.github.io/static-files/posts/Battlebot/GettingIntoBattlebots/battlebot%20random.jpeg" alt="Battlebot Random" style="width: 80%; max-width: 600px; height: auto; aspect-ratio: 16/9; object-fit: cover; object-position: 0px -350px;">
 </div>
 
 My friends did a fantastic job on the robot. The weight limit was 10 kg, and our bot came in at 9.97 kg, perfectly balanced.
