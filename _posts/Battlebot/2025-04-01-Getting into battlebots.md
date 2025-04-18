@@ -20,6 +20,10 @@ The bot ended up working perfectly. Controls were responsive, and we added a few
 
 The day of the competition arrived. Up until that morning, we didn’t have a power supply strong enough to charge our batteries quickly. So I had to go out searching for one, and luckily, I found it just in time.
 
+<div style="text-align: center;">
+    <img src="https://tharakauj.github.io/static-files/posts/Battlebot/GettingIntoBattlebots/battlebot%20random.jpeg" alt="Battlebot Random" style="width: 80%; max-width: 600px; height: auto;">
+</div>
+
 My friends did a fantastic job on the robot. The weight limit was 10 kg, and our bot came in at 9.97 kg, perfectly balanced.
 
 ### Round 1: The Flipper
@@ -47,7 +51,12 @@ Oh no! the weapon wasn’t working.
 
 We tried restarting, but no luck.
 
+<div style="text-align: center;">
+    <img src="https://tharakauj.github.io/static-files/posts/Battlebot/GettingIntoBattlebots/battlebot%20round%202.jpeg" alt="Battlebot 2nd round" style="width: 80%; max-width: 600px; height: auto;">
+</div>
+
 Fortunately, our opponent’s weapon also malfunctioned. We won that round by simply pinning them and avoiding damage.
+
 
 ## The Fixing Frenzy
 
@@ -75,9 +84,20 @@ We got to test the weapon just before the match. It spun up perfectly.
 Our operator revved it up and went straight for the opponent’s wheel.  
 **Boom.** The wheel flew off. Their motor shaft was twisted and destroyed.
 
+<div style="text-align: center;">
+    <video controls style="width: 80%; max-width: 600px; height: auto;">
+        <source src="https://tharakauj.github.io/static-files/posts/Battlebot/GettingIntoBattlebots/final%20battle.mp4#t=0,15" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
 But it came at a cost.
 
 Our motor mount wasn’t strong enough and snapped. The chain driving the weapon was loose, and the blade stopped. Thankfully, nothing else was damaged.
+
+<div style="text-align: center;">
+    <img src="https://tharakauj.github.io/static-files/posts/Battlebot/GettingIntoBattlebots/battlebot%20chain%20wrecked.jpeg" alt="Battlebot Chain Wrecked" style="width: 80%; max-width: 600px; height: auto;">
+</div>
 
 It became a pushing match.
 
