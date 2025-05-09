@@ -20,6 +20,10 @@ Blog:
         url: /From-one-foot-mouse-to-micro-mouse/
       - title: "Websocket and ota code update"
         url: /Websocket-and-OTA-code-update/
+  - title: "Battlebots"
+    children:
+      - title: "Getting into battlebots"
+        url: /Getting-into-battlebots/
 
 
 # experience links
@@ -29,7 +33,7 @@ Experience:
       - title: "AR"
         url: /A-step-into-the-world-of-AR/
       - title: "Micro Mouse"
-        url: /https://github.com/sheronjay/Manny-K.git/
+        url: /From-one-foot-mouse-to-micro-mouse/
   
   - title: "Internships"
 
@@ -47,6 +51,6 @@ Achievements:
 
   - title: "Chess"
     children:
-      - title: "Asian Schools Chess Championship- under 11"
+      - title: "Asian Schools Chess Championship- under 11 6th place"
       - title: "Asian Schools Chess Championship- under 9(participation)"
   
