@@ -11,14 +11,14 @@ sidebar: false
             <img src="{{site.author.avatar}}" class="splash__avatar" alt="{{site.author.pronounce}}"
                 title="{{site.author.avatar_title}}">
         </div>
-        <h3 class="author__name" style="color:white; margin-bottom: 5px;">
+        <h1 class="author__name" style="color:white; margin-bottom: 5px;">
             {{site.author.firstname}}
             <span style="font-weight:normal">
                 <em>{{site.author.pronounce}}</em>
             </span>
-        </h3>
+        </h1>
         <p class="author__bio" style="color:white; margin-bottom: 10px; margin-top: 5px;">
-
+            Computer Science & Engineering Student
         </p>
         <div class="author__urls-wrapper" style="color:white; font-size: small;">
             <nobr>
@@ -27,74 +27,267 @@ sidebar: false
             </nobr>
 
             {% for link in site.footer.links %}
-
             <a style="text-decoration: none" href="{{ link.url }}">
                 <nobr><i class="{{ link.icon }}" aria-hidden="true"></i>{{ link.label}}</nobr>
             </a>
-
             {% endfor %}
-
         </div>
     </div>
-    <span class="page__hero-caption">
-        <!-- <a href="{{site.siteUrl}}/">Something here</a> -->
-    </span>
 </div>
+
 <div class="wrapper" style="padding-left: 0.5em; padding-right: 0.5em;">
     <section class="page__content" itemprop="text">
-        <!-- <p>
-            About me:
-        </p>
-        <p style="text-align: center;">
-            <span class="label custom-label animated_label">
-                <nobr>Systems Security</nobr>
-            </span>
-
-        </p> -->
-        <h2 id="education">Education<a class="header-link" href="#education" title="Permalink"><span
-                    class="sr-only">Permalink</span></a></h2>
+        
+        <!-- About Me Section -->
+        <div class="about-section">
+            <h2 id="about">About Me<a class="header-link" href="#about" title="Permalink"><span class="sr-only">Permalink</span></a></h2>
+            <!-- <p>
+                I'm a Computer Science and Engineering student passionate about technology and its applications in the real world. I have a keen interest in robotics, cybersecurity, and embedded systems. My goal is to leverage my skills to contribute to innovative projects that make a difference.
+            </p> -->
+            
+            <div class="skills-container">
+                <h3>Areas of Interest</h3>
+                <div class="skills-badges">
+                    <span class="label custom-label animated_label"><nobr>Robotics</nobr></span>
+                    <span class="label custom-label animated_label"><nobr>Cybersecurity</nobr></span>
+                    <span class="label custom-label animated_label"><nobr>Embedded Systems</nobr></span>
+                    <span class="label custom-label animated_label"><nobr>Linux and Open Source projects</nobr></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Education Section -->
+        <h2 id="education">Education<a class="header-link" href="#education" title="Permalink"><span class="sr-only">Permalink</span></a></h2>
         <div class="about_row">
             <div class="about_column">
-                <table style=" border:0px;">
-                    <tbody style=" border:0px;">
-                        <tr style=" border:0px;">
-                            <td style=" border:0px; vertical-align:top;"><img
-                                    src="https://archfx.github.io/images/logos/uom.png" width="60px"></td>
-                            <td style=" border:0px; ">
-                                <p><b>University of Moratuwa </b><br> Honours Degree of Bachelor of the Science of
-                                    Engineering(Specialization in Computer Science and Engineering)</p>
-                                </p>
-                                <p>2023-present
-                                </p>
+                <table class="education-table">
+                    <tbody>
+                        <tr>
+                            <td style="vertical-align:top; width: 80px;"><img src="https://tharakauj.github.io/static-files/logos/uom.png" width="60px" alt="University of Moratuwa Logo"></td>
+                            <td>
+                                <p><b>University of Moratuwa</b></p>
+                                <p>Honours Degree of Bachelor of the Science of Engineering<br>
+                                <em>Specialization in Computer Science and Engineering</em></p>
+                                <p><i class="fas fa-calendar-alt"></i> 2023-present</p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <h2 id="updates">Updates
-            <a class="header-link" href="#updates" title="Permalink">
-                <span class="sr-only">Permalink</span>
-            </a>
-        </h2>
-        <!-- <div id="multilines">
+        
+        <!-- Projects Section -->
+        <!-- <h2 id="projects">Featured Projects<a class="header-link" href="#projects" title="Permalink"><span class="sr-only">Permalink</span></a></h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Project Title 1</h3>
+                <p>Brief description of your first project highlighting key technologies and your role.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Project Title 2</h3>
+                <p>Brief description of your second project highlighting key technologies and your role.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+        </div>-->
+        
+        <!-- Updates Section with Twitter Integration -->
+        <!-- <h2 id="updates">Latest Updates<a class="header-link" href="#updates" title="Permalink"><span class="sr-only">Permalink</span></a></h2>
+        <div id="multilines" class="updates-container">
             <div class="container">
                 <ul class="newsticker" style="height: 165px; overflow: hidden;">
                     <li style="margin-top: 0px;"> Excited to announce that our paper titled 'Scalable Detection of
                         Hardware Trojans using ATPG-based Activation of Rare Events' has been accepted in IEEE TCAD! <a
                             href="https://twitter.com/ArunaFX/status/1682188518398001152">Read more...</a>
                     </li>
+                    <li> Started my new research project on hardware security verification techniques.
+                    </li>
+                    <li> Presented our recent work at the University Research Symposium.
+                    </li>
                 </ul>
-                <a href="https://twitter.com/ArunaFX">
-                    <img width="28"
-                        style=" position: absolute; right: 10px; top: 10px; -webkit-filter: drop-shadow( 2px 2px 3px rgba(0, 0, 0, .5)); filter: drop-shadow( 2px 2px 3px rgba(0, 0, 0, .5));"
-                        src="https://archfx.github.io/images/icons/twitter.svg">
+                <a href="https://twitter.com/ArunaFX" class="twitter-icon">
+                    <img width="28" src="https://archfx.github.io/images/icons/twitter.svg" alt="Twitter Profile">
                 </a>
             </div>
-            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-            <script
-                src="https://www.jqueryscript.net/demo/Flexible-jQuery-Vertical-News-Ticker-Plugin-Advanced-News-Ticker/js/newsTicker.js"></script>
-            <script> var multilines = $('#multilines .newsticker').newsTicker({ row_height: 55, speed: 800, }); var oneliner = $('#oneliner .newsticker').newsTicker({ row_height: 34, max_rows: 1, time: 5000, nextButton: $('#oneliner .header') }); // Pause newsTicker on .header hover $('#oneliner .header').hover(function() { oneliner.newsTicker('pause'); }, function() { oneliner.newsTicker('unpause'); }); </script>
         </div> -->
+        
+        <!-- Contact Section -->
+        <h2 id="contact">Get In Touch<a class="header-link" href="#contact" title="Permalink"><span class="sr-only">Permalink</span></a></h2>
+        <div class="contact-container">
+            <p>
+                I'm always open to discussing ideas, collaboration opportunities, or just connecting with fellow enthusiasts in computer engineering and security.
+            </p>
+            <div class="contact-methods">
+                <!-- <a href="mailto:{{ site.author.email }}" class="contact-button">
+                    <i class="fas fa-envelope"></i> Email Me
+                </a> -->
+                <a href="{{ site.author.linkedin }}" class="contact-button">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="{{ site.author.github }}" class="contact-button">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
     </section>
 </div>
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://www.jqueryscript.net/demo/Flexible-jQuery-Vertical-News-Ticker-Plugin-Advanced-News-Ticker/js/newsTicker.js"></script>
+<script>
+    $(document).ready(function() {
+        var multilines = $('#multilines .newsticker').newsTicker({
+            row_height: 55,
+            speed: 800,
+            duration: 4000
+        });
+    });
+</script>
+
+<style>
+    .about-section {
+        margin-bottom: 2em;
+    }
+    
+    .skills-container {
+        margin-top: 1.5em;
+    }
+    
+    .skills-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+    }
+    
+    .label.custom-label {
+        background-color: #0366d6;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 16px;
+        font-size: 0.85em;
+        display: inline-block;
+        transition: transform 0.2s;
+    }
+    
+    .label.custom-label:hover {
+        transform: translateY(-2px);
+    }
+    
+    .education-table {
+        border: none;
+        margin-bottom: 2em;
+        width: 100%;
+    }
+    
+    .education-table td {
+        border: none;
+        padding: 10px;
+    }
+    
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 2em;
+    }
+    
+    .project-card {
+        border: 1px solid #e1e4e8;
+        border-radius: 6px;
+        padding: 16px;
+        transition: box-shadow 0.3s ease;
+    }
+    
+    .project-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .project-card h3 {
+        margin-top: 0;
+        font-size: 1.2em;
+    }
+    
+    .project-links {
+        margin-top: 12px;
+    }
+    
+    .project-link {
+        display: inline-block;
+        margin-right: 12px;
+        text-decoration: none;
+        font-size: 0.9em;
+    }
+    
+    .updates-container {
+        position: relative;
+        border: 1px solid #e1e4e8;
+        border-radius: 6px;
+        padding: 20px;
+        margin-bottom: 2em;
+    }
+    
+    .twitter-icon {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, .5));
+    }
+    
+    .contact-container {
+        background-color: #f6f8fa;
+        border-radius: 6px;
+        padding: 20px;
+        margin-bottom: 1em;
+    }
+    
+    .contact-methods {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .contact-button {
+        display: inline-flex;
+        align-items: center;
+        background-color: #0366d6;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.2s;
+    }
+    
+    .contact-button:hover {
+        background-color: #024ea2;
+        text-decoration: none;
+    }
+    
+    .contact-button i {
+        margin-right: 6px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .projects-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .contact-methods {
+            flex-direction: column;
+        }
+        
+        .contact-button {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
