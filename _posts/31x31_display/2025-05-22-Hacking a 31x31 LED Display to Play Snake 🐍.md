@@ -1,82 +1,99 @@
-## Turning a 31×31 LED Matrix Into a Retro Game Console
+## 🎮 Turning a 31×31 LED Matrix Into a Retro Game Console
+During a department music event, our seniors (CSE'22 batch) built a **giant 31×31 LED matrix** with **961 colorful bulbs** to display synchronized light patterns. After the event, it was left unused—so I decided to turn it into a playable **Snake** game.
 
-During a department music event, our seniors (CSE'22 batch) built a custom 31×31 LED matrix display with 961 bulbs to show synchronized light patterns. After the event, the display sat unused—so I decided to repurpose it for something nostalgic: playing Snake!
+---
 
-### The Vision
+## 💡 The Vision
 
-I wanted to transform this music-visualization hardware into a modular retro LED game console. My goals:
+My goal: transform this sound-reactive wall into a **modular retro LED game console**. I wanted to:
 
-- Add more games in the future
-- Simulate games on a PC when hardware isn’t available
-- Make it easy for others to contribute or build their own games
+- 🎮 Add more games over time
+- 🖥️ Simulate the display on a PC (for development without hardware)
+- 🧩 Keep the code modular so others can contribute
 
-### Architecture Overview
+---
 
-The project is organized into three main threads:
+## ⚙️ Architecture Overview
 
-- **Render Thread:** Updates the physical LED matrix using a shared framebuffer.
-- **Game Thread:** Runs the active game logic (Snake, Galaxia, Tetris, etc.).
-- **Input Thread:** Listens for user inputs (up, down, left, right, select, back) via web-based controls.
+The system uses **three threads**:
 
-The display and game logic are separated by a 31×31 2D framebuffer:
+- **Render Thread**: Sends visuals to the LED matrix
+- **Game Thread**: Runs game logic (Snake, Galaxia, Tetris, etc.)
+- **Input Thread**: Handles user input via a web controller (your phone can be the D-pad)
+
+All threads share a **31×31 framebuffer**:
 
 ```cpp
 <pixel type> framebuffer[31][31];
 ```
-(*here I used a placeholder for type of the data because it might change in the future)
 
-Games write to this array; the rendering thread handles converting it to the LED strip’s format (using FastLED on ESP32) or simulating it in a browser.
+Games write to this array; the renderer displays it on the LEDs or in a web browser. This separation makes adding new games easy—no changes to rendering needed.
 
-### Snake Gameplay
+---
 
-Here’s a video of Snake running on the 31x31 LED grid:
+## 🐍 Playing Snake on a Wall of Lights
 
-<video src="https://tharakauj.github.io/static-files/posts/31x31_display/snake.mp4" controls width="480" style="margin-top: 1em;">
-    Your browser does not support the video tag.
-</video>
+Here’s Snake running on the LED wall! (Press play below.)
 
-Game logic highlights:
+<div style="display: flex; align-items: flex-start; gap: 1em;">
+    <video src="https://tharakauj.github.io/static-files/posts/31x31_display/snake.mp4" controls width="360" style="margin-top: 0.5em; border-radius: 0.5em; box-shadow: 0 0 8px rgba(0,0,0,0.1);">
+        Your browser does not support the video tag.
+    </video>
+    <div>
+        🐍 Snake slithers around the grid, eating food and growing.<br>
+        💥 Game over if it crashes into itself.<br>
+        ⏩ Speed increases as you score.<br>
+        🎯 Score appears in the center at the end.<br>
+        Nostalgic fun—on a glowing 961-pixel canvas.
+    </div>
+</div>
 
-- Snake moves and grows when eating food
-- Game over on self-collision
-- Speed increases with score
-- Score is displayed at the center when the game ends
+---
 
-### PC Simulation Mode
+## 🧪 PC Simulation Mode
 
-Hardware access was limited, so I built a PC simulation:
+To develop without the hardware, I built a web-based simulator:
 
-- ESP32 serves framebuffer data as JSON via a web server
-- A web-based UI fetches and displays the framebuffer, mimicking the LED grid
-- The same framebuffer structure works for both ESP32 and PC modes
+- The ESP32 serves the framebuffer as JSON
+- A web UI fetches and displays it in real time
 
-### Adding More Games
+Same code, same framebuffer—just a different display!
+
+---
+
+## 🌌 Adding More Games
 
 After Snake, I added:
 
-- **Galaxia:** Space shooter with falling enemies
-- **Tetris:** Arrange falling blocks to clear lines
+- **Galaxia**: A pixel space shooter
+- **Tetris**: Classic falling blocks
 
-All games use the same structure: write to the framebuffer and listen for input. A menu screen lets you select the game using the input buttons.
-
-### What’s Next?
-
-Planned improvements:
-
-- **New controller:** Add support for physical controllers or keyboards (currently using a mobile web interface)
-- **Improved simulation:** Enhance PC/web simulation with audio and animations
-- **More games:** Add Pong, and maybe a mini RPG!
-
-### Conclusion
-
-Repurposing leftover hardware into a playable game console was a rewarding experience. I learned about LED displays, modular architecture, and got to play retro games on a unique display.
+All games use the same pattern: write to the framebuffer, read input, done! A menu lets you switch games—no code upload needed.
 
 ---
 
-**Want to contribute?**  
-I’ll be open-sourcing this project soon! If you’re interested in building games, improving the simulation, or optimizing LED control, reach out!
+## 🔭 What’s Next?
+
+- 🕹️ New controllers: gamepads or keyboards
+- 🎧 Sound effects & animations in simulation
+- 🧠 More games: Pong, mini RPG, maybe multiplayer
 
 ---
 
-**Check out the code:**  
-[GitHub Repository – TharakaUJ/31x31_Display](https://github.com/TharakaUJ/31x31_Display)
+## ❤️ Wrapping Up
+
+A leftover event prop became a retro pixel playground. I got to build a console, play old favorites, and experiment with rendering and threading. There’s more to come!
+
+---
+
+## 🤝 Want to Contribute?
+
+I’ll open-source the project soon. If you want to:
+
+- Create LED games
+- Improve the simulation
+- Chat about pixel art
+
+Let’s connect!
+
+**🧑‍💻 [Check it Out on GitHub](https://github.com/TharakaUJ/31x31_Display)**
