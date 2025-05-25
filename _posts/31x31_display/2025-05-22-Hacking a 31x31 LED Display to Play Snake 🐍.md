@@ -36,7 +36,7 @@ Games write to this array; the renderer displays it on the LEDs or in a web brow
 Here’s Snake running on the LED wall! (Press play below.)
 
 <div style="display: flex; align-items: flex-start; gap: 1em;">
-    <video src="https://tharakauj.github.io/static-files/posts/31x31_display/snake.mp4" controls width="360" style="margin-top: 0.5em; border-radius: 0.5em; box-shadow: 0 0 8px rgba(0,0,0,0.1);">
+    <video src="https://tharakauj.github.io/static-files/posts/31x31_display/snake.mp4" controls width="180" style="margin-top: 0.5em; border-radius: 0.5em; box-shadow: 0 0 8px rgba(0,0,0,0.1);">
         Your browser does not support the video tag.
     </video>
     <div>
