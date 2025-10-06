@@ -74,28 +74,7 @@ sidebar: false
             </div>
         </div>
         
-        <!-- Projects Section (Optional) -->
-        <!-- <h2 id="projects">Projects<a class="header-link" href="#projects" title="Permalink"><span class="sr-only">Permalink</span></a></h2>
-        <div class="section-divider"></div>
-        <div class="projects-grid">
-            <div class="project-item">
-                <h3>Project Title 1</h3>
-                <p>Brief description of your first project highlighting key technologies and your role.</p>
-                <div class="project-links">
-                    <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
-                </div>
-            </div>
-            
-            <div class="project-item">
-                <h3>Project Title 2</h3>
-                <p>Brief description of your second project highlighting key technologies and your role.</p>
-                <div class="project-links">
-                    <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
-                </div>
-            </div>
-        </div> -->
+      
 
 <!-- Custom CSS for styling -->
 <style>    
@@ -111,23 +90,39 @@ sidebar: false
     }
     
     .skills-container {
-        margin-top: 1rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .skills-container h3 {
+        color: #ffffff;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
     }
     
     .skills-badges {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 0.8rem;
+        gap: 12px;
+        margin-top: 1rem;
     }
     
     .interest-badge {
         display: inline-block;
-        background-color: #0072CE;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 24px;
+        background-color: rgba(30, 30, 35, 0.6);
+        border: 1px solid #444;
+        color: #d1d1d1;
+        padding: 10px 18px;
+        border-radius: 6px;
         font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+    
+    .interest-badge:hover {
+        background-color: rgba(0, 114, 206, 0.2);
+        border-color: #0072CE;
+        color: #ffffff;
+        transform: translateY(-1px);
     }
     
     .education-container {
