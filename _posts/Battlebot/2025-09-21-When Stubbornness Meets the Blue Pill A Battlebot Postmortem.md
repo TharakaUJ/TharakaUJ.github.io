@@ -1,6 +1,4 @@
 ---
-title: "When Stubbornness Meets the Blue Pill: A Battlebot Postmortem"
-date: 2025-09-21
 categories:
 	- Robotics
 	- Battlebot
