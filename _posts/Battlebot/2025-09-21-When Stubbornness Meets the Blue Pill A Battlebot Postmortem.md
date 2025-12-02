@@ -1,13 +1,12 @@
 ---
 categories:
-	- Robotics
-	- Battlebot
-
+  - Robotics
+  - Battlebot
 tags:
-	- STM32
-	- ESP32
-	- Soldering
-	- Competition
+  - Battlebot
+  - Competition
+  - stm32
+  
 ---
 
 Last time, our battlebot used an ESP32 as its brain. It worked fine, but ESP32s are delicate. This year, I wanted something tougher, something worthy of a robot that gets physically attacked. So I picked the STM32 Blue Pill, which everyone swears is more resilient.
