@@ -1,6 +1,4 @@
 ---
-title: "Micromouse: One More Failure Closer to Success"
-date: 2025-10-10
 categories:
   - Robotics
   - Micromouse
