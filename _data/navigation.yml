@@ -26,6 +26,8 @@ Blog:
     children:
       - title: "Getting into battlebots"
         url: /robotics/battlebots/Getting-into-battlebots/
+      - title: When Stubbornness Meets the Blue Pill, A Battlebot Postmortem
+        url: /robotics/battlebots/When-Stubbornness-Meets-the-Blue-Pill-A-Battlebot-Postmortem/
 
 
 # experience links
