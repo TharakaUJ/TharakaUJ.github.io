@@ -1,3 +1,12 @@
+---
+categories:
+  - Robotics
+  - Battlebot
+tags:
+  - Battlebot
+  - Competition
+---
+
 This is the story of how I got into BattleBots, and how we faced our very first competition.
 
 A few of my friends and I had wanted to build a BattleBot for a long time. We tossed around several ideas: something like Minotaur, the powerful Brazilian spinner; or Duck, simple but surprisingly deadly.

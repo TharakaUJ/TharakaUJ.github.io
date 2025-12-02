@@ -17,15 +17,15 @@ Blog:
   - title: "Micro Mouse"
     children:
       - title: "From one foot mouse to micro mouse"
-        url: /From-one-foot-mouse-to-micro-mouse/
+        url: /robotics/micromouse/From-one-foot-mouse-to-micro-mouse/
       - title: "Websocket and ota code update"
-        url: /Websocket-and-OTA-code-update/
+        url: /micromouse/Websocket-and-OTA-code-update/
       - title: "When the Robot Turned Around"
-        url: /When-the-Robot-Turned-Around/
+        url: /robotics/micromouse/When-the-Robot-Turned-Around/
   - title: "Battlebots"
     children:
       - title: "Getting into battlebots"
-        url: /Getting-into-battlebots/
+        url: /robotics/battlebots/Getting-into-battlebots/
 
 
 # experience links

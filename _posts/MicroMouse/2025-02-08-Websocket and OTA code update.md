@@ -1,3 +1,11 @@
+---
+categories:
+  - Micromouse
+tags:
+  - Micromouse
+  - ESP32
+---
+
 # Enabling OTA and WebSockets for Micromouse
 
 This article is based on my experience while trying to build a micromouse. In this article, I discuss how to enable OTA (over-the-air) programming and WebSocket to update variables.

@@ -1,3 +1,12 @@
+---
+categories:
+  - Robotics
+  - Micromouse
+tags:
+  - Micromouse
+  - Competition
+---
+
 # Building a Micromouse: Challenges, Lessons, and Unexpected Issues  
 
 This article is based on my experience building a micromouse. I worked with a team of six, and since none of us had prior experience, we decided to start with a larger micromouse and gradually scale it down.  
@@ -48,7 +57,7 @@ I tested a few examples from online blogs before finding **ArduinoOTA**, a libra
 
 While implementing OTA updates, we realized we also needed a way to adjust variables while the micromouse was running. I wanted to add a **WebSocket server**, but when it was active, **ArduinoOTA stopped working correctly.**  
 
-After some debugging, I figured out that I needed to stop the WebSocket server whenever we uploaded new code. You can find the solution [here](/Websocket-and-OTA-code-update/).  
+After some debugging, I figured out that I needed to stop the WebSocket server whenever we uploaded new code.
 
 ## The Final Stretch Before the Competition  
 
