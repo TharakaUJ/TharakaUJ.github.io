@@ -20,6 +20,8 @@ Blog:
         url: /From-one-foot-mouse-to-micro-mouse/
       - title: "Websocket and ota code update"
         url: /Websocket-and-OTA-code-update/
+      - title: "When the Robot Turned Around"
+        url: /When-the-Robot-Turned-Around/
   - title: "Battlebots"
     children:
       - title: "Getting into battlebots"
