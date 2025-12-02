@@ -1,4 +1,4 @@
-Augmented Reality (AR) is transforming how we interact with digital content, making it more immersive and interactive. AR.js, a lightweight open-source library, allows developers to create AR experiences directly in the browser, eliminating the need for additional app installations. In this post, I’ll share my journey of creating an animated AR experience for my university’s inauguration display—a project that, despite its challenges, taught me a lot about AR.js and browser-based AR development.
+Augmented Reality (AR) is transforming how we interact with digital content, making it more immersive and interactive. AR.js, a lightweight open-source library, allows developers to create AR experiences directly in the browser, eliminating the need for additional app installations. In this post, I’ll share my journey of creating an animated AR experience for my university’s inauguration display, a project that, despite its challenges, taught me a lot about AR.js and browser-based AR development.
 
 ---
 
@@ -54,7 +54,7 @@ I also experimented with NFT image tracking and events like devicemotion and dev
 ---
 
 ## The Disaster Moment
-Most of my time was spent creating a 3D animation in Blender—a challenge, as I’m not a 3D artist. With help from friends, I crafted an animation and exported it as a .glb file. Everything seemed ready to go... or so I thought.
+Most of my time was spent creating a 3D animation in Blender, a challenge, as I’m not a 3D artist. With help from friends, I crafted an animation and exported it as a .glb file. Everything seemed ready to go... or so I thought.
 
 When I loaded the `.glb` file into AR.js, the object appeared, but the animation was missing! A quick investigation revealed that while Blender successfully exported the animation, AR.js didn’t fully support `.glb` animations. Time was running out, and I had to find a workaround fast.
 
@@ -62,7 +62,7 @@ When I loaded the `.glb` file into AR.js, the object appeared, but the animation
 
 To overcome the animation limitations of AR.js, I integrated it with Three.js, enabling marker tracking alongside advanced animations. AR.js was used solely for detecting the marker and providing its position and orientation in 3D space using a dummy object. I then used this data to place and synchronize my animation in Three.js, allowing precise control over movement and rendering.
 
-This approach provided the best of both worlds—AR.js for efficient marker-based tracking and Three.js for rich animations and effects. The result was a seamless experience where the marker remained the anchor, but the animations were no longer constrained by AR.js' capabilities. It was a true "Eureka!" moment for me, unlocking exciting new possibilities for web-based AR development.
+This approach provided the best of both worlds, AR.js for efficient marker-based tracking and Three.js for rich animations and effects. The result was a seamless experience where the marker remained the anchor, but the animations were no longer constrained by AR.js' capabilities. It was a true "Eureka!" moment for me, unlocking exciting new possibilities for web-based AR development.
 
 #### Code Snippet: AR.js and Three.js Integration
 

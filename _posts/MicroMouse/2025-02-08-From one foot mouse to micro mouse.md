@@ -23,7 +23,7 @@ We started by gathering some essential components:
 - **Motors with encoders**  
 - **Battery**  
 
-Since this was a larger prototype, we didn’t worry too much about motor or battery size—both were relatively large.  
+Since this was a larger prototype, we didn’t worry too much about motor or battery size, both were relatively large.  
 
 ## Challenges and Unexpected Issues  
 
@@ -33,7 +33,7 @@ There are plenty of online guides on how to build a micromouse, so I won’t go 
 
 Our large-scale model worked well for its intended purpose, so we decided to move to a smaller version. The new model’s chassis was made of cardboard, with much smaller motors and a compact battery. The entire bot was only as wide as an Arduino Uno.  
 
-One of my teammates spent an entire night wiring everything while I was trying to figure out how to upload the script from a Linux machine. Once the wiring was done, we attempted to upload our code—only to be met with an error:  
+One of my teammates spent an entire night wiring everything while I was trying to figure out how to upload the script from a Linux machine. Once the wiring was done, we attempted to upload our code, only to be met with an error:  
 
 > **"Not enough SRAM in Arduino Uno."**  
 
@@ -61,7 +61,7 @@ After some debugging, I figured out that I needed to stop the WebSocket server w
 
 ## The Final Stretch Before the Competition  
 
-With less than two weeks before the competition, we built our final prototype—much smaller for more precise turns. However, in the process, we **ruined our remaining IR (ToF) sensors** (yeah, we need to improve our building process). At the same time, our **motor encoders became unreliable.**  
+With less than two weeks before the competition, we built our final prototype, much smaller for more precise turns. However, in the process, we **ruined our remaining IR (ToF) sensors** (yeah, we need to improve our building process). At the same time, our **motor encoders became unreliable.**  
 
 To make things worse, we were now way over budget. So, we decided to work with what we had.  
 
@@ -71,7 +71,7 @@ We also had a **gyroscope sensor lying around**, so we used that to improve turn
 
 ### The Competition  
 
-We made it to the competition. Even though we had the maze-solving algorithm coded, our encoders were unreliable, so we had to remove the **flood-fill algorithm**. Our bot was now just a simple wall-avoiding robot—basically a zombie blindly navigating the maze.  
+We made it to the competition. Even though we had the maze-solving algorithm coded, our encoders were unreliable, so we had to remove the **flood-fill algorithm**. Our bot was now just a simple wall-avoiding robot, basically a zombie blindly navigating the maze.  
 
 I didn’t have high hopes, but somehow, **it didn’t crash into any walls!** We stopped it after about four minutes because we hadn’t implemented the full algorithm.  
 
@@ -79,6 +79,6 @@ Even though we didn’t win, the experience wasn’t a complete disaster. We got
 
 ## Final Thoughts  
 
-This project was filled with unexpected challenges, but we learned a lot along the way. If you’re planning to build a micromouse, expect plenty of obstacles—and be ready to troubleshoot every step of the way!  
+This project was filled with unexpected challenges, but we learned a lot along the way. If you’re planning to build a micromouse, expect plenty of obstacles, and be ready to troubleshoot every step of the way!  
 
 Stay tuned to see if we improve our micromouse!

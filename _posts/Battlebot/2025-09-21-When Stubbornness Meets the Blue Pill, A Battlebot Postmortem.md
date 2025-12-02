@@ -4,6 +4,8 @@ date: 2025-09-21
 categories:
 	- Robotics
 	- Battlebot
+
+tags:
 	- STM32
 	- ESP32
 	- Soldering

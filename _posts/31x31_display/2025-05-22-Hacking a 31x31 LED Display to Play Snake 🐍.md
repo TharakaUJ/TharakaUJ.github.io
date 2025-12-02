@@ -1,5 +1,5 @@
 ## 🎮 Turning a 31×31 LED Matrix Into a Retro Game Console
-During a department music event, our seniors (CSE'22 batch) built a **giant 31×31 LED matrix** with **961 colorful bulbs** to display synchronized light patterns. After the event, it was left unused—so I decided to turn it into a playable **Snake** game.
+During a department music event, our seniors (CSE'22 batch) built a **giant 31×31 LED matrix** with **961 colorful bulbs** to display synchronized light patterns. After the event, it was left unused, so I decided to turn it into a playable **Snake** game.
 
 ---
 
@@ -27,7 +27,7 @@ All threads share a **31×31 framebuffer**:
 <pixel type> framebuffer[31][31];
 ```
 
-Games write to this array; the renderer displays it on the LEDs or in a web browser. This separation makes adding new games easy—no changes to rendering needed.
+Games write to this array; the renderer displays it on the LEDs or in a web browser. This separation makes adding new games easy, no changes to rendering needed.
 
 ---
 
@@ -44,7 +44,7 @@ Here’s Snake running on the LED wall! (Press play below.)
         💥 Game over if it crashes into itself.<br>
         ⏩ Speed increases as you score.<br>
         🎯 Score appears in the center at the end.<br>
-        Nostalgic fun—on a glowing 961-pixel canvas.
+        Nostalgic fun, on a glowing 961-pixel canvas.
     </div>
 </div>
 
@@ -57,7 +57,7 @@ To develop without the hardware, I built a web-based simulator:
 - The ESP32 serves the framebuffer as JSON
 - A web UI fetches and displays it in real time
 
-Same code, same framebuffer—just a different display!
+Same code, same framebuffer, just a different display!
 
 ---
 
@@ -68,7 +68,7 @@ After Snake, I added:
 - **Galaxia**: A pixel space shooter
 - **Tetris**: Classic falling blocks
 
-All games use the same pattern: write to the framebuffer, read input, done! A menu lets you switch games—no code upload needed.
+All games use the same pattern: write to the framebuffer, read input, done! A menu lets you switch games, no code upload needed.
 
 ---
 
