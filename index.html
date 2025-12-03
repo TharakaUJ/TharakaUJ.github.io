@@ -40,7 +40,7 @@ sidebar: false
         
         <!-- About Me Section -->
         <div class="about-section">
-            <h2 id="about">About Me<a class="header-link" href="#about" title="Permalink"><span class="sr-only">Permalink</span></a></h2>
+            <h2 id="about">About Me<a class="header-link" href="#about" title="Permalink"></a></h2>
             <div class="section-divider"></div>
             <!-- Placeholder for about text -->
             
@@ -56,7 +56,7 @@ sidebar: false
         </div>
         
         <!-- Education Section -->
-        <h2 id="education">Education<a class="header-link" href="#education" title="Permalink"><span class="sr-only">Permalink</span></a></h2>
+        <h2 id="education">Education<a class="header-link" href="#education" title="Permalink"></a></h2>
         <div class="section-divider"></div>
         <div class="about_row">
             <div class="about_column">
@@ -77,36 +77,65 @@ sidebar: false
       
 
 <!-- Custom CSS for styling -->
-<style>    
+<style>
+    /* Hero / header sizes */
+    .page__hero--overlay .author__name {
+        font-size: 2.6rem;
+        line-height: 1.05;
+    }
+
+    .page__hero--overlay .author__name em {
+        font-size: 0.9em;
+        font-style: italic;
+        opacity: 0.95;
+    }
+
+    .author__bio {
+        color: white;
+        font-size: 1.05rem;
+        margin-top: 0.4rem;
+        line-height: 1.4;
+    }
+
     .section-divider {
         height: 1px;
         background-color: #444;
         margin-bottom: 1.5rem;
         margin-top: -0.5rem;
     }
-    
+
     .about-section {
         margin-bottom: 2rem;
     }
-    
+
     .skills-container {
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
     }
-    
+
     .skills-container h3 {
         color: #ffffff;
-        margin-bottom: 1rem;
-        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: -0.2px;
     }
-    
+
+    .page__content h2 {
+        font-size: 1.6rem;
+        color: #ffffff;
+        margin-top: 1.5rem;
+        margin-bottom: 0.6rem;
+        line-height: 1.15;
+    }
+
     .skills-badges {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
         margin-top: 1rem;
     }
-    
+
     .interest-badge {
         display: inline-block;
         background-color: rgba(30, 30, 35, 0.6);
@@ -114,79 +143,84 @@ sidebar: false
         color: #d1d1d1;
         padding: 10px 18px;
         border-radius: 6px;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
+        font-size: 1rem;
+        transition: all 0.22s cubic-bezier(.2,.8,.2,1);
     }
-    
+
     .interest-badge:hover {
-        background-color: rgba(0, 114, 206, 0.2);
+        background-color: rgba(0, 114, 206, 0.12);
         border-color: #0072CE;
         color: #ffffff;
-        transform: translateY(-1px);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
     }
-    
+
     .education-container {
         display: flex;
         align-items: flex-start;
         margin-bottom: 1.5rem;
     }
-    
+
     .education-logo {
         flex: 0 0 80px;
         padding-right: 15px;
     }
-    
+
     .education-details {
         flex: 1;
     }
-    
+
     .education-details p {
         margin: 0.5rem 0;
         color: #d1d1d1;
+        font-size: 0.98rem;
     }
-    
+
     .education-details b {
         color: #ffffff;
+        font-size: 1.05rem;
     }
-    
+
     .projects-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 20px;
         margin-bottom: 2rem;
     }
-    
+
     .project-item {
         background-color: rgba(30, 30, 35, 0.3);
         border: 1px solid #333;
         border-radius: 4px;
         padding: 16px;
     }
-    
+
     .project-item h3 {
         margin-top: 0;
         color: #ffffff;
+        font-size: 1.1rem;
     }
-    
+
     .project-item p {
         color: #d1d1d1;
+        font-size: 0.98rem;
     }
-    
+
     .project-links {
         margin-top: 12px;
     }
-    
+
     .project-link {
         display: inline-block;
         margin-right: 12px;
         color: #0072CE;
         text-decoration: none;
     }
-    
+
     .project-link:hover {
         text-decoration: underline;
     }
-    
+
     .updates-container {
         position: relative;
         border: 1px solid #333;
@@ -195,44 +229,42 @@ sidebar: false
         margin-bottom: 2rem;
         background-color: rgba(30, 30, 35, 0.3);
     }
-    
+
     .newsticker li {
         color: #d1d1d1;
         border-bottom: 1px dotted #444;
         padding-bottom: 10px;
     }
-    
+
     .update-link {
         color: #0072CE;
         text-decoration: none;
     }
-    
+
     .update-link:hover {
         text-decoration: underline;
     }
-    
+
     .twitter-icon {
         position: absolute;
         right: 10px;
         top: 10px;
     }
-    
+
     /* Responsive adjustments */
+    @media (max-width: 1024px) {
+        .page__hero--overlay .author__name { font-size: 2.2rem; }
+        .page__content h2 { font-size: 1.45rem; }
+    }
+
     @media (max-width: 768px) {
-        .projects-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .education-container {
-            flex-direction: column;
-        }
-        
-        .skills-badges {
-            flex-wrap: wrap;
-        }
-        
-        .interest-badge {
-            margin-bottom: 8px;
-        }
+        .projects-grid { grid-template-columns: 1fr; }
+        .education-container { flex-direction: column; }
+        .skills-badges { flex-wrap: wrap; }
+        .interest-badge { margin-bottom: 8px; }
+        .page__hero--overlay .author__name { font-size: 1.6rem; }
+        .author__bio { font-size: 0.95rem; }
+        .page__content h2 { font-size: 1.25rem; }
+        .skills-container h3 { font-size: 1.05rem; }
     }
 </style>
