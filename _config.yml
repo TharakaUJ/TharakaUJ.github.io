@@ -17,9 +17,9 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 # Site Settings
 locale                   : "en-US"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
-title                    : "TharakaUJ"
+title                    : "Tharaka Jayasena" # site title that appears in the masthead
 title_separator          : "-"
-subtitle                 : # site tagline that appears below site title in masthead
+subtitle                 : "TharakaUJ" # site tagline that appears below site title in masthead
 name                     : "Tharaka Jayasena"
 description              : "CSE undergraduate at University of Moratuwa"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
@@ -82,7 +82,7 @@ google:
   search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
 # SEO Related
-google_site_verification :
+google_site_verification : YJzkZ5COkGw9LK1op_TOPM5Z-u0dsfZetWY_XFhoDN0
 bing_site_verification   :
 naver_site_verification  :
 yandex_site_verification :
