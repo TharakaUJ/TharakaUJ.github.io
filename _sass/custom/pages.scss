@@ -1,0 +1,308 @@
+// ==========================================
+// Custom Pages Styling
+// ==========================================
+// Consistent styling for achievements, experience, and other pages
+
+// Typography & Spacing
+.page__content {
+    h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--main-text-color);
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--main-border-color);
+        letter-spacing: -0.02em;
+        
+        &:first-of-type {
+            margin-top: 1rem;
+        }
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--main-text-color);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.01em;
+    }
+    
+    p {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+        color: var(--main-text-color);
+    }
+}
+
+// ==========================================
+// Achievement Cards
+// ==========================================
+.achievement-card {
+    background-color: rgba(30, 30, 35, 0.4);
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        border-color: #0072CE;
+    }
+    
+    .achievement-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        
+        .achievement-image {
+            flex: 0 0 120px;
+            
+            img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                border: 2px solid #444;
+                object-fit: cover;
+            }
+        }
+        
+        .achievement-title-section {
+            flex: 1;
+            
+            h3 {
+                margin-top: 0;
+                margin-bottom: 0.5rem;
+                font-size: 1.75rem;
+                color: #ffffff;
+                line-height: 1.3;
+            }
+            
+            .achievement-type-badge {
+                display: inline-block;
+                background-color: rgba(0, 114, 206, 0.15);
+                border: 1px solid #0072CE;
+                color: #4da6ff;
+                padding: 0.35rem 1rem;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+        }
+    }
+    
+    .achievement-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-bottom: 1.25rem;
+        padding: 1rem;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #d1d1d1;
+            font-size: 0.95rem;
+            
+            i {
+                color: #0072CE;
+                font-size: 1rem;
+            }
+            
+            strong {
+                color: #ffffff;
+                font-weight: 600;
+            }
+        }
+    }
+    
+    .achievement-description {
+        color: #d1d1d1;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin-top: 1rem;
+    }
+    
+    .achievement-responsibilities {
+        margin-top: 1.25rem;
+        
+        p {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.75rem;
+            
+            li {
+                padding-left: 1.75rem;
+                position: relative;
+                margin-bottom: 0.65rem;
+                color: #d1d1d1;
+                font-size: 1rem;
+                line-height: 1.6;
+                
+                &::before {
+                    content: "▹";
+                    position: absolute;
+                    left: 0;
+                    color: #0072CE;
+                    font-size: 1.3rem;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+// ==========================================
+// Experience Cards
+// ==========================================
+.experience-card {
+    background-color: rgba(30, 30, 35, 0.4);
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        border-color: #0072CE;
+    }
+    
+    h3 {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        font-size: 1.75rem;
+        color: #ffffff;
+    }
+    
+    p {
+        margin: 0.5rem 0;
+        color: #d1d1d1;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        
+        a {
+            color: #4da6ff;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            
+            &:hover {
+                color: #80bfff;
+                text-decoration: underline;
+            }
+        }
+        
+        strong {
+            color: #ffffff;
+        }
+    }
+}
+
+// ==========================================
+// Section Headers with Dividers
+// ==========================================
+.section-header {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    
+    h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.02em;
+    }
+    
+    .section-divider {
+        height: 2px;
+        background: linear-gradient(to right, #0072CE, transparent);
+        margin-top: 0.5rem;
+    }
+}
+
+// ==========================================
+// Responsive Design
+// ==========================================
+@media (max-width: 768px) {
+    .achievement-card, .experience-card {
+        padding: 1.5rem;
+        
+        .achievement-header {
+            flex-direction: column;
+            
+            .achievement-image {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 200px;
+                margin: 0 auto;
+            }
+        }
+        
+        .achievement-meta {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+    }
+    
+    .page__content {
+        h2 {
+            font-size: 1.75rem;
+        }
+        
+        p {
+            font-size: 1rem;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .achievement-card, .experience-card {
+        padding: 1.25rem;
+        border-radius: 8px;
+    }
+    
+    .page__content h2 {
+        font-size: 1.5rem;
+    }
+}
+
+// ==========================================
+// Table Reset for Pages
+// ==========================================
+// Remove default table styling when tables are used for layout
+.page__content {
+    table.layout-table {
+        border: 0;
+        width: 100%;
+        
+        tbody, tr, td {
+            border: 0;
+            display: block;
+            width: 100%;
+        }
+    }
+}
