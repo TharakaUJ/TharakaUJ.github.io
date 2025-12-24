@@ -6,14 +6,13 @@
 // Typography & Spacing
 .page__content {
     h2 {
-        font-size: 2rem;
-        font-weight: 700;
+        font-size: 1.75rem;
+        font-weight: 600;
         color: var(--main-text-color);
-        margin-top: 2.5rem;
+        margin-top: 2rem;
         margin-bottom: 1rem;
         padding-bottom: 0.5rem;
-        border-bottom: 2px solid var(--main-border-color);
-        letter-spacing: -0.02em;
+        border-bottom: 1px solid var(--main-border-color);
         
         &:first-of-type {
             margin-top: 1rem;
@@ -21,18 +20,17 @@
     }
     
     h3 {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
         font-weight: 600;
         color: var(--main-text-color);
         margin-top: 1.5rem;
         margin-bottom: 0.75rem;
-        letter-spacing: -0.01em;
     }
     
     p {
-        font-size: 1.05rem;
-        line-height: 1.7;
-        margin-bottom: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 0.85rem;
         color: var(--main-text-color);
     }
 }
@@ -41,18 +39,15 @@
 // Achievement Cards
 // ==========================================
 .achievement-card {
-    background-color: rgba(30, 30, 35, 0.4);
+    background-color: rgba(30, 30, 35, 0.3);
     border: 1px solid #444;
-    border-radius: 10px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    transition: border-color 0.2s ease;
     
     &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        border-color: #0072CE;
+        border-color: #4b7473;
     }
     
     .achievement-header {
@@ -79,22 +74,22 @@
             h3 {
                 margin-top: 0;
                 margin-bottom: 0.5rem;
-                font-size: 1.75rem;
+                font-size: 1.5rem;
                 color: #ffffff;
                 line-height: 1.3;
             }
             
             .achievement-type-badge {
                 display: inline-block;
-                background-color: rgba(0, 114, 206, 0.15);
-                border: 1px solid #0072CE;
-                color: #4da6ff;
-                padding: 0.35rem 1rem;
-                border-radius: 20px;
-                font-size: 0.85rem;
-                font-weight: 600;
+                background-color: rgba(75, 116, 115, 0.2);
+                border: 1px solid #4b7473;
+                color: #699ea0;
+                padding: 0.3rem 0.85rem;
+                border-radius: 4px;
+                font-size: 0.8rem;
+                font-weight: 500;
                 text-transform: uppercase;
-                letter-spacing: 0.05em;
+                letter-spacing: 0.03em;
             }
         }
     }
@@ -104,20 +99,20 @@
         flex-wrap: wrap;
         gap: 1.5rem;
         margin-bottom: 1.25rem;
-        padding: 1rem;
-        background-color: rgba(0, 0, 0, 0.2);
-        border-radius: 6px;
+        padding: 0.85rem;
+        background-color: rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
         
         .meta-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             color: #d1d1d1;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             
             i {
-                color: #0072CE;
-                font-size: 1rem;
+                color: #699ea0;
+                font-size: 0.95rem;
             }
             
             strong {
@@ -129,8 +124,8 @@
     
     .achievement-description {
         color: #d1d1d1;
-        font-size: 1.05rem;
-        line-height: 1.7;
+        font-size: 0.95rem;
+        line-height: 1.6;
         margin-top: 1rem;
     }
     
@@ -140,29 +135,29 @@
         p {
             font-weight: 600;
             color: #ffffff;
-            margin-bottom: 0.75rem;
-            font-size: 1.1rem;
+            margin-bottom: 0.65rem;
+            font-size: 1rem;
         }
         
         ul {
             list-style: none;
             padding-left: 0;
-            margin-top: 0.75rem;
+            margin-top: 0.65rem;
             
             li {
-                padding-left: 1.75rem;
+                padding-left: 1.5rem;
                 position: relative;
-                margin-bottom: 0.65rem;
+                margin-bottom: 0.5rem;
                 color: #d1d1d1;
-                font-size: 1rem;
-                line-height: 1.6;
+                font-size: 0.9rem;
+                line-height: 1.5;
                 
                 &::before {
                     content: "▹";
                     position: absolute;
                     left: 0;
-                    color: #0072CE;
-                    font-size: 1.3rem;
+                    color: #699ea0;
+                    font-size: 1.1rem;
                     font-weight: bold;
                 }
             }
@@ -174,40 +169,37 @@
 // Experience Cards
 // ==========================================
 .experience-card {
-    background-color: rgba(30, 30, 35, 0.4);
+    background-color: rgba(30, 30, 35, 0.3);
     border: 1px solid #444;
-    border-radius: 10px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    transition: border-color 0.2s ease;
     
     &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        border-color: #0072CE;
+        border-color: #4b7473;
     }
     
     h3 {
         margin-top: 0;
-        margin-bottom: 0.75rem;
-        font-size: 1.75rem;
+        margin-bottom: 0.65rem;
+        font-size: 1.5rem;
         color: #ffffff;
     }
     
     p {
-        margin: 0.5rem 0;
+        margin: 0.45rem 0;
         color: #d1d1d1;
-        font-size: 1.05rem;
+        font-size: 0.95rem;
         line-height: 1.6;
         
         a {
-            color: #4da6ff;
+            color: #699ea0;
             text-decoration: none;
             transition: color 0.2s ease;
             
             &:hover {
-                color: #80bfff;
+                color: #7db2b4;
                 text-decoration: underline;
             }
         }
@@ -222,20 +214,19 @@
 // Section Headers with Dividers
 // ==========================================
 .section-header {
-    margin-top: 3rem;
-    margin-bottom: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
     
     h2 {
-        font-size: 2.2rem;
-        font-weight: 700;
+        font-size: 1.85rem;
+        font-weight: 600;
         color: #ffffff;
         margin-bottom: 0.5rem;
-        letter-spacing: -0.02em;
     }
     
     .section-divider {
-        height: 2px;
-        background: linear-gradient(to right, #0072CE, transparent);
+        height: 1px;
+        background: linear-gradient(to right, #4b7473, transparent);
         margin-top: 0.5rem;
     }
 }

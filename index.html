@@ -41,7 +41,6 @@ sidebar: false
         <!-- About Me Section -->
         <div class="about-section">
             <h2 id="about">About Me<a class="header-link" href="#about" title="Permalink"></a></h2>
-            <div class="section-divider"></div>
             <!-- Placeholder for about text -->
             
             <div class="skills-container">
@@ -57,7 +56,6 @@ sidebar: false
         
         <!-- Education Section -->
         <h2 id="education">Education<a class="header-link" href="#education" title="Permalink"></a></h2>
-        <div class="section-divider"></div>
         <div class="about_row">
             <div class="about_column">
                 <div class="education-container">
@@ -98,13 +96,6 @@ sidebar: false
         line-height: 1.4;
     }
 
-    .section-divider {
-        height: 2px;
-        background: linear-gradient(to right, #0072CE, transparent);
-        margin-top: 0.5rem;
-        margin-bottom: 1.5rem;
-    }
-
     .about-section {
         margin-bottom: 2.5rem;
     }
@@ -117,19 +108,17 @@ sidebar: false
     .skills-container h3 {
         color: #ffffff;
         margin-bottom: 1rem;
-        font-size: 1.5rem;
+        font-size: 1.35rem;
         font-weight: 600;
-        letter-spacing: -0.02em;
     }
 
     .page__content h2 {
-        font-size: 2rem;
-        font-weight: 700;
+        font-size: 1.75rem;
+        font-weight: 600;
         color: #ffffff;
-        margin-top: 2.5rem;
+        margin-top: 2rem;
         margin-bottom: 0.6rem;
         line-height: 1.15;
-        letter-spacing: -0.02em;
     }
 
     .skills-badges {
@@ -141,21 +130,19 @@ sidebar: false
 
     .interest-badge {
         display: inline-block;
-        background-color: rgba(30, 30, 35, 0.6);
+        background-color: rgba(30, 30, 35, 0.5);
         border: 1px solid #444;
         color: #d1d1d1;
-        padding: 12px 20px;
-        border-radius: 6px;
-        font-size: 1.05rem;
-        transition: all 0.25s cubic-bezier(.2,.8,.2,1);
+        padding: 10px 18px;
+        border-radius: 4px;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
     }
 
     .interest-badge:hover {
-        background-color: rgba(0, 114, 206, 0.15);
-        border-color: #0072CE;
+        background-color: rgba(75, 116, 115, 0.2);
+        border-color: #4b7473;
         color: #ffffff;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
     }
 
     .education-container {
@@ -163,18 +150,15 @@ sidebar: false
         align-items: flex-start;
         gap: 1.5rem;
         margin-bottom: 1.5rem;
-        background-color: rgba(30, 30, 35, 0.4);
+        background-color: rgba(30, 30, 35, 0.3);
         border: 1px solid #444;
-        border-radius: 10px;
-        padding: 2rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        padding: 1.75rem;
+        transition: border-color 0.2s ease;
     }
 
     .education-container:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        border-color: #0072CE;
+        border-color: #4b7473;
     }
 
     .education-logo {
@@ -192,15 +176,15 @@ sidebar: false
     }
 
     .education-details p {
-        margin: 0.5rem 0;
+        margin: 0.45rem 0;
         color: #d1d1d1;
-        font-size: 1.05rem;
-        line-height: 1.7;
+        font-size: 0.95rem;
+        line-height: 1.6;
     }
 
     .education-details b {
         color: #ffffff;
-        font-size: 1.25rem;
+        font-size: 1.15rem;
         font-weight: 600;
     }
 
@@ -209,7 +193,7 @@ sidebar: false
     }
 
     .education-details i {
-        color: #0072CE;
+        color: #699ea0;
         margin-right: 0.5rem;
     }
 
@@ -219,7 +203,7 @@ sidebar: false
             font-size: 2.2rem; 
         }
         .page__content h2 { 
-            font-size: 1.75rem; 
+            font-size: 1.6rem; 
         }
     }
 
@@ -241,8 +225,8 @@ sidebar: false
         }
         
         .interest-badge { 
-            font-size: 0.95rem;
-            padding: 10px 16px;
+            font-size: 0.88rem;
+            padding: 9px 15px;
         }
         
         .page__hero--overlay .author__name { 
@@ -254,19 +238,19 @@ sidebar: false
         }
         
         .page__content h2 { 
-            font-size: 1.5rem; 
+            font-size: 1.4rem; 
         }
         
         .skills-container h3 { 
-            font-size: 1.25rem; 
+            font-size: 1.2rem; 
         }
         
         .education-details b {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
         }
         
         .education-details p {
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
     }
 
@@ -276,12 +260,12 @@ sidebar: false
         }
         
         .page__content h2 { 
-            font-size: 1.35rem; 
+            font-size: 1.3rem; 
         }
         
         .education-container {
             padding: 1.25rem;
-            border-radius: 8px;
+            border-radius: 6px;
         }
     }
 </style>
