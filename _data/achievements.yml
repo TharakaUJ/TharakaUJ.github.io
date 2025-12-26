@@ -4,35 +4,35 @@ achievements:
     date: "2014"
     location: "Taiwan"
     description: "I was awarded 6th place in Asian Schools Chess Championship- under 11 which was held in Taiwan."
-    image: ""  # Add image path here (e.g., "/assets/images/achievements/chess-2014.jpg")
+    image: "https://tharakauj.github.io/static-files/achievements/asian-school-chess-2014.png"  # Add image path here (e.g., "/assets/images/achievements/chess-2014.jpg")
   
   - title: "Silver medal in IMSO 2015"
     type: "competition"
     date: "2015"
     location: "Thailand"
     description: "I was awarded silver medal in International Mathematics and Science Olympiad 2015 which was held in Thailand."
-    image: ""  # Add image path here
+    image: "https://tharakauj.github.io/static-files/achievements/imso2015.jpeg"  # Add image path here
 
   - title: "Bronze medal in IJSO 2018"
     type: "competition"
     date: "2018"
     location: "Botswana"
     description: "I was awarded bronze medal in International Junior Science Olympiad 2018 which was held in Botswana."
-    image: ""  # Add image path here
+    image: "https://tharakauj.github.io/static-files/achievements/IJSO2018.jpeg"  # Add image path here
 
   - title: "Bronze medal in IMC 2019"
     type: "competition"
     date: "2019"
     location: "South Africa"
     description: "I was awarded bronze medal in South Asian International Mathematics Competition 2019 which was held in South Africa."
-    image: ""  # Add image path here
+    image: "https://tharakauj.github.io/static-files/achievements/IMC2019.jpeg"  # Add image path here
 
   - title: "Bronze medal in APMO 2022"
     type: "competition"
     date: "2022"
     location: "Online"
     description: "I was awarded bronze medal in Asian Pacific Mathematics Olympiad 2022."
-    image: ""  # Add image path here
+    image: "https://tharakauj.github.io/static-files/achievements/APMO2022.png"  # Add image path here
 
   - title: "Island 7th in Advanced Level Examination, Sri Lanka"
     type: "academic"

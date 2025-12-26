@@ -16,75 +16,71 @@ permalink: /achievements/
 <div class="achievements-container">
     {% assign sorted_achievements = site.data.achievements.achievements | reverse %}
     {% for achievement in sorted_achievements %}
-    <div class="achievement-card">
-        <div class="achievement-header">
-            {% if achievement.image and achievement.image != "" %}
-            <div class="achievement-image">
-                <img src="{{ achievement.image }}" alt="{{ achievement.title }}">
+    <div class="achievement-card {% if achievement.image and achievement.image != '' %}has-background-image{% endif %}" {% if achievement.image and achievement.image != '' %}style="background-image: url('{{ achievement.image }}');"{% endif %}>
+        <div class="achievement-overlay">
+            <div class="achievement-header">
+                <div class="achievement-title-section">
+                    <h3>{{ achievement.title }}</h3>
+                    {% if achievement.type %}
+                    <span class="achievement-type-badge">{{ achievement.type }}</span>
+                    {% endif %}
+                </div>
             </div>
-            {% endif %}
             
-            <div class="achievement-title-section">
-                <h3>{{ achievement.title }}</h3>
-                {% if achievement.type %}
-                <span class="achievement-type-badge">{{ achievement.type }}</span>
+            <div class="achievement-meta">
+                {% if achievement.date %}
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span><strong>Date:</strong> {{ achievement.date }}</span>
+                </div>
+                {% endif %}
+                
+                {% if achievement.location %}
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span><strong>Location:</strong> {{ achievement.location }}</span>
+                </div>
+                {% endif %}
+                
+                {% if achievement.place %}
+                <div class="meta-item">
+                    <i class="fas fa-trophy"></i>
+                    <span><strong>Ranking:</strong> {{ achievement.place }}</span>
+                </div>
+                {% endif %}
+                
+                {% if achievement.duration %}
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span><strong>Duration:</strong> {{ achievement.duration }}</span>
+                </div>
+                {% endif %}
+                
+                {% if achievement.role %}
+                <div class="meta-item">
+                    <i class="fas fa-user"></i>
+                    <span><strong>Role:</strong> {{ achievement.role }}</span>
+                </div>
                 {% endif %}
             </div>
-        </div>
-        
-        <div class="achievement-meta">
-            {% if achievement.date %}
-            <div class="meta-item">
-                <i class="fas fa-calendar-alt"></i>
-                <span><strong>Date:</strong> {{ achievement.date }}</span>
+            
+            {% if achievement.description %}
+            <div class="achievement-description">
+                <p>{{ achievement.description }}</p>
             </div>
             {% endif %}
             
-            {% if achievement.location %}
-            <div class="meta-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span><strong>Location:</strong> {{ achievement.location }}</span>
-            </div>
-            {% endif %}
-            
-            {% if achievement.place %}
-            <div class="meta-item">
-                <i class="fas fa-trophy"></i>
-                <span><strong>Ranking:</strong> {{ achievement.place }}</span>
-            </div>
-            {% endif %}
-            
-            {% if achievement.duration %}
-            <div class="meta-item">
-                <i class="fas fa-clock"></i>
-                <span><strong>Duration:</strong> {{ achievement.duration }}</span>
-            </div>
-            {% endif %}
-            
-            {% if achievement.role %}
-            <div class="meta-item">
-                <i class="fas fa-user"></i>
-                <span><strong>Role:</strong> {{ achievement.role }}</span>
+            {% if achievement.responsibilities %}
+            <div class="achievement-responsibilities">
+                <p>Responsibilities:</p>
+                <ul>
+                    {% for responsibility in achievement.responsibilities %}
+                    <li>{{ responsibility }}</li>
+                    {% endfor %}
+                </ul>
             </div>
             {% endif %}
         </div>
-        
-        {% if achievement.description %}
-        <div class="achievement-description">
-            <p>{{ achievement.description }}</p>
-        </div>
-        {% endif %}
-        
-        {% if achievement.responsibilities %}
-        <div class="achievement-responsibilities">
-            <p>Responsibilities:</p>
-            <ul>
-                {% for responsibility in achievement.responsibilities %}
-                <li>{{ responsibility }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
     </div>
     {% endfor %}
 </div>
