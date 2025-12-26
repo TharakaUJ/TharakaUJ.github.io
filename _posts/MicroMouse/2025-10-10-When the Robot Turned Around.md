@@ -7,11 +7,14 @@ tags:
   - ESP32
   - PID Control
   - Competition
+
+header:
+  overlay_image: https://tharakauj.github.io/static-files/posts/MicroMouse/N1K0.jpeg
 ---
 
 I'm writing this with the hope that it's the last time I talk about the experience rather than the achievement. From here on, I want my articles to be about technical breakthroughs, not emotional autopsies. But before that happens, here's the story of how we failed again, and why we're more excited than ever.
 
-![Micromouse, held on hand](https://tharakauj.github.io/static-files/posts/MicroMouse/N1K0.jpeg)
+<!-- ![Micromouse, held on hand](https://tharakauj.github.io/static-files/posts/MicroMouse/N1K0.jpeg) -->
 
 ---
 

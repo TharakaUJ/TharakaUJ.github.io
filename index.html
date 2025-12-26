@@ -23,7 +23,7 @@ sidebar: false
         <div class="author__urls-wrapper" style="color:white; font-size: small;">
             <nobr>
                 <i class="fa fa-fw fa-map-marker-alt" aria-hidden="true"></i>
-                {{site.location}}
+                {{site.author.location}}
             </nobr>
 
             {% for link in site.footer.links %}
@@ -35,14 +35,19 @@ sidebar: false
     </div>
 </div>
 
-<div class="wrapper" style="padding-left: 0.5em; padding-right: 0.5em;">
+<div id="main" class="wrapper" style="padding-left: 0.5em; padding-right: 0.5em;">
     <section class="page__content" itemprop="text">
-        
+
         <!-- About Me Section -->
         <div class="about-section">
             <h2 id="about">About Me<a class="header-link" href="#about" title="Permalink"></a></h2>
             <!-- Placeholder for about text -->
-            
+            <p>
+                Engineering student interested in embedded systems, robotics, and low-level software. I enjoy
+                understanding systems end-to-end and contributing to open-source projects while learning through
+                hands-on work.
+            </p>
+
             <div class="skills-container">
                 <h3>Areas of Interest</h3>
                 <div class="skills-badges">
@@ -53,219 +58,222 @@ sidebar: false
                 </div>
             </div>
         </div>
-        
+
         <!-- Education Section -->
         <h2 id="education">Education<a class="header-link" href="#education" title="Permalink"></a></h2>
         <div class="about_row">
             <div class="about_column">
                 <div class="education-container">
                     <div class="education-logo">
-                        <img src="https://tharakauj.github.io/static-files/logos/uom.png" width="60px" alt="University of Moratuwa Logo">
+                        <img src="https://tharakauj.github.io/static-files/logos/uom.png" width="60px"
+                            alt="University of Moratuwa Logo">
                     </div>
                     <div class="education-details">
                         <p><b>University of Moratuwa</b></p>
                         <p>Honours Degree of Bachelor of the Science of Engineering<br>
-                        <em>Specialization in Computer Science and Engineering</em></p>
+                            <em>Specialization in Computer Science and Engineering</em>
+                        </p>
                         <p><i class="fas fa-calendar-alt"></i> 2023-present</p>
                     </div>
                 </div>
             </div>
         </div>
-        
-      
 
-<!-- Custom CSS for styling -->
-<style>
-    /* Hero / header sizes */
-    .page__hero--overlay .author__name {
-        font-size: 2.6rem;
-        font-weight: 700;
-        line-height: 1.05;
-    }
 
-    .page__hero--overlay .author__name em {
-        font-size: 0.9em;
-        font-style: italic;
-        opacity: 0.95;
-    }
 
-    .author__bio {
-        color: white;
-        font-size: 1.05rem;
-        margin-top: 0.4rem;
-        line-height: 1.4;
-    }
+        <!-- Custom CSS for styling -->
+        <style>
+            /* Hero / header sizes */
+            .page__hero--overlay .author__name {
+                font-size: 2.6rem;
+                font-weight: 700;
+                line-height: 1.05;
+            }
 
-    .about-section {
-        margin-bottom: 2.5rem;
-    }
+            .page__hero--overlay .author__name em {
+                font-size: 0.9em;
+                font-style: italic;
+                opacity: 0.95;
+            }
 
-    .skills-container {
-        margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
+            .author__bio {
+                color: white;
+                font-size: 1.05rem;
+                margin-top: 0.4rem;
+                line-height: 1.4;
+            }
 
-    .skills-container h3 {
-        color: #ffffff;
-        margin-bottom: 1rem;
-        font-size: 1.35rem;
-        font-weight: 600;
-    }
+            .about-section {
+                margin-bottom: 2.5rem;
+            }
 
-    .page__content h2 {
-        font-size: 1.75rem;
-        font-weight: 600;
-        color: #ffffff;
-        margin-top: 2rem;
-        margin-bottom: 0.6rem;
-        line-height: 1.15;
-    }
+            .skills-container {
+                margin-top: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
 
-    .skills-badges {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 1rem;
-    }
+            .skills-container h3 {
+                color: #ffffff;
+                margin-bottom: 1rem;
+                font-size: 1.35rem;
+                font-weight: 600;
+            }
 
-    .interest-badge {
-        display: inline-block;
-        background-color: rgba(30, 30, 35, 0.5);
-        border: 1px solid #444;
-        color: #d1d1d1;
-        padding: 10px 18px;
-        border-radius: 4px;
-        font-size: 0.95rem;
-        transition: all 0.2s ease;
-    }
+            .page__content h2 {
+                font-size: 1.75rem;
+                font-weight: 600;
+                color: #ffffff;
+                margin-top: 2rem;
+                margin-bottom: 0.6rem;
+                line-height: 1.15;
+            }
 
-    .interest-badge:hover {
-        background-color: rgba(75, 116, 115, 0.2);
-        border-color: #4b7473;
-        color: #ffffff;
-    }
+            .skills-badges {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-top: 1rem;
+            }
 
-    .education-container {
-        display: flex;
-        align-items: flex-start;
-        gap: 1.5rem;
-        margin-bottom: 1.5rem;
-        background-color: rgba(30, 30, 35, 0.3);
-        border: 1px solid #444;
-        border-radius: 6px;
-        padding: 1.75rem;
-        transition: border-color 0.2s ease;
-    }
+            .interest-badge {
+                display: inline-block;
+                background-color: rgba(30, 30, 35, 0.5);
+                border: 1px solid #444;
+                color: #d1d1d1;
+                padding: 10px 18px;
+                border-radius: 4px;
+                font-size: 0.95rem;
+                transition: all 0.2s ease;
+            }
 
-    .education-container:hover {
-        border-color: #4b7473;
-    }
+            .interest-badge:hover {
+                background-color: rgba(75, 116, 115, 0.2);
+                border-color: #4b7473;
+                color: #ffffff;
+            }
 
-    .education-logo {
-        flex: 0 0 80px;
-    }
+            .education-container {
+                display: flex;
+                align-items: flex-start;
+                gap: 1.5rem;
+                margin-bottom: 1.5rem;
+                background-color: rgba(30, 30, 35, 0.3);
+                border: 1px solid #444;
+                border-radius: 6px;
+                padding: 1.75rem;
+                transition: border-color 0.2s ease;
+            }
 
-    .education-logo img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-    }
+            .education-container:hover {
+                border-color: #4b7473;
+            }
 
-    .education-details {
-        flex: 1;
-    }
+            .education-logo {
+                flex: 0 0 80px;
+            }
 
-    .education-details p {
-        margin: 0.45rem 0;
-        color: #d1d1d1;
-        font-size: 0.95rem;
-        line-height: 1.6;
-    }
+            .education-logo img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+            }
 
-    .education-details b {
-        color: #ffffff;
-        font-size: 1.15rem;
-        font-weight: 600;
-    }
+            .education-details {
+                flex: 1;
+            }
 
-    .education-details em {
-        color: #b0b0b0;
-    }
+            .education-details p {
+                margin: 0.45rem 0;
+                color: #d1d1d1;
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
 
-    .education-details i {
-        color: #699ea0;
-        margin-right: 0.5rem;
-    }
+            .education-details b {
+                color: #ffffff;
+                font-size: 1.15rem;
+                font-weight: 600;
+            }
 
-    /* Responsive adjustments */
-    @media (max-width: 1024px) {
-        .page__hero--overlay .author__name { 
-            font-size: 2.2rem; 
-        }
-        .page__content h2 { 
-            font-size: 1.6rem; 
-        }
-    }
+            .education-details em {
+                color: #b0b0b0;
+            }
 
-    @media (max-width: 768px) {
-        .education-container { 
-            flex-direction: column;
-            padding: 1.5rem;
-        }
-        
-        .education-logo {
-            flex: 0 0 auto;
-            width: 100%;
-            max-width: 100px;
-            margin: 0 auto;
-        }
-        
-        .skills-badges { 
-            flex-wrap: wrap; 
-        }
-        
-        .interest-badge { 
-            font-size: 0.88rem;
-            padding: 9px 15px;
-        }
-        
-        .page__hero--overlay .author__name { 
-            font-size: 1.8rem; 
-        }
-        
-        .author__bio { 
-            font-size: 0.95rem; 
-        }
-        
-        .page__content h2 { 
-            font-size: 1.4rem; 
-        }
-        
-        .skills-container h3 { 
-            font-size: 1.2rem; 
-        }
-        
-        .education-details b {
-            font-size: 1.1rem;
-        }
-        
-        .education-details p {
-            font-size: 0.9rem;
-        }
-    }
+            .education-details i {
+                color: #699ea0;
+                margin-right: 0.5rem;
+            }
 
-    @media (max-width: 480px) {
-        .page__hero--overlay .author__name { 
-            font-size: 1.5rem; 
-        }
-        
-        .page__content h2 { 
-            font-size: 1.3rem; 
-        }
-        
-        .education-container {
-            padding: 1.25rem;
-            border-radius: 6px;
-        }
-    }
-</style>
+            /* Responsive adjustments */
+            @media (max-width: 1024px) {
+                .page__hero--overlay .author__name {
+                    font-size: 2.2rem;
+                }
+
+                .page__content h2 {
+                    font-size: 1.6rem;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .education-container {
+                    flex-direction: column;
+                    padding: 1.5rem;
+                }
+
+                .education-logo {
+                    flex: 0 0 auto;
+                    width: 100%;
+                    max-width: 100px;
+                    margin: 0 auto;
+                }
+
+                .skills-badges {
+                    flex-wrap: wrap;
+                }
+
+                .interest-badge {
+                    font-size: 0.88rem;
+                    padding: 9px 15px;
+                }
+
+                .page__hero--overlay .author__name {
+                    font-size: 1.8rem;
+                }
+
+                .author__bio {
+                    font-size: 0.95rem;
+                }
+
+                .page__content h2 {
+                    font-size: 1.4rem;
+                }
+
+                .skills-container h3 {
+                    font-size: 1.2rem;
+                }
+
+                .education-details b {
+                    font-size: 1.1rem;
+                }
+
+                .education-details p {
+                    font-size: 0.9rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .page__hero--overlay .author__name {
+                    font-size: 1.5rem;
+                }
+
+                .page__content h2 {
+                    font-size: 1.3rem;
+                }
+
+                .education-container {
+                    padding: 1.25rem;
+                    border-radius: 6px;
+                }
+            }
+        </style>

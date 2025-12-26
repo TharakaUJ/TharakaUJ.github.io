@@ -27,11 +27,11 @@ achievements:
     description: "I was awarded bronze medal in South Asian International Mathematics Competition 2019 which was held in South Africa."
     image: ""  # Add image path here
 
-  - title: "Bronze medal in APMO 2020"
+  - title: "Bronze medal in APMO 2022"
     type: "competition"
-    date: "2020"
+    date: "2022"
     location: "Online"
-    description: "I was awarded bronze medal in Asian Pacific Mathematics Olympiad 2020."
+    description: "I was awarded bronze medal in Asian Pacific Mathematics Olympiad 2022."
     image: ""  # Add image path here
 
   - title: "Island 7th in Advanced Level Examination, Sri Lanka"
