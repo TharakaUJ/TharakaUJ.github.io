@@ -5,6 +5,9 @@ categories:
 tags:
   - Battlebot
   - Competition
+
+header:
+  overlay_image: https://tharakauj.github.io/static-files/posts/Battlebot/GettingIntoBattlebots/battlebot%20chain%20wrecked.jpeg
 ---
 
 This is the story of how I got into BattleBots, and how we faced our very first competition.
@@ -104,9 +107,9 @@ But it came at a cost.
 
 Our motor mount wasn’t strong enough and snapped. The chain driving the weapon was loose, and the blade stopped. Thankfully, nothing else was damaged.
 
-<div style="text-align: center;">
+<!-- <div style="text-align: center;">
     <img src="https://tharakauj.github.io/static-files/posts/Battlebot/GettingIntoBattlebots/battlebot%20chain%20wrecked.jpeg" alt="Battlebot Chain Wrecked" style="width: 80%; max-width: 600px; height: auto;">
-</div>
+</div> -->
 
 It became a pushing match.
 

@@ -1,3 +1,8 @@
+---
+header:
+  overlay_image: https://tharakauj.github.io/static-files/posts/31x31_display/led_matrix_overlay_1.jpeg
+---
+
 ## 🎮 Turning a 31×31 LED Matrix Into a Retro Game Console
 During a department music event, our seniors (CSE'22 batch) built a **giant 31×31 LED matrix** with **961 colorful bulbs** to display synchronized light patterns. After the event, it was left unused, so I decided to turn it into a playable **Snake** game.
 
