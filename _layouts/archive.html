@@ -19,7 +19,9 @@ layout: default
 
   <div class="archive">
     {% unless page.header.overlay_color or page.header.overlay_image %}
+    {% if page.show_title_on_page %}
       <h1 id="page-title" class="page__title"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>{{ page.title }}</h1>
+    {% endif %}
     {% endunless %}
     {{ content }}
   </div>

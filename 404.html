@@ -1,0 +1,331 @@
+---
+layout: archive
+author_profile: true
+permalink: /404.html
+title: "404 - Page Not Found"
+---
+
+<div>
+    <style>
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #canvas {
+            border: 2px solid #3d4451;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 310px;
+            height: auto;
+        }
+
+        #controls {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            grid-template-rows: repeat(3, 60px);
+            gap: 10px;
+        }
+
+        .btn {
+            background: #1e222b;
+            border: 2px solid #3d4451;
+            color: #eaeaea;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background: #2d313d;
+            border-color: #00adb5;
+            color: #fff;
+        }
+
+        .btn:active {
+            background: #3d4451;
+            transform: scale(0.95);
+        }
+
+        #up {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        #left {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        #select {
+            grid-column: 2;
+            grid-row: 2;
+            background: #00adb5;
+            border-color: #00adb5;
+        }
+
+        #select:hover {
+            background: #00c9d1;
+            border-color: #00c9d1;
+        }
+
+        #right {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        #down {
+            grid-column: 2;
+            grid-row: 3;
+        }
+
+        #back {
+            grid-column: 1;
+            grid-row: 3;
+            background: #dc3545;
+            border-color: #dc3545;
+        }
+
+        #back:hover {
+            background: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #eaeaea;
+            min-height: 30px;
+        }
+
+        #startMessage {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #00adb5;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #startMessage.visible {
+            opacity: 1;
+        }
+
+        .blink {
+            animation: blink-animation 1s infinite;
+        }
+
+        @keyframes blink-animation {
+
+            0%,
+            49% {
+                opacity: 1;
+            }
+
+            50%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .loading {
+            color: #f39c12;
+        }
+
+        .ready {
+            color: #00adb5;
+        }
+
+        .error {
+            color: #dc3545;
+        }
+
+        #info {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #9ca2b0;
+        }
+
+        #info strong {
+            color: #00adb5;
+        }
+    </style>
+    <div id="container">
+        <canvas id="canvas" width="310" height="310"></canvas>
+
+        <div id="status" class="loading">Page 404 - Not Found</div>
+        <div id="startMessage"></div>
+
+        <div id="info">
+            <strong>How to Play:</strong><br>
+            1. Press <strong>SPACE</strong> to initialize<br>
+            2. Use <strong>↑/↓ Arrow Keys</strong> to select a game number (0=Snake, 1=Galaxia, 2=Tetris)<br>
+            3. Press <strong>ENTER</strong> to start the game<br>
+            4. Use <strong>Arrow Keys</strong> to control | <strong>ESC</strong> to return to
+            menu
+            <a href="https://github.com/TharakaUJ/31x31_Display">learn more</a>
+        </div>
+    </div>
+
+    <script src="https://tharakauj.github.io/31x31_Display/dist/display.js"></script>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const status = document.getElementById('status');
+
+        let module = null;
+        let initialized = false;
+        let framebufferPtr = 0;
+        let width = 0;
+        let height = 0;
+        let pixelSize = 20;
+
+        // Initialize the WASM module
+        DisplayModule().then((Module) => {
+            module = Module;
+
+            // Wrap C functions
+            const menu = module.cwrap('menu', null, []);
+            const loop = module.cwrap('loop', null, []);
+            const getFramebufferPointer = module.cwrap('getFramebufferPointer', 'number', []);
+            const getWidth = module.cwrap('getWidth', 'number', []);
+            const getHeight = module.cwrap('getHeight', 'number', []);
+            const show404 = module.cwrap('displayThreeDigitNumber', null, []);
+
+            module.handleUp = module.cwrap('handleUp', null, []);
+            module.handleDown = module.cwrap('handleDown', null, []);
+            module.handleLeft = module.cwrap('handleLeft', null, []);
+            module.handleRight = module.cwrap('handleRight', null, []);
+            module.handleSelect = module.cwrap('handleSelect', null, []);
+            module.handleBack = module.cwrap('handleBack', null, []);
+
+            show404(404); // Display 404 on startup
+
+            // Get framebuffer information
+            framebufferPtr = getFramebufferPointer();
+            width = getWidth();
+            height = getHeight();
+            pixelSize = Math.floor(canvas.width / width);
+
+            render();
+
+            // Typing effect for status message
+            const startMessage = document.getElementById('startMessage');
+            const message1 = 'Oops it seems you are lost.. :(   ';
+            const message2 = 'Press SPACE to start a game';
+            let i = 0;
+
+            function typeMessage() {
+                if (i < message1.length) {
+                    status.textContent = message1.substring(0, i + 1);
+                    i++;
+                    setTimeout(typeMessage, 80);
+                } else {
+                    // Wait then start untyping
+                    setTimeout(untypeMessage, 1000);
+                }
+            }
+
+            function untypeMessage() {
+                if (i > 0) {
+                    status.textContent = message1.substring(0, i - 1);
+                    i--;
+                    setTimeout(untypeMessage, 50);
+                } else {
+                    // Show second message with blink after untyping completes
+                    status.textContent = '';
+                    setTimeout(() => {
+                        status.style.display = 'none';
+                        startMessage.innerHTML = '<span class="blink">' + message2 + '</span>';
+                        startMessage.classList.add('visible');
+                    }, 300);
+                }
+            }
+
+            status.className = '';
+            typeMessage();
+
+
+            // Wait for space key to initialize
+            const initHandler = (e) => {
+                if (e.code === 'Space' && !initialized) {
+                    e.preventDefault();
+                    document.removeEventListener('keydown', initHandler);
+                    initialized = true;
+                    // document.addEventListener('keydown', selectGameWorkthrough);
+
+                    status.style.visibility = 'hidden';
+                    startMessage.style.visibility = 'hidden';
+
+                    // Call setup
+                    menu();
+
+                    status.style.display = 'none';
+
+                    // Start the render loop
+                    requestAnimationFrame(render);
+                }
+            };
+
+            document.addEventListener('keydown', initHandler);
+
+            // Start the render loop
+            function render() {
+
+                if (framebufferPtr && module.HEAPU8) {
+                    // Call the loop function
+                    loop();
+
+                    // Read framebuffer and render to canvas
+                    const framebuffer = new Uint8Array(
+                        module.HEAPU8.buffer,
+                        framebufferPtr,
+                        width * height * 3
+                    );
+
+                    // Draw pixels
+                    for (let y = 0; y < height; y++) {
+                        for (let x = 0; x < width; x++) {
+                            const idx = (y * width + x) * 3;
+                            const r = framebuffer[idx];
+                            const g = framebuffer[idx + 1];
+                            const b = framebuffer[idx + 2];
+
+                            ctx.fillStyle = `rgb(${r},${g},${b})`;
+                            ctx.fillRect(y * pixelSize, x * pixelSize, pixelSize, pixelSize);
+                        }
+                    }
+                }
+
+                if (!initialized) return;
+                requestAnimationFrame(render);
+            }
+
+            requestAnimationFrame(render);
+        }).catch((err) => {
+            status.textContent = 'Error loading WASM: ' + err;
+            status.className = 'error';
+            console.error(err);
+        });
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (!module) return;
+
+            switch (e.key) {
+                case 'ArrowUp': module.handleUp(); e.preventDefault(); break;
+                case 'ArrowDown': module.handleDown(); e.preventDefault(); break;
+                case 'ArrowLeft': module.handleLeft(); e.preventDefault(); break;
+                case 'ArrowRight': module.handleRight(); e.preventDefault(); break;
+                case 'Enter': module.handleSelect(); e.preventDefault(); break;
+                case 'Escape': module.handleBack(); e.preventDefault(); break;
+            }
+        });
+    </script>
+</div>
