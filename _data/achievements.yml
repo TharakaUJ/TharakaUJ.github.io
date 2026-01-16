@@ -18,6 +18,13 @@ achievements:
     location: "Botswana"
     description: "I was awarded bronze medal in International Junior Science Olympiad 2018 which was held in Botswana."
     image: "https://tharakauj.github.io/static-files/achievements/IJSO2018.jpeg"
+  
+  - title: "Lance Corporal, School Cadet Band"
+    type: "leadership"
+    date: "2018"
+    description: "Served as a Lance Corporal in the school cadet band, taking on leadership responsibilities in training, discipline, and team coordination."
+    image: "https://tharakauj.github.io/static-files/achievements/cadet-band-lance-corporal.jpeg"
+
 
   - title: "Bronze medal in IMC 2019"
     type: "competition"
