@@ -280,6 +280,12 @@ whitelist:
   - jekyll-feed
   - jekyll-include-cache
 
+# Sitemap Configuration
+# Exclude raw source directories that GitHub Pages blocks
+sitemap:
+  exclude:
+    - "/_posts/"
+    - "/*_posts/"
 
 # Archives
 #  Type

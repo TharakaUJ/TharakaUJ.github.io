@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tharakauj.github.io/sitemap.xml

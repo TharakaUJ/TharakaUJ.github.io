@@ -13,32 +13,51 @@ mermaid: true
 I began writing this series when I started learning sensor fusion on my own.
 
 ## Why I felt I needed to learn sensor fusion
-It wasn’t once or twice, I failed in many robotics competitions because I couldn’t decide which sensor to use to get a measurement. I knew it was better to use all of them, but what if they didn’t agree? How do I decide which one to trust?
 
-Around this time, I started hearing terms like *Kalman filters* and *sensor fusion*. That’s when I decided I needed to learn at least something about this field.
+It wasn't just once or twice, I kept losing competitions because I couldn't decide which sensor to trust. Some sensors drifted, others were noisy, and occasionally two sensors measuring the same quantity would disagree completely.
+
+The obvious solution seemed to be “use them together,” but that immediately raises the question: when sensors disagree, how does a robot decide which measurement is closer to reality?
+
+Around then I started hearing about *Kalman filters* and *sensor fusion*. I didn't understand much at first, but I realised this was the field that tackled exactly these problems, so I decided to learn it properly.
 
 ## What I am going to talk about here
-I won’t get into detailed tutorials with examples here, I’ll share some resources for that instead. What I’ll focus on in these posts are the things I got wrong, the mistakes I made, and what I eventually figured out (or might still misidentify).
+
+This is not a mathematical tutorial. There are already many excellent resources, I'll link some later. Instead, I want to write about the practical things I struggled with:
+
+- the mistakes I made
+- the assumptions I got wrong
+- the mental models that confused me
+- and the ideas that finally started to make sense
+
+Some of what I say may still be incomplete or slightly wrong, I'm still learning.
 
 ## Prerequisites for sensor fusion
-You need a basic understanding of algebra and matrices, and some comfort with math. It also helps to have an idea about systems and states.
+
+You don't need advanced mathematics to begin. It helps to have:
+
+- a basic understanding of algebra
+- some familiarity with matrices
+- a little intuition about systems and state
 
 ## Still at the beginning
-When I started, I already knew something about PID (a control system).
 
-<!-- here I will tell about closed state systems and open state systems -->
+When I started learning sensor fusion I already knew a bit about PID and feedback systems, which turned out to be more helpful than I expected.
 
-I learned that there are two types of systems: open-loop and closed-loop systems.
+One of the first useful ideas is to think in terms of state. Examples of state variables include:
 
-In an open-loop system, there is a way to tell the system to do something, like “go forward at 1 m/s”, and it will go at 1 m/s. The problem is, this is rarely possible in practice.
+- position
+- velocity
+- orientation
+- angular velocity
 
-That’s why we have closed-loop systems: while giving control signals, we also measure some state of the environment. PID is an example of a closed-loop system.
+Systems are often classified as open-loop or closed-loop. In an open-loop system you command an action (for example, “move forward at 1 m/s”) and assume the system follows it. In practice that rarely holds: motors behave differently under load, wheels slip, battery voltage changes, and external disturbances occur.
 
-<!-- sensor measurements and control actions -->
+In a closed-loop system we measure the system while controlling it and correct errors continuously. PID is a classic example: measure the current state, compare against the desired state, and apply corrections.
 
-There are two main ways to interact with the environment:
-1. **Sensor measurements**, which do not affect the state of the environment.
-2. **Control actions**, which do affect the state of the environment.
+There are two main types of interaction with the environment:
+
+- **Sensor measurements** - provide information about the robot or environment without changing the state directly
+- **Control actions** - actively change the system's state
 
 To understand sensor fusion and filters properly, there are a few probabilities we should be aware of.
 
@@ -53,6 +72,7 @@ stateDiagram-v2
   X<sub>t+1</sub> --> Z<sub>t+1</sub>
 ```
 *State-space model showing how control inputs influence state transitions and how states generate observations over time.*
+---
 
 One is the state transition probability: $$p(x_t|x_{t-1},u_t)$$
 
