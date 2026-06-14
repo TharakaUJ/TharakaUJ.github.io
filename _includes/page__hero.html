@@ -10,6 +10,10 @@
   {% capture overlay_filter %}linear-gradient({{ overlay_filter }}, {{ overlay_filter }}){% endcapture %}
 {% endif %}
 
+{% if page.header.overlay_image and overlay_filter == nil %}
+  {% capture overlay_filter %}linear-gradient(to top, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.06)){% endcapture %}
+{% endif %}
+
 {% if page.header.image_description %}
   {% assign image_description = page.header.image_description %}
 {% else %}
