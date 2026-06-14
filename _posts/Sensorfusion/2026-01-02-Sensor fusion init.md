@@ -8,6 +8,10 @@ tags:
   - sensors
 
 mermaid: true
+
+header:
+  overlay_image: https://tharakauj.github.io/static-files/posts/Sensor_Fusion/Sensor fusion overlay.png
+
 ---
 
 I began writing this series when I started learning sensor fusion on my own.

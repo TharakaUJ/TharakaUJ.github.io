@@ -8,7 +8,7 @@ tags:
     - Robogames
 
 header:
-  overlay_image: https://tharakauj.github.io/static-files/posts/AR/arjs-post.png
+  overlay_image: https://tharakauj.github.io/static-files/posts/AR/arjs-post cover.png
 
 ---
 
@@ -193,6 +193,8 @@ Blender couldn’t export `.glb` files with embedded video textures. I programma
 ### Final Hours
 
 With hours left before the deadline, I considered alternative approaches like dynamically displaying the video separately. However, the results were far from perfect, and I had to abandon the project due to time constraints.
+
+![Final Project Screenshot]({{ site.baseUrl }}/static-files/posts/AR/arjs-post.png)
 
 ---
 
