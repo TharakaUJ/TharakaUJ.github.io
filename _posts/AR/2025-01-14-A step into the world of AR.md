@@ -1,11 +1,10 @@
 ---
 
 categories:
-    - Robotics
-    - Drones
+    - AR
 tags:
-    - Drones
-    - Robogames
+    - ARjs
+    - Three.js
 
 header:
   overlay_image: https://tharakauj.github.io/static-files/posts/AR/arjs-post cover.png
@@ -205,7 +204,7 @@ With hours left before the deadline, I considered alternative approaches like dy
 - **Leverage the community**: Resources like documentation, forums, and peers can save valuable time.
 - **Keep it simple**: Sometimes, simpler solutions yield better results, especially under tight deadlines.
 
-
+git 
 ---
 
 ## Conclusion
