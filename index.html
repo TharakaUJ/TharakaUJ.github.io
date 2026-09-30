@@ -4,8 +4,8 @@ author_profile: false
 sidebar: false
 ---
 
-<div class="page__hero--overlay"
-    style="background-color: #1a1a1d; background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ site.data.images.homeHeader }}');">
+<div class="page__hero--overlay life-hero" style="background-color: #1a1a1d;">
+    <canvas id="life-canvas" aria-hidden="true"></canvas>
     <div class="wrapper" style="margin-bottom: -10px;">
         <div class="splash__avatar">
             <img src="{{site.author.avatar}}" class="splash__avatar" alt="{{site.author.pronounce}}"
@@ -85,6 +85,26 @@ sidebar: false
 
         <!-- Custom CSS for styling -->
         <style>
+            /* Game of Life hero background */
+            .life-hero {
+                position: relative;
+                overflow: hidden;
+            }
+
+            #life-canvas {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                z-index: 0;
+            }
+
+            .life-hero > .wrapper {
+                position: relative;
+                z-index: 1;
+            }
+
             /* Hero / header sizes */
             .page__hero--overlay .author__name {
                 font-size: 2.6rem;
@@ -279,3 +299,156 @@ sidebar: false
                 }
             }
         </style>
+
+<script>
+    (function () {
+        var canvas = document.getElementById('life-canvas');
+        if (!canvas || !canvas.getContext) return;
+        var hero = canvas.parentElement;
+        var ctx = canvas.getContext('2d');
+
+        // Theme colours (dark skin: bg #1a1a1d, accent #00adb5 / #4b7473)
+        var BG = '#1a1a1d';
+        var CELL = 'rgba(0, 173, 181, 0.55)';
+        var FRESH = 'rgba(105, 158, 160, 0.9)';
+        var GRID = 'rgba(255, 255, 255, 0.025)';
+        var TICK_MS = 120;
+
+        var reduceMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        var cols = 0, rows = 0, size = 10, dpr = 1;
+        var grid, next, age;
+        var visible = true, last = 0, stale = 0, prevCount = -1;
+
+        function cellSize(w) {
+            if (w < 480) return 8;
+            if (w < 1024) return 10;
+            return 12;
+        }
+
+        function seed(density) {
+            for (var i = 0; i < grid.length; i++) {
+                grid[i] = Math.random() < density ? 1 : 0;
+                age[i] = 0;
+            }
+        }
+
+        function resize() {
+            var w = hero.clientWidth, h = hero.clientHeight;
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = Math.round(w * dpr);
+            canvas.height = Math.round(h * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            size = cellSize(w);
+            var nc = Math.ceil(w / size), nr = Math.ceil(h / size);
+            var old = grid, oc = cols, or = rows;
+            cols = nc; rows = nr;
+            grid = new Uint8Array(cols * rows);
+            next = new Uint8Array(cols * rows);
+            age = new Uint8Array(cols * rows);
+            if (old) {
+                // keep existing pattern where it overlaps
+                for (var y = 0; y < Math.min(or, rows); y++)
+                    for (var x = 0; x < Math.min(oc, cols); x++)
+                        grid[y * cols + x] = old[y * oc + x];
+            } else {
+                seed(0.18);
+            }
+            draw();
+        }
+
+        function step() {
+            var count = 0;
+            for (var y = 0; y < rows; y++) {
+                var up = ((y - 1 + rows) % rows) * cols;
+                var mid = y * cols;
+                var dn = ((y + 1) % rows) * cols;
+                for (var x = 0; x < cols; x++) {
+                    var l = (x - 1 + cols) % cols, r = (x + 1) % cols;
+                    var n = grid[up + l] + grid[up + x] + grid[up + r] +
+                        grid[mid + l] + grid[mid + r] +
+                        grid[dn + l] + grid[dn + x] + grid[dn + r];
+                    var i = mid + x;
+                    var alive = grid[i] ? (n === 2 || n === 3) : n === 3;
+                    next[i] = alive ? 1 : 0;
+                    age[i] = alive ? Math.min(age[i] + 1, 255) : 0;
+                    count += next[i];
+                }
+            }
+            var t = grid; grid = next; next = t;
+
+            // Reseed if the board dies out or settles into still life
+            stale = count === prevCount ? stale + 1 : 0;
+            prevCount = count;
+            if (count < cols * rows * 0.02 || stale > 60) {
+                seed(0.18);
+                stale = 0;
+            }
+        }
+
+        function draw() {
+            var w = canvas.width / dpr, h = canvas.height / dpr;
+            ctx.fillStyle = BG;
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.fillStyle = GRID;
+            for (var gx = 0; gx < cols; gx++) ctx.fillRect(gx * size, 0, 1, h);
+            for (var gy = 0; gy < rows; gy++) ctx.fillRect(0, gy * size, w, 1);
+
+            var s = size - 2;
+            for (var y = 0; y < rows; y++) {
+                for (var x = 0; x < cols; x++) {
+                    var i = y * cols + x;
+                    if (!grid[i]) continue;
+                    ctx.fillStyle = age[i] < 2 ? FRESH : CELL;
+                    ctx.fillRect(x * size + 1, y * size + 1, s, s);
+                }
+            }
+
+            // Darken so the text stays readable (same role as the old image overlay)
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
+            ctx.fillRect(0, 0, w, h);
+        }
+
+        function loop(ts) {
+            if (visible && !document.hidden && ts - last >= TICK_MS) {
+                last = ts;
+                step();
+                draw();
+            }
+            requestAnimationFrame(loop);
+        }
+
+        // Paint cells where the pointer moves over the hero
+        function paint(e) {
+            var rect = canvas.getBoundingClientRect();
+            var x = Math.floor((e.clientX - rect.left) / size);
+            var y = Math.floor((e.clientY - rect.top) / size);
+            for (var dy = -1; dy <= 1; dy++)
+                for (var dx = -1; dx <= 1; dx++)
+                    if (Math.random() < 0.5) {
+                        var cx = (x + dx + cols) % cols, cy = (y + dy + rows) % rows;
+                        grid[cy * cols + cx] = 1;
+                    }
+        }
+
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(resize, 150);
+        });
+
+        resize();
+        if (reduceMotion) return; // static frame only
+
+        hero.addEventListener('pointermove', paint);
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {
+                visible = entries[0].isIntersecting;
+            }).observe(hero);
+        }
+        requestAnimationFrame(loop);
+    })();
+</script>
