@@ -17,7 +17,7 @@ title: "Achievements"
 <div class="achievements-container">
     {% assign sorted_achievements = site.data.achievements.achievements | reverse %}
     {% for achievement in sorted_achievements %}
-    <div class="achievement-card {% if achievement.image and achievement.image != '' %}has-background-image{% endif %}" {% if achievement.image and achievement.image != '' %}style="background-image: url('{{ achievement.image }}');"{% endif %}>
+    <div id="{{ achievement.title | slugify }}" class="achievement-card {% if achievement.image and achievement.image != '' %}has-background-image{% endif %}" {% if achievement.image and achievement.image != '' %}style="background-image: url('{{ achievement.image }}');"{% endif %}>
         <div class="achievement-overlay">
             <div class="achievement-header">
                 <div class="achievement-title-section">

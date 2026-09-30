@@ -1,5 +1,5 @@
 ---
-
+excerpt: "Building the drone platform for the Robogames drone challenge, and everything that goes into keeping drones flying."
 categories:
     - Robotics
     - Drones

@@ -1,6 +1,11 @@
 ---
+excerpt: "From reluctant recruit to trombone player: my years in the school cadet band."
 header:
   overlay_image: 'https://tharakauj.github.io/static-files/posts/AboutMe/My Time in the School Cadet Band/cadet_band_sportsmeet.png'
+tags:
+  - Personal
+  - School
+
 ---
 
 This is about the time I was in the school cadet band. It was kind of an accident how I enrolled in it. At first, I wanted to get out desperately. But I’m no quitter, so I stuck around to see how things would go.

@@ -5,6 +5,7 @@
   <ul class="nav__items">
     {% for navname in include.nav %}
       {% if navname == "Blog" %}{% include series-list.html %}{% continue %}{% endif %}
+      {% if navname == "Achievements" %}{% include achievements-list.html %}{% continue %}{% endif %}
       {% assign navigation = site.data.navigation[navname] %}
       {% for nav in navigation %}
         <li>
@@ -17,7 +18,12 @@
           {% if nav.children != null %}
           <ul>
             {% for child in nav.children %}
-              <li><a href="{{ child.url | relative_url }}"{% if child.url == page.url %} class="active"{% endif %}>{{ child.title }}</a></li>
+              {% assign child_url = child.url %}
+              {% if child.series %}
+                {% assign series_first = site.posts | where: "series", child.series | sort: "date" | first %}
+                {% assign child_url = series_first.url %}
+              {% endif %}
+              <li><a href="{{ child_url | relative_url }}"{% if child_url == page.url %} class="active"{% endif %}>{{ child.title }}</a></li>
             {% endfor %}
           </ul>
           {% endif %}

@@ -1,10 +1,11 @@
 ---
+excerpt: "A layered software and control architecture for a micromouse, from motor drivers up to maze logic."
 categories:
   - Robotics
   - Micromouse
 tags:
   - Micromouse
-  - Architechture
+  - Architecture
   - Robotics
   - Competition
 ---

@@ -16,27 +16,20 @@ Blog: []
 Experience:
   - title: "Projects"
     children:
-      - title: "AR"
-        url: /A-step-into-the-world-of-AR/
+      # `series:` links to the first post of that series (names from _config.yml defaults)
       - title: "Micro Mouse"
-        url: /From-one-foot-mouse-to-micro-mouse/
-  
-  - title: "Internships"
+        series: "Micromouse"
+      - title: "Battlebots"
+        series: "Battlebots"
+      - title: "Sensor Fusion"
+        series: "Sensor Fusion"
+      - title: "Drones"
+        series: "Drones"
+      - title: "AR"
+        series: "AR"
+      - title: "31x31 LED Display"
+        series: "31x31 LED Display"
 
-  - title: 
 
-
-# achievements links
-Achievements:
-  - title: "Olympiads"
-    children:
-      - title: "IMSO 2015"
-      - title: "IJSO 2018"
-      - title: "IMC 2019"
-      - title: "APMO 2022"
-
-  - title: "Chess"
-    children:
-      - title: "Asian Schools Chess Championship- under 11 6th place"
-      - title: "Asian Schools Chess Championship- under 9(participation)"
-  
+# achievements links: generated from _data/achievements.yml (see _includes/achievements-list.html)
+Achievements: []

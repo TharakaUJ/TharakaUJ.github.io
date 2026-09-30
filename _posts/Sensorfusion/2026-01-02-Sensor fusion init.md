@@ -1,12 +1,13 @@
 ---
+title: "Sensor Fusion: Why One Sensor Is Never Enough"
+excerpt: "Why I started learning sensor fusion after losing competitions to noisy, drifting, disagreeing sensors."
 categories: 
   - Robotics
   - Maths
 
 tags:
-  - robotics
-  - sensors
-
+  - Robotics
+  - Sensors
 mermaid: true
 
 header:

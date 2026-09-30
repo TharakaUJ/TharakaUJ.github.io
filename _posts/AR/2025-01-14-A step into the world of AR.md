@@ -1,5 +1,5 @@
 ---
-
+excerpt: "Building an animated, browser-based AR experience with AR.js and Three.js for a university inauguration display."
 categories:
     - AR
 tags:

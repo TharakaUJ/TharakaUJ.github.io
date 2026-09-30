@@ -22,7 +22,7 @@ title_separator          : "-"
 subtitle                 : "TharakaUJ" # site tagline that appears below site title in masthead
 name                     : "Tharaka Jayasena"
 description              : "Portfolio of Tharaka Jayasena, CSE undergraduate at University of Moratuwa. Interested in embedded systems, robotics, and software engineering."
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://tharakauj.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "TharakaUJ/tharakauj.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
