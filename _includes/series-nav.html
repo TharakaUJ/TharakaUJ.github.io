@@ -1,0 +1,45 @@
+{% comment %}
+  Series navigation. Usage: {% include series-nav.html position="top" %} or position="bottom".
+  Posts join a series via the `series` front matter (set per folder in _config.yml defaults).
+{% endcomment %}
+{% if page.series %}
+  {% assign series_posts = site.posts | where: "series", page.series | sort: "date" %}
+  {% if series_posts.size > 1 %}
+    {% for p in series_posts %}
+      {% if p.url == page.url %}
+        {% assign series_index = forloop.index0 %}
+      {% endif %}
+    {% endfor %}
+    {% assign prev_index = series_index | minus: 1 %}
+    {% assign next_index = series_index | plus: 1 %}
+
+    {% if include.position == "top" %}
+      <details class="series-box">
+        <summary>
+          <i class="fas fa-layer-group" aria-hidden="true"></i>
+          Part {{ series_index | plus: 1 }} of {{ series_posts.size }} in <strong>{{ page.series }}</strong>
+        </summary>
+        <ol>
+          {% for p in series_posts %}
+            <li>{% if p.url == page.url %}<span class="series-box__current">{{ p.title }}</span>{% else %}<a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% endif %}</li>
+          {% endfor %}
+        </ol>
+      </details>
+    {% else %}
+      <nav class="series-pager" aria-label="{{ page.series }} series">
+        {% if series_index > 0 %}
+          <a class="series-pager__link series-pager__prev" href="{{ series_posts[prev_index].url | relative_url }}">
+            <small>&larr; Previous in {{ page.series }}</small>
+            <span>{{ series_posts[prev_index].title }}</span>
+          </a>
+        {% endif %}
+        {% if next_index < series_posts.size %}
+          <a class="series-pager__link series-pager__next" href="{{ series_posts[next_index].url | relative_url }}">
+            <small>Next in {{ page.series }} &rarr;</small>
+            <span>{{ series_posts[next_index].title }}</span>
+          </a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  {% endif %}
+{% endif %}

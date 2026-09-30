@@ -8,26 +8,8 @@ main:
     url: /experience/
 
   
-# blog links
-Blog:
-  - title: "AR"
-    children:
-      - title: "A step into the world of AR"
-        url: /A-step-into-the-world-of-AR/
-  - title: "Micro Mouse"
-    children:
-      - title: "From one foot mouse to micro mouse"
-        url: /robotics/micromouse/From-one-foot-mouse-to-micro-mouse/
-      - title: "Websocket and ota code update"
-        url: /micromouse/Websocket-and-OTA-code-update/
-      - title: "When the Robot Turned Around"
-        url: /robotics/micromouse/When-the-Robot-Turned-Around/
-  - title: "Battlebots"
-    children:
-      - title: "Getting into battlebots"
-        url: /robotics/battlebot/Getting-into-battlebots/
-      - title: When Stubbornness Meets the Blue Pill, A Battlebot Postmortem
-        url: /robotics/battlebot/When-Stubbornness-Meets-the-Blue-Pill-A-Battlebot-Postmortem/
+# blog links: generated from each post's `series` (see _includes/series-list.html)
+Blog: []
 
 
 # experience links

@@ -4,6 +4,7 @@
   <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle Menu" }}</label>
   <ul class="nav__items">
     {% for navname in include.nav %}
+      {% if navname == "Blog" %}{% include series-list.html %}{% continue %}{% endif %}
       {% assign navigation = site.data.navigation[navname] %}
       {% for nav in navigation %}
         <li>

@@ -336,3 +336,18 @@ defaults:
       comments: true
       share: true
       related: true
+  # Series: every post in a folder joins that series automatically
+  - scope: { path: "_posts/MicroMouse" }
+    values: { series: "Micromouse" }
+  - scope: { path: "_posts/Battlebot" }
+    values: { series: "Battlebots" }
+  - scope: { path: "_posts/Sensorfusion" }
+    values: { series: "Sensor Fusion" }
+  - scope: { path: "_posts/AR" }
+    values: { series: "AR" }
+  - scope: { path: "_posts/Drone" }
+    values: { series: "Drones" }
+  - scope: { path: "_posts/31x31_display" }
+    values: { series: "31x31 LED Display" }
+  - scope: { path: "_posts/AboutMe" }
+    values: { series: "About Me" }

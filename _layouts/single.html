@@ -48,6 +48,7 @@ layout: default
             </nav>
           </aside>
         {% endif %}
+        {% include series-nav.html position="top" %}
         {{ content }}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
@@ -62,6 +63,7 @@ layout: default
 
       {% if page.share %}{% include social-share.html %}{% endif %}
 
+      {% include series-nav.html position="bottom" %}
       {% include post_pagination.html %}
     </div>
 

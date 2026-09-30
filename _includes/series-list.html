@@ -1,0 +1,13 @@
+{% comment %}Sidebar list of all posts grouped by series, oldest first within each series.{% endcomment %}
+{% assign all_series = site.posts | where_exp: "p", "p.series" | group_by: "series" | sort: "name" %}
+{% for s in all_series %}
+  <li>
+    <span class="nav__sub-title">{{ s.name }}</span>
+    <ul>
+      {% assign items = s.items | sort: "date" %}
+      {% for p in items %}
+        <li><a href="{{ p.url | relative_url }}"{% if p.url == page.url %} class="active"{% endif %}>{{ p.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </li>
+{% endfor %}
