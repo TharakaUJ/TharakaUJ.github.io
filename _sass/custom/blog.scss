@@ -260,3 +260,23 @@ hr {
   .nav__title small { font-weight: normal; color: $muted-text-color; }
   a.active { font-weight: bold; }
 }
+
+/* Sidebar: keep it scrollable but hide the scrollbar */
+.sidebar {
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar { display: none; } /* Chrome, Safari */
+}
+
+/* Sidebar links: plain at rest, glow individually on hover */
+.sidebar a {
+  display: inline-block;
+  transition: color 0.2s ease, text-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: $primary-color;
+    text-decoration: none;
+    text-shadow: 0 0 8px rgba($primary-color, 0.6);
+    transform: translateX(3px);
+  }
+}
