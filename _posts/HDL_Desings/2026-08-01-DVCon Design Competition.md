@@ -1,5 +1,19 @@
-# Building a Hardware Accelerator for Prompt-Based Object Detection – Our DVCon Journey
+---
+title: "Building a Hardware Accelerator for Prompt-Based Object Detection – Our DVCon Journey"
+excerpt: "A look into our first steps in the DVCon Design Challenge: figuring out how to turn a software model into something that can actually run on custom hardware."
 
+categories:
+  - Hardware
+  - DVCon
+tags:
+  - DVCon
+  - FPGA
+  - Machine Learning
+  - Competition
+
+header:
+  overlay_image: https://tharakauj.github.io/static-files/posts/HDL_Desings/DVConDesignCompetition/prompt2.jpg
+---
 The Design and Verification Conference (DVCon) is a premier event for the design and verification community, bringing together engineers, researchers, and industry experts to share knowledge, best practices, and innovative solutions. The DVCon Design Competition is an exciting opportunity for participants to showcase their skills in digital design and verification through a series of challenging tasks and projects.
 
 This year, we participated in the Design Challenge as a group of second-year Computer Science students who had only completed two modules on digital design and verification and computer architechture. Despite our limited experience, we were eager to take on the challenge and, more importantly, learn from the process.
@@ -8,8 +22,7 @@ The challenge was to build a hardware accelerator for a given processor to perfo
 
 For example, we would be given an image and a prompt such as "something to eat". Our system would then have to identify the object that best matched the prompt and draw a bounding box around it.
 
-![A kitchen counter with the query "Something to drink tea from" and a bounding box around a cup](/static-files/posts/HDL_Desings/DVConDesignCompetition/prompt2.jpg)
-*Query: "Something to drink tea from". The pipeline picks out the cup.*
+{% include figure image_path="/static-files/posts/HDL_Desings/DVConDesignCompetition/prompt2.jpg" alt="A kitchen counter with the query “Something to drink tea from” and a bounding box around a cup" caption="Query: “Something to drink tea from”. The pipeline picks out the cup." %}
 
 To keep the scope manageable, the competition limited us to 80 COCO classes.
 
@@ -49,8 +62,7 @@ An image consists of pixels. Let's say we have an image with a resolution of 480
 
 So, we can represent this image as a 480 × 600 × 3 structure. Imagine those three channels extending in the depth direction. We now have a three-dimensional structure. This is essentially our image tensor.
 
-![An image as a 480 × 600 × 3 tensor with R, G and B channels](/static-files/posts/HDL_Desings/DVConDesignCompetition/image-tensor.svg)
-*An RGB image is a 480 × 600 × 3 tensor: three channels stacked in the depth direction.*
+{% include figure image_path="/static-files/posts/HDL_Desings/DVConDesignCompetition/image-tensor.svg" alt="An image as a 480 × 600 × 3 tensor with R, G and B channels" caption="An RGB image is a 480 × 600 × 3 tensor: three channels stacked in the depth direction." %}
 
 Now, let's see what happens when we feed this image into a convolutional neural network (CNN).
 
@@ -62,13 +74,11 @@ We place this kernel over the top-left corner of the image. Each value in the ke
 
 If we do this using eight different kernels, we get an output with eight channels. Of course, the output's width and height might also be different, and it won't look like a normal image anymore.
 
-![A 3×3×3 kernel sliding over a 6×6×3 input to produce a 4×4×8 output](/static-files/posts/HDL_Desings/DVConDesignCompetition/convolution.svg)
-*Each kernel position gives one output value. Eight kernels give eight output channels.*
+{% include figure image_path="/static-files/posts/HDL_Desings/DVConDesignCompetition/convolution.svg" alt="A 3×3×3 kernel sliding over a 6×6×3 input to produce a 4×4×8 output" caption="Each kernel position gives one output value. Eight kernels give eight output channels." %}
 
 There's also something called stride. Instead of moving the kernel one pixel at a time, we can move it by two, three, or more pixels. For example, a stride of two means we skip every other position, producing a smaller output.
 
-![Stride 1 gives a 5×5 output, stride 2 gives a 3×3 output](/static-files/posts/HDL_Desings/DVConDesignCompetition/stride.svg)
-*The same 3×3 kernel on a 7×7 input: stride 1 gives a 5×5 output and stride 2 gives 3×3.*
+{% include figure image_path="/static-files/posts/HDL_Desings/DVConDesignCompetition/stride.svg" alt="Stride 1 gives a 5×5 output, stride 2 gives a 3×3 output" caption="The same 3×3 kernel on a 7×7 input: stride 1 gives a 5×5 output and stride 2 gives 3×3." %}
 
 And that's essentially what CNNs do, but across several layers and with different operations in between. These might include activation functions, which are also an important part of neural networks.
 
@@ -88,8 +98,7 @@ We can also generate embeddings for all 80 COCO classes and compare them with th
 
 We can then use the selected class or classes to guide YOLOE's object detection process.
 
-![Prompt-based detection pipeline: MiniLM ranks the 80 COCO classes, and YOLOE searches in batches of 10](/static-files/posts/HDL_Desings/DVConDesignCompetition/pipeline.svg)
-*Our stage-one pipeline. MiniLM ranks all 80 classes against the prompt, and YOLOE checks them in batches of 10, stopping as soon as it finds something.*
+{% include figure image_path="/static-files/posts/HDL_Desings/DVConDesignCompetition/pipeline.svg" alt="Prompt-based detection pipeline: MiniLM ranks the 80 COCO classes, and YOLOE searches in batches of 10" caption="Our stage-one pipeline. MiniLM ranks all 80 classes against the prompt, and YOLOE checks them in batches of 10, stopping as soon as it finds something." %}
 
 Somehow, we managed to put all of this together for the first stage!
 
@@ -97,11 +106,9 @@ We had a working software pipeline, and YOLOE-26n turned out to be quite lightwe
 
 Well, mostly promising. Here's one of our test runs:
 
-![Pipeline log for the query "Something to eat": found a match in batch 2 of 8](/static-files/posts/HDL_Desings/DVConDesignCompetition/prompt%201%20terminal.png)
-*The log for "Something to eat". A match was found in the second batch, so the remaining 60 classes were skipped (2 re-parameterizations instead of 8).*
+{% include figure image_path="/static-files/posts/HDL_Desings/DVConDesignCompetition/prompt%201%20terminal.png" alt="Pipeline log for the query “Something to eat”: found a match in batch 2 of 8" caption="The log for “Something to eat”. A match was found in the second batch, so the remaining 60 classes were skipped (2 re-parameterizations instead of 8)." %}
 
-![Query "Something to eat" with a low-confidence box labelled bird](/static-files/posts/HDL_Desings/DVConDesignCompetition/prompt1.jpg)
-*And the result: a bird, with a score of 0.02. Technically, something might eat it...*
+{% include figure image_path="/static-files/posts/HDL_Desings/DVConDesignCompetition/prompt1.jpg" alt="Query “Something to eat” with a low-confidence box labelled bird" caption="And the result: a bird, with a score of 0.02. Technically, something might eat it..." %}
 
 At this point, we had a working model and a reasonably good understanding of what we wanted to build.
 
