@@ -1,4 +1,5 @@
 ---
+excerpt: "Our second micromouse competition: a custom PCB, a late start on software, and why we're more excited than ever."
 categories:
   - Robotics
   - Micromouse

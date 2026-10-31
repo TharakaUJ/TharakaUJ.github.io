@@ -1,4 +1,6 @@
 ---
+date: 2025-02-08 18:00:00 +0530
+excerpt: "Enabling over-the-air updates and WebSocket-based live tuning on an ESP32 micromouse."
 categories:
   - Micromouse
 tags:

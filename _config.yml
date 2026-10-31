@@ -22,7 +22,7 @@ title_separator          : "-"
 subtitle                 : "TharakaUJ" # site tagline that appears below site title in masthead
 name                     : "Tharaka Jayasena"
 description              : "Portfolio of Tharaka Jayasena, CSE undergraduate at University of Moratuwa. Interested in embedded systems, robotics, and software engineering."
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://tharakauj.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "TharakaUJ/tharakauj.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
@@ -172,7 +172,6 @@ footer:
 include:
   - .htaccess
   - _pages
-  - _posts
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -280,6 +279,12 @@ whitelist:
   - jekyll-feed
   - jekyll-include-cache
 
+# Sitemap Configuration
+# Exclude raw source directories that GitHub Pages blocks
+sitemap:
+  exclude:
+    - "/_posts/"
+    - "/*_posts/"
 
 # Archives
 #  Type
@@ -331,3 +336,20 @@ defaults:
       comments: true
       share: true
       related: true
+  # Series: every post in a folder joins that series automatically
+  - scope: { path: "_posts/MicroMouse" }
+    values: { series: "Micromouse" }
+  - scope: { path: "_posts/Battlebot" }
+    values: { series: "Battlebots" }
+  - scope: { path: "_posts/Sensorfusion" }
+    values: { series: "Sensor Fusion" }
+  - scope: { path: "_posts/AR" }
+    values: { series: "AR" }
+  - scope: { path: "_posts/Drone" }
+    values: { series: "Drones" }
+  - scope: { path: "_posts/31x31_display" }
+    values: { series: "31x31 LED Display" }
+  - scope: { path: "_posts/AboutMe" }
+    values: { series: "About Me" }
+  - scope: { path: "_posts/HDL_Desings" }
+    values: { series: "HDL Designs" }

@@ -1,0 +1,52 @@
+{% comment %}
+  Series helpers, styled with the theme's own components.
+  position="sidebar": nav list of the current post's series (left sidebar).
+  position="bottom":  Previous/Next pagination, scoped to the series when the post is in one.
+{% endcomment %}
+{% assign series_posts = "" | split: "" %}
+{% if page.series %}
+  {% assign series_posts = site.posts | where: "series", page.series | sort: "date" %}
+{% endif %}
+
+{% if series_posts.size > 1 %}
+  {% for p in series_posts %}
+    {% if p.url == page.url %}{% assign series_index = forloop.index0 %}{% endif %}
+  {% endfor %}
+  {% assign prev_index = series_index | minus: 1 %}
+  {% assign next_index = series_index | plus: 1 %}
+  {% if series_index > 0 %}{% assign prev_post = series_posts[prev_index] %}{% else %}{% assign prev_post = nil %}{% endif %}
+  {% assign next_post = series_posts[next_index] %}
+{% else %}
+  {% assign prev_post = page.previous %}
+  {% assign next_post = page.next %}
+{% endif %}
+
+{% if include.position == "sidebar" %}
+  {% if series_posts.size > 1 %}
+    <nav class="nav__list series-list">
+      <h3 class="nav__title" style="padding-left: 0;">{{ page.series }} <small>· Part {{ series_index | plus: 1 }} of {{ series_posts.size }}</small></h3>
+      <input id="ac-series" name="accordion-series" type="checkbox" />
+      <label for="ac-series">{{ page.series }} series</label>
+      <ul class="nav__items">
+        <li><ul>
+          {% for p in series_posts %}
+            <li><a href="{{ p.url | relative_url }}"{% if p.url == page.url %} class="active"{% endif %}>{{ p.title }}</a></li>
+          {% endfor %}
+        </ul></li>
+      </ul>
+    </nav>
+  {% endif %}
+{% elsif prev_post or next_post %}
+  <nav class="pagination">
+    {% if prev_post %}
+      <a href="{{ prev_post.url | relative_url }}" class="pagination--pager" title="{{ prev_post.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+    {% else %}
+      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+    {% endif %}
+    {% if next_post %}
+      <a href="{{ next_post.url | relative_url }}" class="pagination--pager" title="{{ next_post.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+    {% else %}
+      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+    {% endif %}
+  </nav>
+{% endif %}

@@ -1,4 +1,5 @@
 ---
+excerpt: "How we built our first Tombstone-style battlebot and faced our very first competition."
 categories:
   - Robotics
   - Battlebot

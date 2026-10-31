@@ -1,6 +1,11 @@
 ---
+excerpt: "Turning a 961-bulb LED wall into a modular retro game console, starting with Snake."
 header:
   overlay_image: https://tharakauj.github.io/static-files/posts/31x31_display/led_matrix_overlay_1.jpeg
+tags:
+  - LED Matrix
+  - Games
+
 ---
 
 ## 🎮 Turning a 31×31 LED Matrix Into a Retro Game Console

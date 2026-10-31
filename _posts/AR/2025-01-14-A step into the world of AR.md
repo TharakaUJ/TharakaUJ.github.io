@@ -1,3 +1,16 @@
+---
+excerpt: "Building an animated, browser-based AR experience with AR.js and Three.js for a university inauguration display."
+categories:
+    - AR
+tags:
+    - ARjs
+    - Three.js
+
+header:
+  overlay_image: https://tharakauj.github.io/static-files/posts/AR/arjs-post cover.png
+
+---
+
 Augmented Reality (AR) is transforming how we interact with digital content, making it more immersive and interactive. AR.js, a lightweight open-source library, allows developers to create AR experiences directly in the browser, eliminating the need for additional app installations. In this post, I’ll share my journey of creating an animated AR experience for my university’s inauguration display, a project that, despite its challenges, taught me a lot about AR.js and browser-based AR development.
 
 ---
@@ -180,7 +193,7 @@ Blender couldn’t export `.glb` files with embedded video textures. I programma
 
 With hours left before the deadline, I considered alternative approaches like dynamically displaying the video separately. However, the results were far from perfect, and I had to abandon the project due to time constraints.
 
-![Final Project Screenshot]({{ site.baseUrl }}/assets/images/arjs-post-2025-01-14-01.png)
+![Final Project Screenshot]({{ site.baseUrl }}/static-files/posts/AR/arjs-post.png)
 
 ---
 
@@ -191,7 +204,7 @@ With hours left before the deadline, I considered alternative approaches like dy
 - **Leverage the community**: Resources like documentation, forums, and peers can save valuable time.
 - **Keep it simple**: Sometimes, simpler solutions yield better results, especially under tight deadlines.
 
-
+git 
 ---
 
 ## Conclusion

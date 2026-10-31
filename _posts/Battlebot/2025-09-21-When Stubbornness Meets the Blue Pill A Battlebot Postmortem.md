@@ -1,12 +1,12 @@
 ---
+excerpt: "Swapping the ESP32 for an STM32 Blue Pill, and the hours lost to my own flashing settings."
 categories:
   - Robotics
   - Battlebot
 tags:
   - Battlebot
   - Competition
-  - stm32
-  
+  - STM32
 header:
   overlay_image: 'https://tharakauj.github.io/static-files/posts/Battlebot/A Battlebot Postmortem/battlebot_stm32.jpeg'
 ---

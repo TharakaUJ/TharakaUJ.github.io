@@ -1,4 +1,6 @@
 ---
+date: 2025-02-08 09:00:00 +0530
+excerpt: "How a team with no prior experience started with a large prototype and worked towards a real micromouse."
 categories:
   - Robotics
   - Micromouse

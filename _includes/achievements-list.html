@@ -1,0 +1,12 @@
+{% comment %}Sidebar list of achievements grouped by type, linking to their cards on the achievements page.{% endcomment %}
+{% assign groups = site.data.achievements.achievements | group_by: "type" %}
+{% for g in groups %}
+  <li>
+    <span class="nav__sub-title">{{ g.name | capitalize }}</span>
+    <ul>
+      {% for a in g.items %}
+        <li><a href="{{ '/achievements/' | relative_url }}#{{ a.title | slugify }}">{{ a.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </li>
+{% endfor %}
