@@ -351,3 +351,5 @@ defaults:
     values: { series: "31x31 LED Display" }
   - scope: { path: "_posts/AboutMe" }
     values: { series: "About Me" }
+  - scope: { path: "_posts/HDL_Desings" }
+    values: { series: "HDL Designs" }
